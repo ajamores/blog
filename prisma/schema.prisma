@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum postStatus {
+  PUBLISHED
+  DRAFT
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  username String
+  password String
+}
+
+model Post {
+  id          String     @id @default(uuid())
+  title       String
+  content     String?
+  status      postStatus @default(DRAFT)
+  createdAt   DateTime   @default(now())
+  updatedAt DateTime   @default(now())
+
+  //Posts can have many post categories
+  postCategories Post_Category[]
+  //Posts can have many images
+  images         Image[]
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String
+
+  //categoires can belong to many posts
+  postCategories Post_Category[]
+}
+
+model Post_Category {
+  id          Int    @id @default(autoincrement())
+  post_id     String
+  category_id String
+
+  //Post_Category belongs to 1 post, if deleted deletes row here
+  post     Post     @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  //Post_Category belongs to 1 category, if deleted deletes row here
+  category Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
+}
+
+model Image {
+  id       Int    @id @default(autoincrement())
+  imageUrl String
+  post_id  String
+
+  //An image belongs to 1 post
+  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
+}
