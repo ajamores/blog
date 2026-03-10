@@ -1,6 +1,6 @@
 import express from 'express';
 import { config } from 'dotenv';
-import { connectDB, disconnectDB } from './config/db';
+import { connectDB, disconnectDB } from '../src/config/db.js';
 
 //start app/configs
 const app = express();
@@ -14,6 +14,7 @@ connectDB();
 //-------------MiddleWares---------------
 //dont forget express comes with build in middle ware like json
 app.use(express.json()); // parses JSON bodies first
+
 //middleware for server logging
 app.use((req, res, next) => {
     const start = Date.now();
