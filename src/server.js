@@ -1,6 +1,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import { connectDB, disconnectDB } from '../src/config/db.js';
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 //start app/configs
 const app = express();
@@ -29,11 +30,18 @@ app.use((req, res, next) => {
 
 //------------Route Endpoints--------------------\
 import authRoutes from './routes/authRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+
 app.use("/auth", authRoutes);
+app.use("/blog", blogRoutes);
 
 
+// ↓ add these two lines at the bottom, order matters
+app.use(notFound);      // catches any request that didn't match a route above
+app.use(errorHandler);  // handles errors passed via next(error) from anywhere
 
-app.listen(PORT, () => {
+
+const server = app.listen(PORT, () => {
     console.log("Server up and running at port: " + PORT);
 });
 

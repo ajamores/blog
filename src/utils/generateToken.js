@@ -16,19 +16,24 @@ import jwt from "jsonwebtoken";
 
 //This is how you protect your API endpoints 
 
-export const generateToken = (userId, res) =>{
 
-    const payload = {id: userId};
+const EXPIRES_IN_DAYS = parseInt(process.env.JWT_EXPRIES_IN) || 7;
+const COOKIE_MAX_AGE = EXPIRES_IN_DAYS * 24 * 60 * 60 * 1000;
+
+export const generateToken = (username, res) =>{
+
+    const payload = {username: username};
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+        expiresIn: `${COOKIE_MAX_AGE}d`
     });
+
 
     res.cookie("jwt", token, {
         httpOnly: true, // make so js cant be run to mess website aka prvent client side script
-        secure: process.env.NOVE_ENV === "production", //secure only if in prod 
+        secure: process.env.NODE_ENV === "production", //secure only if in prod 
         sameSite: "Strict", //stops CRSF atacks 
-        maxAge: (1000 * 60 * 60 * 24) * 7 //(1000 miliseconds, 60 sec in a min, 60 min an hour, 24 hours in one day ) * your specifed days = 7
+        maxAge: COOKIE_MAX_AGE //(1000 miliseconds, 60 sec in a min, 60 min an hour, 24 hours in one day ) * your specifed days = 7
     })
 
     return token;

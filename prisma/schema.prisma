@@ -19,49 +19,44 @@ enum postStatus {
 }
 
 model Admin {
-  id       Int    @id @default(autoincrement())
+  id       String @id @default(uuid())
   username String @unique
   password String
 }
 
 model Post {
-  id          String     @id @default(uuid())
-  title       String
-  content     String?
-  status      postStatus @default(DRAFT)
-  createdAt   DateTime   @default(now())
-  updatedAt DateTime   @default(now())
+  id        String     @id @default(uuid()) @db.Uuid
+  slug      String     @unique
+  title     String
+  excerpt   String
+  content   Json?
+  status    postStatus @default(DRAFT)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 
   //Posts can have many post categories
   postCategories Post_Category[]
-  //Posts can have many images
-  images         Image[]
 }
 
 model Category {
-  id   String @id @default(uuid())
-  name String
+  id   String @id @default(uuid()) @db.Uuid
+  name String @unique
 
   //categoires can belong to many posts
   postCategories Post_Category[]
 }
 
 model Post_Category {
-  id          Int    @id @default(autoincrement())
-  post_id     String
-  category_id String
+  id          String @id @default(uuid()) @db.Uuid
+  post_id     String @db.Uuid
+  category_id String @db.Uuid
 
   //Post_Category belongs to 1 post, if deleted deletes row here
-  post     Post     @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
+
   //Post_Category belongs to 1 category, if deleted deletes row here
   category Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
-}
 
-model Image {
-  id       Int    @id @default(autoincrement())
-  imageUrl String
-  post_id  String
-
-  //An image belongs to 1 post
-  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
+  //Prevent duplicate tags on a post
+  @@unique([post_id, category_id])
 }

@@ -18,6 +18,7 @@ export const login = async (req, res) => {
             where: {username: username}, 
         })
 
+
         if(!user){
             const error = "Login Controller: User not found";
             console.log(error);
@@ -41,23 +42,28 @@ export const login = async (req, res) => {
         res.status(201).json({
             status: "successful",
             data: {
-                user: user.username
+                username: user.username
             },
             token: jwt
         });
 
     } catch (error) {
         console.log(error);
-        return res
-            .status(404)
-            .json({
-                status: "unsuccessful",
-                error: error
-            })
+        next(error);
     }
 }
 
 
 export const logout = (req, res) => {
 
+    //destroy cookie
+    res.cookie("jwt", "", {
+        expires: new Date(0),
+        httpOnly: true
+    });
+
+    res.status(200).json({
+        status: "success",
+        message: "Logged out successfully"
+    })
 }
