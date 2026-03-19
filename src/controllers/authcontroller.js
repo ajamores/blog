@@ -42,7 +42,8 @@ export const login = async (req, res) => {
         res.status(201).json({
             status: "successful",
             data: {
-                username: user.username
+                username: user.username,
+                id: user.id
             },
             token: jwt
         });

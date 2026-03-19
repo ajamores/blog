@@ -14,7 +14,12 @@ export const validateRequest = (schema) => {
             const flattened = z.flattenError(result.error);
 
             console.log(flattened);
-            return res.status(400).json({ fieldErrors: flattened.fieldErrors, formErrors: flattened.formErrors});
+            return res.status(400).json({ fieldErrors: flattened.fieldErrors, 
+                formErrors: flattened.formErrors,
+                result: result
+                },
+                
+            );
         }   
 
         //IMPORTANT PASS ON THE CLEANED DATA

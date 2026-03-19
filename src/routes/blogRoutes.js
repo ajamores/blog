@@ -1,15 +1,16 @@
 import express from "express";
 import { authMiddleware } from "../middleware/authMiddleware.js";
-import { createBlogPost, getAllBlogPosts, getBlogPost, updateBlogPost, deleteBlogPost } from "../controllers/blogController.js";
-import { validateRequest } from "../controllers/validRequest.js";
+import { createBlogPost, getAllBlogPosts, getBlogPost, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost } from "../controllers/blogController.js";
+import { validateRequest } from "../middleware/validRequestMiddleware.js";
 import { createBlogPostSchema, updateBlogPostSchema } from "../validators/postValidator.js";
 
 const router = express.Router();
 
 
 //-------Avaiabile to public-----
-router.get("/", getAllBlogPosts)
-router.get("/:slug", getBlogPost);
+
+router.get("/", getAllPublishedBlogPosts )
+router.get("/:slug", getPublishedPost)
 
 
 
@@ -17,9 +18,12 @@ router.get("/:slug", getBlogPost);
 //guarded routes
 router.use(authMiddleware);
 
-router.post("/create", validateRequest(createBlogPostSchema), createBlogPost);
-router.delete("/:slug", deleteBlogPost);
-router.patch("/:slug", validateRequest(updateBlogPostSchema), updateBlogPost);
+router.post("/admin/create", validateRequest(createBlogPostSchema), createBlogPost);
+router.get("/admin/all", getAllBlogPosts);
+router.get("/admin/:slug", getBlogPost);
+router.delete("/admin/:slug", deleteBlogPost);
+router.patch("/admin/:slug", validateRequest(updateBlogPostSchema), updateBlogPost);
+
 
 router.get("/", (req, res) => {
     res.json({

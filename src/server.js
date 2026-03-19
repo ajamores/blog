@@ -31,9 +31,11 @@ app.use((req, res, next) => {
 //------------Route Endpoints--------------------\
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js'
 
 app.use("/auth", authRoutes);
 app.use("/blog", blogRoutes);
+app.use("/category", categoryRoutes);
 
 
 // ↓ add these two lines at the bottom, order matters

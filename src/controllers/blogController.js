@@ -6,14 +6,11 @@ const createBlogPost = async (req, res, next) => {
 
     try {
         console.log("blogController reached, createBlogPost()");
-        const { title, excerpt ,content, status} = req.body;
-
-        //Check if post exists... how? the slug
-        //will be unique so generate one and check
+        const { title, excerpt ,content, status, categories} = req.body;
+        const{ id:adminId} = req.user
 
         const slug = generateSlug(title);
 
-        
         const post = await prisma.post.findUnique({
             where: {
                 slug: slug
@@ -21,11 +18,25 @@ const createBlogPost = async (req, res, next) => {
         })
         
         if (post) {
-            return res.status(409).json({ message: "A post with this title already exists" });
+            console.log("Error with creating post")
+            return res.status(400).json({ message: "A post with this title already exists" });
         }
 
         const newPost = await prisma.post.create({
-            data: { slug, title, excerpt, content, status }
+            data: { 
+                adminId,
+                slug, 
+                title, 
+                excerpt, 
+                content, 
+                status, 
+                categories: {
+                    connectOrCreate: categories?.map((name) => ({
+                        where: {name},
+                        create: {name}
+                    })) ?? []
+                }
+            }
         });
         
         console.log("New post created: " + newPost);
@@ -49,6 +60,15 @@ const getBlogPost = async (req, res, next) => {
         const post = await prisma.post.findUniqueOrThrow({
             where: {
                 slug: slug
+            },
+            select: {
+                categories: true,
+                title: true,
+                excerpt:true,
+                createdAt:true,
+                content: true,
+                status:true
+
             }
         });
 
@@ -72,7 +92,8 @@ const getAllBlogPosts = async (req, res, next) => {
                 slug: true,
                 title: true,
                 excerpt: true,
-                createdAt:true
+                createdAt:true,
+                categories:true
                 //No need to get all posts content, this is good enough
             }
         })
@@ -102,14 +123,14 @@ const updateBlogPost = async (req, res, next) => {
     try {
         
         const { slug } = req.params;
-        const { title, excerpt, content, status } = req.body;
+        const { title, excerpt, content, status, categories } = req.body;
 
-        const post = await prisma.post.findUniqueOrThrow({
-            where: {
-                slug: slug
-            }
-        })
-
+        //No need the update will already handle the error if not found 
+        // const post = await prisma.post.findUniqueOrThrow({
+        //     where: {
+        //         slug: slug
+        //     }
+        // })
 
         const newPost = await prisma.post.update({
             where: {
@@ -120,7 +141,14 @@ const updateBlogPost = async (req, res, next) => {
                 title: title,
                 excerpt: excerpt,
                 content: content,
-                status: status
+                status: status,
+                categories: {
+                    set: [],
+                    connectOrCreate: categories?.map( name => ({
+                        where: { name },
+                        create: { name }
+                    })) ?? []
+                }
             }
         })
 
@@ -169,5 +197,74 @@ const deleteBlogPost = async (req, res, next) => {
     }
 };
 
+const getAllPublishedBlogPosts = async (req, res, next) => {
+    try {
+        console.log("blogController reached, getAllBlogPosts()");
+        const posts = await prisma.post.findMany({
+            where: {
+                status: "PUBLISHED"
+            },
+            orderBy : {createdAt: 'desc'},
+            select: {
+                slug: true,
+                title: true,
+                excerpt: true,
+                createdAt:true,
+                categories:true,
+                status: true
+                //No need to get all posts content, this is good enough
+            }
+        })
 
-export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost};
+        if(posts.length === 0){
+            console.log("No posts");
+            return res.status(200).json({
+                status: "success",
+                error: "No posts to return",
+                data: posts
+            })
+        }
+
+        res.status(200).json({
+            status: "success",
+            data: {posts}
+        })
+        
+    } catch (error) {
+        console.log("blogController, getPublishedBlogPosts() error: " + error.message);
+        next(error)
+    }
+}
+
+const getPublishedPost = async (req, res, next) => {
+    try {
+        console.log("blogController reached, getPublishedPost()");
+        const { slug } = req.params;
+
+        const post = await prisma.post.findUniqueOrThrow({
+            where: {
+                slug: slug,
+                status: "PUBLISHED"
+            },
+            select: {
+                categories: true,
+                title: true,
+                excerpt:true,
+                createdAt:true,
+                content: true
+
+            }
+        });
+
+        res.status(200).json({
+            status: "success",
+            data: {post}
+        })
+
+    } catch (error) {
+        console.log("blogController, getPublsihedPost() error: " + error.message);
+        next(error);
+    }
+}
+
+export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost};

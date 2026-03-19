@@ -13,16 +13,22 @@ datasource db {
   provider = "postgresql"
 }
 
+
+model Admin {
+  id       String @id @default(uuid()) @db.Uuid
+  username String @unique
+  password String
+
+  //Admin can have many posts
+  posts    Post[]
+}
+
+
 enum postStatus {
   PUBLISHED
   DRAFT
 }
 
-model Admin {
-  id       String @id @default(uuid())
-  username String @unique
-  password String
-}
 
 model Post {
   id        String     @id @default(uuid()) @db.Uuid
@@ -34,29 +40,18 @@ model Post {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
-  //Posts can have many post categories
-  postCategories Post_Category[]
-}
+  //Post can belong to one admin
+  admin   Admin  @relation(fields: [adminId], references: [id])
+  adminId String @db.Uuid
 
-model Category {
+  //A post can have many categories
+  categories Category[]
+
+}
+  model Category {
   id   String @id @default(uuid()) @db.Uuid
   name String @unique
 
-  //categoires can belong to many posts
-  postCategories Post_Category[]
-}
-
-model Post_Category {
-  id          String @id @default(uuid()) @db.Uuid
-  post_id     String @db.Uuid
-  category_id String @db.Uuid
-
-  //Post_Category belongs to 1 post, if deleted deletes row here
-  post Post @relation(fields: [post_id], references: [id], onDelete: Cascade)
-
-  //Post_Category belongs to 1 category, if deleted deletes row here
-  category Category @relation(fields: [category_id], references: [id], onDelete: Cascade)
-
-  //Prevent duplicate tags on a post
-  @@unique([post_id, category_id])
+  //A Category can belong to many posts
+  posts Post[]
 }
