@@ -30,13 +30,13 @@ const authLimiter = rateLimit({
 app.use(limiter);
 
 // protect against web vulnerabilities by setting HTTP headers
-app.use(helmet);
+app.use(helmet());
 
 //CORS
-app.use(cors({
-    origin: "http://localhost:3000", //  frontend URL
-    credentials: true
-}))
+// app.use(cors({
+//     origin: "*", //  //All domain for testing
+//     credentials: true
+// }))
 
 //dont forget express comes with build in middle ware like json
 app.use(express.json()); // parses JSON bodies first
