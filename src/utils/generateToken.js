@@ -17,15 +17,15 @@ import jwt from "jsonwebtoken";
 //This is how you protect your API endpoints 
 
 
-const EXPIRES_IN_DAYS = parseInt(process.env.JWT_EXPRIES_IN) || 7;
-const COOKIE_MAX_AGE = EXPIRES_IN_DAYS * 24 * 60 * 60 * 1000;
+const EXPIRES_IN_DAYS = parseInt(process.env.JWT_EXPIRES_IN) || 7;
+const COOKIE_MAX_AGE = EXPIRES_IN_DAYS * 24 * 60 * 60 * 1000;    
 
 export const generateToken = (username, res) =>{
 
     const payload = {username: username};
 
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: `${COOKIE_MAX_AGE}d`
+        expiresIn: `${EXPIRES_IN_DAYS}d`
     });
 
 

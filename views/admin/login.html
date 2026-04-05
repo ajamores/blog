@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="bg-ctp-base min-h-screen flex items-center justify-center px-4">
+
+    <div class="w-full max-w-sm">
+
+
+
+        <!-- Card -->
+        <div class="bg-ctp-mantle border border-ctp-surface rounded-2xl px-8 py-10 shadow-xl">
+
+                    <!-- Brand mark -->
+        <div class="flex items-center gap-2 mb-8">
+            <div class="w-2 h-2 rounded-full bg-ctp-accent"></div>
+            <span class="text-xs uppercase tracking-widest text-ctp-subtext font-medium">Admin Portal</span>
+        </div>
+
+            <h2 class="text-2xl font-semibold text-ctp-text mb-1">Welcome back</h2>
+            <p class="text-sm text-ctp-subtext mb-8">Sign in to manage your blog</p>
+
+            <form class="flex flex-col gap-5">
+
+                <div class="flex flex-col gap-1.5">
+                    <label for="username" class="text-xs uppercase tracking-wider text-ctp-subtext font-medium">
+                        Username
+                    </label>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        autocomplete="username"
+                        maxlength="50"
+                        placeholder="your username"
+                        required
+                        class="bg-ctp-surface text-ctp-text placeholder-ctp-subtext rounded-lg px-4 py-2.5 text-sm border border-transparent focus:outline-none focus:border-ctp-accent transition-colors"
+                    />
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                    <label for="password" class="text-xs uppercase tracking-wider text-ctp-subtext font-medium">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="current-password"
+                        maxlength="128"
+                        placeholder="••••••••"
+                        required
+                        class="bg-ctp-surface text-ctp-text placeholder-ctp-subtext rounded-lg px-4 py-2.5 text-sm border border-transparent focus:outline-none focus:border-ctp-accent transition-colors"
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    class="mt-2 bg-ctp-accent text-ctp-base font-semibold text-sm py-2.5 rounded-lg hover:opacity-90 active:scale-95 transition-all cursor-pointer"
+                >
+                    Sign in
+                </button>
+            </form>
+
+            <p id="error-msg" class="text-ctp-red mt-3  text-sm hidden">
+                Invalid username or password
+            </p>
+        </div>
+
+        <p class="text-center text-xs text-ctp-subtext mt-6 opacity-50">
+            Restricted access — authorized personnel only
+        </p>
+
+    </div>
+    <script type="module" src="/js/login.js"></script>
+</body>
+</html>

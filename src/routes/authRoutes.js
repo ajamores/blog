@@ -5,11 +5,6 @@ import { login, logout } from "../controllers/authcontroller.js";
 
 const router = express.Router();
 
-router.get('/login', (req, res) => {
-    res.status(200).json({
-        msg: "your mom"
-    })
-});
 
 router.post('/login', login)
 

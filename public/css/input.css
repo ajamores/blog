@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ctp-base: #1e1e2e;
+  --color-ctp-mantle: #181825;
+  --color-ctp-surface: #313244;
+  --color-ctp-text: #cdd6f4;
+  --color-ctp-subtext: #a6adc8;
+  --color-ctp-accent: #89b4fa;
+  --color-ctp-mauve: #cba6f7;
+  --color-ctp-green: #a6e3a1;
+  --color-ctp-red: #f38ba8;
+  --color-ctp-peach: #fab387;
+
+  --color-ctp-accent-10: rgba(137, 180, 250, 0.10);
+  --color-ctp-accent-20: rgba(137, 180, 250, 0.20);
+  --color-ctp-accent-30: rgba(137, 180, 250, 0.30);
+  --color-ctp-surface-50: rgba(49, 50, 68, 0.50);
+  --color-ctp-surface-80: rgba(49, 50, 68, 0.80);
+  --color-ctp-base-70: rgba(30, 30, 46, 0.70);
+
+  --color-ctp-latte-base: #eff1f5;
+  --color-ctp-latte-mantle: #e6e9ef;
+  --color-ctp-latte-surface: #dce0e8;
+  --color-ctp-latte-text: #4c4f69;
+  --color-ctp-latte-subtext: #6c6f85;
+  --color-ctp-latte-accent: #1e66f5;
+
+  --color-ctp-latte-accent-10: rgba(30, 102, 245, 0.10);
+  --color-ctp-latte-accent-20: rgba(30, 102, 245, 0.20);
+  --color-ctp-latte-accent-30: rgba(30, 102, 245, 0.30);
+  --color-ctp-latte-surface-50: rgba(220, 224, 232, 0.50);
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.dark{
+    --color-background: #1f2937;
+}
+
+.tag {
+    background: #313244;
+    color: #cdd6f4;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.tag:hover {
+    background: #89b4fa;
+    color: #1e1e2e;
+}
+
+.post{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  border-style:double;
+  background-color: rgba(255, 255, 255, 0.8);
+  align-items: flex-start;
+  margin: 0 auto;
+  padding: 3rem;
+  border-radius: 2rem;
+}
+
+.postExcerpt{
+  text-align: left;
+}
+
+.postTitle{
+  font-size: 1.7rem;
+  font-weight: 500;
+  ;
+}
+
+.postCategories {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  width: 100%;
+
+}
+
+.readbtn{
+  margin-left: auto;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background-color: rgb(244, 222, 222);
+}
+
+.postDate{
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: linear-gradient(to right, #e2e8f0, #cbd5e1);
+}
+

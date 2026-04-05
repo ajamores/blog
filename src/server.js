@@ -5,6 +5,9 @@ import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cors from 'cors';
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { requireAuth } from './middleware/requireAuth.js';
 
 
 //start app/configs
@@ -30,7 +33,15 @@ const authLimiter = rateLimit({
 app.use(limiter);
 
 // protect against web vulnerabilities by setting HTTP headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "https://unpkg.com"], //Allow this for icons
+      imgSrc: ["'self'", "data:", "https:"],
+    }
+  }
+}))
 
 //CORS
 // app.use(cors({
@@ -40,6 +51,13 @@ app.use(helmet());
 
 //dont forget express comes with build in middle ware like json
 app.use(express.json()); // parses JSON bodies first
+
+app.use(cookieParser());
+
+//HTML forms submit data in a format called application/x-www-form-urlencoded which
+//looks like this in the raw request: username=armand&password=1234
+//express.urlencoded reads that raw string and converts it into a proper JS object: 
+// app.use(express.urlencoded({ extended: true })); //Going to have front end handle login instead
 
 //middleware for server logging
 app.use((req, res, next) => {
@@ -58,11 +76,26 @@ app.use((req, res, next) => {
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js'
+import cookieParser from 'cookie-parser';
 
 
 app.use("/auth", authLimiter ,authRoutes);
 app.use("/blog", blogRoutes);
 app.use("/category", categoryRoutes);
+
+//ES Module does not give __dirname for free, need to create yourself 
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+//`express.static` tells Express "serve everything inside this folder as if it's at the root URL." So your `public/`
+// folder becomes the root for static files:
+app.use(express.static(path.join(__dirname, '../public')))
+
+
+// Page routes
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')))
+app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')))
+app.get('/admin/login', (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')))
+
+app.get('/admin/dashboard', requireAuth ,(req, res) => res.sendFile(path.join(__dirname, '../views/admin/dashboard.html')))
 
 
 // ↓ add these two lines at the bottom, order matters

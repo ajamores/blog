@@ -35,7 +35,7 @@ export const authMiddleware = async (req, res, next) =>{
             error: "Not authorized, need valid credentials."
         })
     }
-
+    
    
     
     try {

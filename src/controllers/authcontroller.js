@@ -5,7 +5,10 @@ import { generateToken } from "../utils/generateToken.js";
 
 
 
-export const login = async (req, res) => {
+export const login = async (req, res, next) => {
+
+    console.log("Content-Type:", req.headers['content-type']);
+    console.log("Body:", req.body);
 
     try {
         
