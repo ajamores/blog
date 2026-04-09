@@ -1,3 +1,5 @@
+
+
 const BASE_URL = `http://localhost:8080`;
 
 const getAllPublishedBLogPosts = async () => {
@@ -41,6 +43,20 @@ const getAllBlogPosts = async () => {
     return data;
 }
 
+const getBlogPost = async (slug) => {
+    const res = await fetch(`${BASE_URL}/blog/admin/${slug}`, {
+        method: 'GET',
+        credentials: 'include'
+    })
+    if(!res.ok){
+         throw new Error('Error fetching blog: ' + slug)
+    }
+
+    const data = await res.json();
+
+    return data;
+}
+
 const login = async (username, password) => {
 
     const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -60,4 +76,4 @@ const login = async (username, password) => {
 
 
 
-export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, login};
+export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, getBlogPost, login};

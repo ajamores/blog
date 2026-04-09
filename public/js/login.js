@@ -19,3 +19,10 @@ document.querySelector('form').addEventListener('submit', async (e) =>{
 
    
 } );
+
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('error') === 'session_expired') {
+    document.getElementById('error-msg').textContent = 'Session expired, please sign in again';
+    document.getElementById('error-msg').classList.remove('hidden');
+}

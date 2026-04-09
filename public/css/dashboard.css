@@ -1,0 +1,39 @@
+.post {
+    position: relative;
+}
+
+/* overlay on the post, not the post itself */
+.post::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s ease;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.post:hover::after {
+    background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+}
+
+.middle {
+    position: absolute;
+    z-index: 2; /* above the overlay */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0.5rem 1rem;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    background-color: rgb(18, 155, 201);
+    border-radius: 0.5rem;
+        color: white;
+    font-size: larger;
+}
+
+
+.post:hover .middle {
+    opacity: 1;
+
+}

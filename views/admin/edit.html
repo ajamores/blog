@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class=" bg-ctp-accent pt-16">
+
+    <main id="container " class="max-w-4xl min-h-screen  mx-auto ">
+        <h1 class="text-5xl text-white">Edit Post</h1>
+        <a href="/admin/dashboard" id="backToBlog" class="flex gap-1 my-5 text-ctp-peach hover:text-white group "  >
+            <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform duration-200 ease-out"></i>
+            <p>back to blog</p>
+        </a>
+
+        <div id="title">
+            <h2>Title</h2>
+            <textarea rows="2" cols="100" id="title-content" class="bg-blue-400 "></textarea>
+        </div>
+        <div id="excerpt">
+            <h2>Excerpt</h2>
+            <textarea rows="4" cols="100"  id="excerpt-content" class="bg-blue-400"></textarea>
+        </div>
+        <div id="categories" class="flex gap-4 my-10">
+            <h2>Categories</h2>
+            <textarea rows="4" cols="50"  id="categories-content" class="bg-blue-400"></textarea>
+        </div>
+        <hr class="text-white">
+
+        <div id="editorjs" class="max-w-full prose pt-10 "></div>
+    </main>
+    
+
+
+    <script type="module" src="/js/edit.js"></script>
+
+</body>
+</html>

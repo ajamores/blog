@@ -70,6 +70,13 @@ body {
   margin: 0 auto;
   padding: 3rem;
   border-radius: 2rem;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+
+.post:hover {
+    transform: translateY(-8px);
+    border: wheat;
 }
 
 .postExcerpt{

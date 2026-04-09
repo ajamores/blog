@@ -12,8 +12,7 @@ posts.forEach(elem => {
     let post = document.createElement("article");
     post.className = "post"
 
-    let a = document.createElement("a");
-    a.href = `/admin/edit/${elem.slug}`
+
 
     let postTitle = document.createElement("h2");
     postTitle.className = "postTitle";
@@ -37,7 +36,18 @@ posts.forEach(elem => {
         postCategories.append(t)
     })
 
-    post.append(a, postData, postTitle, postExcerpt, postCategories);
+
+    const edit = document.createElement('a');
+    edit.className = 'middle'
+    edit.textContent = 'Edit'
+    edit.href = `/admin/edit/${elem.slug}`
+   
+
+
+
+    post.append(postDate, postTitle, postExcerpt, postCategories, edit);
     container.append(post);
+
+    
 });
 

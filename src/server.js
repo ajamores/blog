@@ -8,6 +8,7 @@ import cors from 'cors';
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { requireAuth } from './middleware/requireAuth.js';
+import cookieParser from 'cookie-parser';
 
 
 //start app/configs
@@ -34,13 +35,14 @@ app.use(limiter);
 
 // protect against web vulnerabilities by setting HTTP headers
 app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "https://unpkg.com"], //Allow this for icons
-      imgSrc: ["'self'", "data:", "https:"],
+    contentSecurityPolicy: {
+        directives: {
+            defaultSrc: ["'self'"],
+            scriptSrc: ["'self'", "https://unpkg.com", "https://cdn.jsdelivr.net"],
+            imgSrc: ["'self'", "data:", "https:"],
+            connectSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
+        }
     }
-  }
 }))
 
 //CORS
@@ -76,7 +78,7 @@ app.use((req, res, next) => {
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js'
-import cookieParser from 'cookie-parser';
+
 
 
 app.use("/auth", authLimiter ,authRoutes);
@@ -96,6 +98,7 @@ app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/p
 app.get('/admin/login', (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')))
 
 app.get('/admin/dashboard', requireAuth ,(req, res) => res.sendFile(path.join(__dirname, '../views/admin/dashboard.html')))
+app.get('/admin/edit/:id', requireAuth, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/edit.html')))
 
 
 // ↓ add these two lines at the bottom, order matters
