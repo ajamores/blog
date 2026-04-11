@@ -1,5 +1,6 @@
 import { generateSlug } from "../utils/generateSlug.js";
 import { prisma } from "../config/db.js";
+import { json, success } from "zod";
 
 
 const createBlogPost = async (req, res, next) => {
@@ -168,6 +169,23 @@ const updateBlogPost = async (req, res, next) => {
     }
 };
 
+const saveImage = async (req, res, next) => {
+    const { url } = req.body;
+
+    if (!url){
+        console.log("saveImage() error");
+        res.status(400).json({
+            success: 0,
+            message: "No URL provided"
+        });
+    }
+
+    res.status(200),json({
+        success: 1,
+        file: { url }
+    })
+}
+
 const deleteBlogPost = async (req, res, next) => {
     try {
 
@@ -269,4 +287,4 @@ const getPublishedPost = async (req, res, next) => {
     }
 }
 
-export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost};
+export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost, saveImage};

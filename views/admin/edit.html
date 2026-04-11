@@ -5,14 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Post</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class=" bg-ctp-accent pt-16">
@@ -36,6 +28,25 @@
             <h2>Categories</h2>
             <textarea rows="4" cols="50"  id="categories-content" class="bg-blue-400"></textarea>
         </div>
+
+        <label class="flex items-center cursor-pointer relative pb-2">
+            <!-- hidden checkbox (state) -->
+            <input id="statusToggle" type="checkbox" class="sr-only peer">
+
+            <!-- track -->
+            <div class="w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-green-500 transition-colors"></div>
+
+            <!-- knob -->
+            <div class="absolute w-5 h-5 bg-white rounded-full shadow transform transition-transform
+                        translate-x-1 peer-checked:translate-x-6">
+            </div>
+
+            <!-- label -->
+            <span class="ml-3 text-sm font-medium">
+                <span id="statusLabel">Status: </span>
+            </span>
+        </label>
+
         <hr class="text-white">
 
         <div id="editorjs" class="max-w-full prose pt-10 "></div>
@@ -43,7 +54,7 @@
     
 
 
-    <script type="module" src="/js/edit.js"></script>
+    <script type="module" src="/js/edit.bundle.js"></script>
 
 </body>
 </html>

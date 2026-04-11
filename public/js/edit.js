@@ -1,14 +1,18 @@
-import EditorJS from 'https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest/dist/editorjs.mjs';
-import Header from 'https://cdn.jsdelivr.net/npm/@editorjs/header@latest/dist/header.mjs';
-import List from 'https://cdn.jsdelivr.net/npm/@editorjs/list@latest/dist/list.mjs';
-import Quote from 'https://cdn.jsdelivr.net/npm/@editorjs/quote@latest/dist/quote.mjs';
-import CodeTool from 'https://cdn.jsdelivr.net/npm/@editorjs/code@latest/dist/code.mjs';
-import InlineCode from 'https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest/dist/inline-code.mjs';
-import Marker from 'https://cdn.jsdelivr.net/npm/@editorjs/marker@latest/dist/marker.mjs';
-import Delimiter from 'https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest/dist/delimiter.mjs';
-import ImageTool from 'https://cdn.jsdelivr.net/npm/@editorjs/image@latest/dist/image.mjs';
-import Embed from 'https://cdn.jsdelivr.net/npm/@editorjs/embed@latest/dist/embed.mjs';
+import EditorJS from '@editorjs/editorjs';
+
+import Header from '@editorjs/header';
+import List from '@editorjs/list';
+import Quote from '@editorjs/quote';
+import CodeTool from '@editorjs/code';
+import InlineCode from '@editorjs/inline-code';
+import Marker from '@editorjs/marker';
+import Delimiter from '@editorjs/delimiter';
+import ImageTool from '@editorjs/image';
+import SimpleImage from '@editorjs/simple-image'
+import Embed from '@editorjs/embed';
 import { getBlogPost } from './api.js';
+
+
 
 const slug = window.location.pathname.split('/')[3]
 
@@ -20,8 +24,22 @@ const title = data.data.post.title;
 const excerpt = data.data.post.excerpt;
 const status = data.data.post.status;
 
-const titleContent = document.getElementById('title-content').textContent = title;
-const excerptContent = document.getElementById('excerpt-content').textContent = excerpt;
+document.getElementById('title-content').textContent = title;
+document.getElementById('excerpt-content').textContent = excerpt;
+
+
+
+
+//status toggle logic 
+const statusToggle = document.getElementById("statusToggle");
+const statusLabel = document.getElementById("statusLabel");
+if(status === "PUBLISHED"){
+  statusToggle.value = "PUBLISHED"
+}
+
+
+
+
 
 
 
@@ -29,6 +47,7 @@ const blocks = data.data.post.content.blocks;
 
 const editor = new EditorJS({
   holder: 'editorjs',
+  autofocus: true,
   tools: {
 
     header: {
@@ -46,7 +65,7 @@ const editor = new EditorJS({
       inlineToolbar: true
     },
 
-    image: { class: ImageTool},
+    image: {class: SimpleImage},
     embed: { class: Embed },
     code: { class: CodeTool },
     delimiter: { class: Delimiter },

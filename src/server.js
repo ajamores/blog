@@ -78,10 +78,11 @@ app.use((req, res, next) => {
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js'
+import { file, success } from 'zod';
 
 
 
-app.use("/auth", authLimiter ,authRoutes);
+app.use("/auth", authLimiter ,authRoutes); //authLimiter see above for rate limit
 app.use("/blog", blogRoutes);
 app.use("/category", categoryRoutes);
 
@@ -91,7 +92,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 // folder becomes the root for static files:
 app.use(express.static(path.join(__dirname, '../public')))
 
-
+//TODO: Refactor routes into routes folder 
 // Page routes
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')))
 app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')))
