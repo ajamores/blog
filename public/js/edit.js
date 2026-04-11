@@ -7,7 +7,7 @@ import CodeTool from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Marker from '@editorjs/marker';
 import Delimiter from '@editorjs/delimiter';
-import ImageTool from '@editorjs/image';
+// import ImageTool from '@editorjs/image';
 import SimpleImage from '@editorjs/simple-image'
 import Embed from '@editorjs/embed';
 import { getBlogPost } from './api.js';
@@ -22,7 +22,7 @@ console.log(data);
 
 const title = data.data.post.title;
 const excerpt = data.data.post.excerpt;
-const status = data.data.post.status;
+let status = data.data.post.status;
 
 document.getElementById('title-content').textContent = title;
 document.getElementById('excerpt-content').textContent = excerpt;
@@ -33,13 +33,28 @@ document.getElementById('excerpt-content').textContent = excerpt;
 //status toggle logic 
 const statusToggle = document.getElementById("statusToggle");
 const statusLabel = document.getElementById("statusLabel");
-if(status === "PUBLISHED"){
-  statusToggle.value = "PUBLISHED"
+
+//First determine what toggle should look like based on intial status
+switch (status) {
+  case "PUBLISHED":
+    statusLabel.textContent = `Status: ${status}`;
+    statusToggle.checked = true;
+    break;
+  case "DRAFT": 
+    statusLabel.textContent = `Status: ${status}`;
+    statusToggle.checked = false;
+    break;
+  default:
+    console.log("Status Error")
+    break;
 }
 
-
-
-
+//Now we listen for any statusToggle changes and update stauts accordingly
+statusToggle.addEventListener('change', () => {
+  status = statusToggle.checked ? "PUBLISHED" : "DRAFT"
+  statusLabel.textContent = `Status: ${status}`;
+  console.log(status);
+});
 
 
 

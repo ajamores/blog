@@ -2660,9 +2660,9 @@ var Ko = { exports: {} };
       }
       function M3(k3) {
         var m4 = document.createElement("style");
-        return k3.attrs.type === void 0 && (k3.attrs.type = "text/css"), q4(m4, k3.attrs), O3(k3, m4), m4;
+        return k3.attrs.type === void 0 && (k3.attrs.type = "text/css"), q3(m4, k3.attrs), O3(k3, m4), m4;
       }
-      function q4(k3, m4) {
+      function q3(k3, m4) {
         Object.keys(m4).forEach(function(w3) {
           k3.setAttribute(w3, m4[w3]);
         });
@@ -2681,7 +2681,7 @@ var Ko = { exports: {} };
         } else
           k3.sourceMap && typeof URL == "function" && typeof URL.createObjectURL == "function" && typeof URL.revokeObjectURL == "function" && typeof Blob == "function" && typeof btoa == "function" ? (w3 = (function(B3) {
             var W3 = document.createElement("link");
-            return B3.attrs.type === void 0 && (B3.attrs.type = "text/css"), B3.attrs.rel = "stylesheet", q4(W3, B3.attrs), O3(B3, W3), W3;
+            return B3.attrs.type === void 0 && (B3.attrs.type = "text/css"), B3.attrs.rel = "stylesheet", q3(W3, B3.attrs), O3(B3, W3), W3;
           })(m4), x3 = (function(B3, W3, ve3) {
             var se3 = ve3.css, tt3 = ve3.sourceMap, Yn2 = W3.convertToAbsoluteUrls === void 0 && tt3;
             (W3.convertToAbsoluteUrls || Yn2) && (se3 = g4(se3)), tt3 && (se3 += `
@@ -2731,8 +2731,8 @@ var Ko = { exports: {} };
           }
         };
       };
-      var H4, Q3 = (H4 = [], function(k3, m4) {
-        return H4[k3] = m4, H4.filter(Boolean).join(`
+      var H3, Q3 = (H3 = [], function(k3, m4) {
+        return H3[k3] = m4, H3.filter(Boolean).join(`
 `);
       });
       function ie3(k3, m4, w3, x3) {
@@ -2767,12 +2767,12 @@ var Ko = { exports: {} };
         var v4 = document.createElement("DIV"), O3 = document.createElement("DIV"), T3 = f2.message, M3 = f2.style;
         return v4.classList.add(r2), M3 && v4.classList.add(r2 + "--" + M3), v4.innerHTML = T3, O3.classList.add(a4), O3.addEventListener("click", v4.remove.bind(v4)), v4.appendChild(O3), v4;
       }, confirm: function(f2) {
-        var v4 = g4(f2), O3 = document.createElement("div"), T3 = document.createElement("button"), M3 = document.createElement("button"), q4 = v4.querySelector("." + a4), F3 = f2.cancelHandler, H4 = f2.okHandler;
-        return O3.classList.add(p3), T3.innerHTML = f2.okText || "Confirm", M3.innerHTML = f2.cancelText || "Cancel", T3.classList.add(h6), M3.classList.add(h6), T3.classList.add(l2), M3.classList.add(c4), F3 && typeof F3 == "function" && (M3.addEventListener("click", F3), q4.addEventListener("click", F3)), H4 && typeof H4 == "function" && T3.addEventListener("click", H4), T3.addEventListener("click", v4.remove.bind(v4)), M3.addEventListener("click", v4.remove.bind(v4)), O3.appendChild(T3), O3.appendChild(M3), v4.appendChild(O3), v4;
+        var v4 = g4(f2), O3 = document.createElement("div"), T3 = document.createElement("button"), M3 = document.createElement("button"), q3 = v4.querySelector("." + a4), F3 = f2.cancelHandler, H3 = f2.okHandler;
+        return O3.classList.add(p3), T3.innerHTML = f2.okText || "Confirm", M3.innerHTML = f2.cancelText || "Cancel", T3.classList.add(h6), M3.classList.add(h6), T3.classList.add(l2), M3.classList.add(c4), F3 && typeof F3 == "function" && (M3.addEventListener("click", F3), q3.addEventListener("click", F3)), H3 && typeof H3 == "function" && T3.addEventListener("click", H3), T3.addEventListener("click", v4.remove.bind(v4)), M3.addEventListener("click", v4.remove.bind(v4)), O3.appendChild(T3), O3.appendChild(M3), v4.appendChild(O3), v4;
       }, prompt: function(f2) {
-        var v4 = g4(f2), O3 = document.createElement("div"), T3 = document.createElement("button"), M3 = document.createElement("input"), q4 = v4.querySelector("." + a4), F3 = f2.cancelHandler, H4 = f2.okHandler;
-        return O3.classList.add(p3), T3.innerHTML = f2.okText || "Ok", T3.classList.add(h6), T3.classList.add(l2), M3.classList.add(d4), f2.placeholder && M3.setAttribute("placeholder", f2.placeholder), f2.default && (M3.value = f2.default), f2.inputType && (M3.type = f2.inputType), F3 && typeof F3 == "function" && q4.addEventListener("click", F3), H4 && typeof H4 == "function" && T3.addEventListener("click", function() {
-          H4(M3.value);
+        var v4 = g4(f2), O3 = document.createElement("div"), T3 = document.createElement("button"), M3 = document.createElement("input"), q3 = v4.querySelector("." + a4), F3 = f2.cancelHandler, H3 = f2.okHandler;
+        return O3.classList.add(p3), T3.innerHTML = f2.okText || "Ok", T3.classList.add(h6), T3.classList.add(l2), M3.classList.add(d4), f2.placeholder && M3.setAttribute("placeholder", f2.placeholder), f2.default && (M3.value = f2.default), f2.inputType && (M3.type = f2.inputType), F3 && typeof F3 == "function" && q3.addEventListener("click", F3), H3 && typeof H3 == "function" && T3.addEventListener("click", function() {
+          H3(M3.value);
         }), T3.addEventListener("click", v4.remove.bind(v4)), O3.appendChild(M3), O3.appendChild(T3), v4.appendChild(O3), v4;
       }, getWrapper: function() {
         var f2 = document.createElement("DIV");
@@ -2893,8 +2893,8 @@ var Xo = { exports: {} };
           }
           var v4 = r2(f2), O3;
           v4 && (O3 = Array.prototype.some.call(f2.childNodes, i));
-          var T3 = !!p3.parentNode, M3 = i(p3) && i(f2) && T3, q4 = f2.nodeName.toLowerCase(), F3 = l2(this.config, q4, f2), H4 = v4 && O3;
-          if (H4 || c4(f2, F3) || !this.config.keepNestedBlockElements && M3) {
+          var T3 = !!p3.parentNode, M3 = i(p3) && i(f2) && T3, q3 = f2.nodeName.toLowerCase(), F3 = l2(this.config, q3, f2), H3 = v4 && O3;
+          if (H3 || c4(f2, F3) || !this.config.keepNestedBlockElements && M3) {
             if (!(f2.nodeName === "SCRIPT" || f2.nodeName === "STYLE"))
               for (; f2.childNodes.length > 0; )
                 p3.insertBefore(f2.childNodes[0], f2);
@@ -6696,17 +6696,17 @@ function Fr(n2, e) {
   Object.defineProperty(n2, "isHTMLString", { enumerable: true, get: function() {
     return M3.isHTMLString;
   } });
-  var q4 = eo;
+  var q3 = eo;
   Object.defineProperty(n2, "isLeaf", { enumerable: true, get: function() {
-    return q4.isLeaf;
+    return q3.isLeaf;
   } });
   var F3 = oo;
   Object.defineProperty(n2, "isNodeEmpty", { enumerable: true, get: function() {
     return F3.isNodeEmpty;
   } });
-  var H4 = Ze;
+  var H3 = Ze;
   Object.defineProperty(n2, "isLineBreakTag", { enumerable: true, get: function() {
-    return H4.isLineBreakTag;
+    return H3.isLineBreakTag;
   } });
   var Q3 = Ge;
   Object.defineProperty(n2, "isSingleTag", { enumerable: true, get: function() {
@@ -15336,554 +15336,6 @@ var n = class {
   }
 };
 
-// node_modules/@editorjs/image/dist/image.mjs
-(function() {
-  "use strict";
-  try {
-    if (typeof document < "u") {
-      var o4 = document.createElement("style");
-      o4.appendChild(document.createTextNode('.image-tool{--bg-color: #cdd1e0;--front-color: #388ae5;--border-color: #e8e8eb}.image-tool__image{border-radius:3px;overflow:hidden;margin-bottom:10px;padding-bottom:0}.image-tool__image-picture{max-width:100%;vertical-align:bottom;display:block}.image-tool__image-preloader{width:50px;height:50px;border-radius:50%;background-size:cover;margin:auto;position:relative;background-color:var(--bg-color);background-position:center center}.image-tool__image-preloader:after{content:"";position:absolute;z-index:3;width:60px;height:60px;border-radius:50%;border:2px solid var(--bg-color);border-top-color:var(--front-color);left:50%;top:50%;margin-top:-30px;margin-left:-30px;animation:image-preloader-spin 2s infinite linear;box-sizing:border-box}.image-tool__caption{visibility:hidden;position:absolute;bottom:0;left:0;margin-bottom:10px}.image-tool__caption[contentEditable=true][data-placeholder]:before{position:absolute!important;content:attr(data-placeholder);color:#707684;font-weight:400;display:none}.image-tool__caption[contentEditable=true][data-placeholder]:empty:before{display:block}.image-tool__caption[contentEditable=true][data-placeholder]:empty:focus:before{display:none}.image-tool--empty .image-tool__image,.image-tool--empty .image-tool__image-preloader{display:none}.image-tool--empty .image-tool__caption,.image-tool--uploading .image-tool__caption{visibility:hidden!important}.image-tool .cdx-button{display:flex;align-items:center;justify-content:center}.image-tool .cdx-button svg{height:auto;margin:0 6px 0 0}.image-tool--filled .cdx-button,.image-tool--filled .image-tool__image-preloader{display:none}.image-tool--uploading .image-tool__image{min-height:200px;display:flex;border:1px solid var(--border-color);background-color:#fff}.image-tool--uploading .image-tool__image-picture,.image-tool--uploading .cdx-button{display:none}.image-tool--withBorder .image-tool__image{border:1px solid var(--border-color)}.image-tool--withBackground .image-tool__image{padding:15px;background:var(--bg-color)}.image-tool--withBackground .image-tool__image-picture{max-width:60%;margin:0 auto}.image-tool--stretched .image-tool__image-picture{width:100%}.image-tool--caption .image-tool__caption{visibility:visible}.image-tool--caption{padding-bottom:50px}@keyframes image-preloader-spin{0%{transform:rotate(0)}to{transform:rotate(360deg)}}')), document.head.appendChild(o4);
-    }
-  } catch (e) {
-    console.error("vite-plugin-css-injected-by-js", e);
-  }
-})();
-var H3 = { exports: {} };
-(function(C3, i) {
-  (function(a4, s4) {
-    C3.exports = s4();
-  })(window, function() {
-    return (function(a4) {
-      var s4 = {};
-      function r2(o4) {
-        if (s4[o4]) return s4[o4].exports;
-        var e = s4[o4] = { i: o4, l: false, exports: {} };
-        return a4[o4].call(e.exports, e, e.exports, r2), e.l = true, e.exports;
-      }
-      return r2.m = a4, r2.c = s4, r2.d = function(o4, e, d4) {
-        r2.o(o4, e) || Object.defineProperty(o4, e, { enumerable: true, get: d4 });
-      }, r2.r = function(o4) {
-        typeof Symbol < "u" && Symbol.toStringTag && Object.defineProperty(o4, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(o4, "__esModule", { value: true });
-      }, r2.t = function(o4, e) {
-        if (1 & e && (o4 = r2(o4)), 8 & e || 4 & e && typeof o4 == "object" && o4 && o4.__esModule) return o4;
-        var d4 = /* @__PURE__ */ Object.create(null);
-        if (r2.r(d4), Object.defineProperty(d4, "default", { enumerable: true, value: o4 }), 2 & e && typeof o4 != "string") for (var v4 in o4) r2.d(d4, v4, (function(l2) {
-          return o4[l2];
-        }).bind(null, v4));
-        return d4;
-      }, r2.n = function(o4) {
-        var e = o4 && o4.__esModule ? function() {
-          return o4.default;
-        } : function() {
-          return o4;
-        };
-        return r2.d(e, "a", e), e;
-      }, r2.o = function(o4, e) {
-        return Object.prototype.hasOwnProperty.call(o4, e);
-      }, r2.p = "", r2(r2.s = 3);
-    })([function(a4, s4) {
-      var r2;
-      r2 = /* @__PURE__ */ (function() {
-        return this;
-      })();
-      try {
-        r2 = r2 || new Function("return this")();
-      } catch {
-        typeof window == "object" && (r2 = window);
-      }
-      a4.exports = r2;
-    }, function(a4, s4, r2) {
-      (function(o4) {
-        var e = r2(2), d4 = setTimeout;
-        function v4() {
-        }
-        function l2(n2) {
-          if (!(this instanceof l2)) throw new TypeError("Promises must be constructed via new");
-          if (typeof n2 != "function") throw new TypeError("not a function");
-          this._state = 0, this._handled = false, this._value = void 0, this._deferreds = [], t(n2, this);
-        }
-        function f2(n2, c4) {
-          for (; n2._state === 3; ) n2 = n2._value;
-          n2._state !== 0 ? (n2._handled = true, l2._immediateFn(function() {
-            var u3 = n2._state === 1 ? c4.onFulfilled : c4.onRejected;
-            if (u3 !== null) {
-              var g4;
-              try {
-                g4 = u3(n2._value);
-              } catch (m4) {
-                return void y4(c4.promise, m4);
-              }
-              p3(c4.promise, g4);
-            } else (n2._state === 1 ? p3 : y4)(c4.promise, n2._value);
-          })) : n2._deferreds.push(c4);
-        }
-        function p3(n2, c4) {
-          try {
-            if (c4 === n2) throw new TypeError("A promise cannot be resolved with itself.");
-            if (c4 && (typeof c4 == "object" || typeof c4 == "function")) {
-              var u3 = c4.then;
-              if (c4 instanceof l2) return n2._state = 3, n2._value = c4, void w3(n2);
-              if (typeof u3 == "function") return void t((g4 = u3, m4 = c4, function() {
-                g4.apply(m4, arguments);
-              }), n2);
-            }
-            n2._state = 1, n2._value = c4, w3(n2);
-          } catch (h6) {
-            y4(n2, h6);
-          }
-          var g4, m4;
-        }
-        function y4(n2, c4) {
-          n2._state = 2, n2._value = c4, w3(n2);
-        }
-        function w3(n2) {
-          n2._state === 2 && n2._deferreds.length === 0 && l2._immediateFn(function() {
-            n2._handled || l2._unhandledRejectionFn(n2._value);
-          });
-          for (var c4 = 0, u3 = n2._deferreds.length; c4 < u3; c4++) f2(n2, n2._deferreds[c4]);
-          n2._deferreds = null;
-        }
-        function b4(n2, c4, u3) {
-          this.onFulfilled = typeof n2 == "function" ? n2 : null, this.onRejected = typeof c4 == "function" ? c4 : null, this.promise = u3;
-        }
-        function t(n2, c4) {
-          var u3 = false;
-          try {
-            n2(function(g4) {
-              u3 || (u3 = true, p3(c4, g4));
-            }, function(g4) {
-              u3 || (u3 = true, y4(c4, g4));
-            });
-          } catch (g4) {
-            if (u3) return;
-            u3 = true, y4(c4, g4);
-          }
-        }
-        l2.prototype.catch = function(n2) {
-          return this.then(null, n2);
-        }, l2.prototype.then = function(n2, c4) {
-          var u3 = new this.constructor(v4);
-          return f2(this, new b4(n2, c4, u3)), u3;
-        }, l2.prototype.finally = e.a, l2.all = function(n2) {
-          return new l2(function(c4, u3) {
-            if (!n2 || n2.length === void 0) throw new TypeError("Promise.all accepts an array");
-            var g4 = Array.prototype.slice.call(n2);
-            if (g4.length === 0) return c4([]);
-            var m4 = g4.length;
-            function h6(T3, E4) {
-              try {
-                if (E4 && (typeof E4 == "object" || typeof E4 == "function")) {
-                  var M3 = E4.then;
-                  if (typeof M3 == "function") return void M3.call(E4, function(F3) {
-                    h6(T3, F3);
-                  }, u3);
-                }
-                g4[T3] = E4, --m4 == 0 && c4(g4);
-              } catch (F3) {
-                u3(F3);
-              }
-            }
-            for (var k3 = 0; k3 < g4.length; k3++) h6(k3, g4[k3]);
-          });
-        }, l2.resolve = function(n2) {
-          return n2 && typeof n2 == "object" && n2.constructor === l2 ? n2 : new l2(function(c4) {
-            c4(n2);
-          });
-        }, l2.reject = function(n2) {
-          return new l2(function(c4, u3) {
-            u3(n2);
-          });
-        }, l2.race = function(n2) {
-          return new l2(function(c4, u3) {
-            for (var g4 = 0, m4 = n2.length; g4 < m4; g4++) n2[g4].then(c4, u3);
-          });
-        }, l2._immediateFn = typeof o4 == "function" && function(n2) {
-          o4(n2);
-        } || function(n2) {
-          d4(n2, 0);
-        }, l2._unhandledRejectionFn = function(n2) {
-          typeof console < "u" && console && console.warn("Possible Unhandled Promise Rejection:", n2);
-        }, s4.a = l2;
-      }).call(this, r2(5).setImmediate);
-    }, function(a4, s4, r2) {
-      s4.a = function(o4) {
-        var e = this.constructor;
-        return this.then(function(d4) {
-          return e.resolve(o4()).then(function() {
-            return d4;
-          });
-        }, function(d4) {
-          return e.resolve(o4()).then(function() {
-            return e.reject(d4);
-          });
-        });
-      };
-    }, function(a4, s4, r2) {
-      function o4(t) {
-        return (o4 = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(n2) {
-          return typeof n2;
-        } : function(n2) {
-          return n2 && typeof Symbol == "function" && n2.constructor === Symbol && n2 !== Symbol.prototype ? "symbol" : typeof n2;
-        })(t);
-      }
-      r2(4);
-      var e, d4, v4, l2, f2, p3, y4, w3 = r2(8), b4 = (d4 = function(t) {
-        return new Promise(function(n2, c4) {
-          t = l2(t), (t = f2(t)).beforeSend && t.beforeSend();
-          var u3 = window.XMLHttpRequest ? new window.XMLHttpRequest() : new window.ActiveXObject("Microsoft.XMLHTTP");
-          u3.open(t.method, t.url), u3.setRequestHeader("X-Requested-With", "XMLHttpRequest"), Object.keys(t.headers).forEach(function(m4) {
-            var h6 = t.headers[m4];
-            u3.setRequestHeader(m4, h6);
-          });
-          var g4 = t.ratio;
-          u3.upload.addEventListener("progress", function(m4) {
-            var h6 = Math.round(m4.loaded / m4.total * 100), k3 = Math.ceil(h6 * g4 / 100);
-            t.progress(Math.min(k3, 100));
-          }, false), u3.addEventListener("progress", function(m4) {
-            var h6 = Math.round(m4.loaded / m4.total * 100), k3 = Math.ceil(h6 * (100 - g4) / 100) + g4;
-            t.progress(Math.min(k3, 100));
-          }, false), u3.onreadystatechange = function() {
-            if (u3.readyState === 4) {
-              var m4 = u3.response;
-              try {
-                m4 = JSON.parse(m4);
-              } catch {
-              }
-              var h6 = w3.parseHeaders(u3.getAllResponseHeaders()), k3 = { body: m4, code: u3.status, headers: h6 };
-              y4(u3.status) ? n2(k3) : c4(k3);
-            }
-          }, u3.send(t.data);
-        });
-      }, v4 = function(t) {
-        return t.method = "POST", d4(t);
-      }, l2 = function() {
-        var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-        if (t.url && typeof t.url != "string") throw new Error("Url must be a string");
-        if (t.url = t.url || "", t.method && typeof t.method != "string") throw new Error("`method` must be a string or null");
-        if (t.method = t.method ? t.method.toUpperCase() : "GET", t.headers && o4(t.headers) !== "object") throw new Error("`headers` must be an object or null");
-        if (t.headers = t.headers || {}, t.type && (typeof t.type != "string" || !Object.values(e).includes(t.type))) throw new Error("`type` must be taken from module's \xABcontentType\xBB library");
-        if (t.progress && typeof t.progress != "function") throw new Error("`progress` must be a function or null");
-        if (t.progress = t.progress || function(n2) {
-        }, t.beforeSend = t.beforeSend || function(n2) {
-        }, t.ratio && typeof t.ratio != "number") throw new Error("`ratio` must be a number");
-        if (t.ratio < 0 || t.ratio > 100) throw new Error("`ratio` must be in a 0-100 interval");
-        if (t.ratio = t.ratio || 90, t.accept && typeof t.accept != "string") throw new Error("`accept` must be a string with a list of allowed mime-types");
-        if (t.accept = t.accept || "*/*", t.multiple && typeof t.multiple != "boolean") throw new Error("`multiple` must be a true or false");
-        if (t.multiple = t.multiple || false, t.fieldName && typeof t.fieldName != "string") throw new Error("`fieldName` must be a string");
-        return t.fieldName = t.fieldName || "files", t;
-      }, f2 = function(t) {
-        switch (t.method) {
-          case "GET":
-            var n2 = p3(t.data, e.URLENCODED);
-            delete t.data, t.url = /\?/.test(t.url) ? t.url + "&" + n2 : t.url + "?" + n2;
-            break;
-          case "POST":
-          case "PUT":
-          case "DELETE":
-          case "UPDATE":
-            var c4 = (function() {
-              return (arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {}).type || e.JSON;
-            })(t);
-            (w3.isFormData(t.data) || w3.isFormElement(t.data)) && (c4 = e.FORM), t.data = p3(t.data, c4), c4 !== b4.contentType.FORM && (t.headers["content-type"] = c4);
-        }
-        return t;
-      }, p3 = function() {
-        var t = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-        switch (arguments.length > 1 ? arguments[1] : void 0) {
-          case e.URLENCODED:
-            return w3.urlEncode(t);
-          case e.JSON:
-            return w3.jsonEncode(t);
-          case e.FORM:
-            return w3.formEncode(t);
-          default:
-            return t;
-        }
-      }, y4 = function(t) {
-        return t >= 200 && t < 300;
-      }, { contentType: e = { URLENCODED: "application/x-www-form-urlencoded; charset=utf-8", FORM: "multipart/form-data", JSON: "application/json; charset=utf-8" }, request: d4, get: function(t) {
-        return t.method = "GET", d4(t);
-      }, post: v4, transport: function(t) {
-        return t = l2(t), w3.selectFiles(t).then(function(n2) {
-          for (var c4 = new FormData(), u3 = 0; u3 < n2.length; u3++) c4.append(t.fieldName, n2[u3], n2[u3].name);
-          w3.isObject(t.data) && Object.keys(t.data).forEach(function(m4) {
-            var h6 = t.data[m4];
-            c4.append(m4, h6);
-          });
-          var g4 = t.beforeSend;
-          return t.beforeSend = function() {
-            return g4(n2);
-          }, t.data = c4, v4(t);
-        });
-      }, selectFiles: function(t) {
-        return delete (t = l2(t)).beforeSend, w3.selectFiles(t);
-      } });
-      a4.exports = b4;
-    }, function(a4, s4, r2) {
-      r2.r(s4);
-      var o4 = r2(1);
-      window.Promise = window.Promise || o4.a;
-    }, function(a4, s4, r2) {
-      (function(o4) {
-        var e = o4 !== void 0 && o4 || typeof self < "u" && self || window, d4 = Function.prototype.apply;
-        function v4(l2, f2) {
-          this._id = l2, this._clearFn = f2;
-        }
-        s4.setTimeout = function() {
-          return new v4(d4.call(setTimeout, e, arguments), clearTimeout);
-        }, s4.setInterval = function() {
-          return new v4(d4.call(setInterval, e, arguments), clearInterval);
-        }, s4.clearTimeout = s4.clearInterval = function(l2) {
-          l2 && l2.close();
-        }, v4.prototype.unref = v4.prototype.ref = function() {
-        }, v4.prototype.close = function() {
-          this._clearFn.call(e, this._id);
-        }, s4.enroll = function(l2, f2) {
-          clearTimeout(l2._idleTimeoutId), l2._idleTimeout = f2;
-        }, s4.unenroll = function(l2) {
-          clearTimeout(l2._idleTimeoutId), l2._idleTimeout = -1;
-        }, s4._unrefActive = s4.active = function(l2) {
-          clearTimeout(l2._idleTimeoutId);
-          var f2 = l2._idleTimeout;
-          f2 >= 0 && (l2._idleTimeoutId = setTimeout(function() {
-            l2._onTimeout && l2._onTimeout();
-          }, f2));
-        }, r2(6), s4.setImmediate = typeof self < "u" && self.setImmediate || o4 !== void 0 && o4.setImmediate || this && this.setImmediate, s4.clearImmediate = typeof self < "u" && self.clearImmediate || o4 !== void 0 && o4.clearImmediate || this && this.clearImmediate;
-      }).call(this, r2(0));
-    }, function(a4, s4, r2) {
-      (function(o4, e) {
-        (function(d4, v4) {
-          if (!d4.setImmediate) {
-            var l2, f2, p3, y4, w3, b4 = 1, t = {}, n2 = false, c4 = d4.document, u3 = Object.getPrototypeOf && Object.getPrototypeOf(d4);
-            u3 = u3 && u3.setTimeout ? u3 : d4, {}.toString.call(d4.process) === "[object process]" ? l2 = function(h6) {
-              e.nextTick(function() {
-                m4(h6);
-              });
-            } : (function() {
-              if (d4.postMessage && !d4.importScripts) {
-                var h6 = true, k3 = d4.onmessage;
-                return d4.onmessage = function() {
-                  h6 = false;
-                }, d4.postMessage("", "*"), d4.onmessage = k3, h6;
-              }
-            })() ? (y4 = "setImmediate$" + Math.random() + "$", w3 = function(h6) {
-              h6.source === d4 && typeof h6.data == "string" && h6.data.indexOf(y4) === 0 && m4(+h6.data.slice(y4.length));
-            }, d4.addEventListener ? d4.addEventListener("message", w3, false) : d4.attachEvent("onmessage", w3), l2 = function(h6) {
-              d4.postMessage(y4 + h6, "*");
-            }) : d4.MessageChannel ? ((p3 = new MessageChannel()).port1.onmessage = function(h6) {
-              m4(h6.data);
-            }, l2 = function(h6) {
-              p3.port2.postMessage(h6);
-            }) : c4 && "onreadystatechange" in c4.createElement("script") ? (f2 = c4.documentElement, l2 = function(h6) {
-              var k3 = c4.createElement("script");
-              k3.onreadystatechange = function() {
-                m4(h6), k3.onreadystatechange = null, f2.removeChild(k3), k3 = null;
-              }, f2.appendChild(k3);
-            }) : l2 = function(h6) {
-              setTimeout(m4, 0, h6);
-            }, u3.setImmediate = function(h6) {
-              typeof h6 != "function" && (h6 = new Function("" + h6));
-              for (var k3 = new Array(arguments.length - 1), T3 = 0; T3 < k3.length; T3++) k3[T3] = arguments[T3 + 1];
-              var E4 = { callback: h6, args: k3 };
-              return t[b4] = E4, l2(b4), b4++;
-            }, u3.clearImmediate = g4;
-          }
-          function g4(h6) {
-            delete t[h6];
-          }
-          function m4(h6) {
-            if (n2) setTimeout(m4, 0, h6);
-            else {
-              var k3 = t[h6];
-              if (k3) {
-                n2 = true;
-                try {
-                  (function(T3) {
-                    var E4 = T3.callback, M3 = T3.args;
-                    switch (M3.length) {
-                      case 0:
-                        E4();
-                        break;
-                      case 1:
-                        E4(M3[0]);
-                        break;
-                      case 2:
-                        E4(M3[0], M3[1]);
-                        break;
-                      case 3:
-                        E4(M3[0], M3[1], M3[2]);
-                        break;
-                      default:
-                        E4.apply(v4, M3);
-                    }
-                  })(k3);
-                } finally {
-                  g4(h6), n2 = false;
-                }
-              }
-            }
-          }
-        })(typeof self > "u" ? o4 === void 0 ? this : o4 : self);
-      }).call(this, r2(0), r2(7));
-    }, function(a4, s4) {
-      var r2, o4, e = a4.exports = {};
-      function d4() {
-        throw new Error("setTimeout has not been defined");
-      }
-      function v4() {
-        throw new Error("clearTimeout has not been defined");
-      }
-      function l2(u3) {
-        if (r2 === setTimeout) return setTimeout(u3, 0);
-        if ((r2 === d4 || !r2) && setTimeout) return r2 = setTimeout, setTimeout(u3, 0);
-        try {
-          return r2(u3, 0);
-        } catch {
-          try {
-            return r2.call(null, u3, 0);
-          } catch {
-            return r2.call(this, u3, 0);
-          }
-        }
-      }
-      (function() {
-        try {
-          r2 = typeof setTimeout == "function" ? setTimeout : d4;
-        } catch {
-          r2 = d4;
-        }
-        try {
-          o4 = typeof clearTimeout == "function" ? clearTimeout : v4;
-        } catch {
-          o4 = v4;
-        }
-      })();
-      var f2, p3 = [], y4 = false, w3 = -1;
-      function b4() {
-        y4 && f2 && (y4 = false, f2.length ? p3 = f2.concat(p3) : w3 = -1, p3.length && t());
-      }
-      function t() {
-        if (!y4) {
-          var u3 = l2(b4);
-          y4 = true;
-          for (var g4 = p3.length; g4; ) {
-            for (f2 = p3, p3 = []; ++w3 < g4; ) f2 && f2[w3].run();
-            w3 = -1, g4 = p3.length;
-          }
-          f2 = null, y4 = false, (function(m4) {
-            if (o4 === clearTimeout) return clearTimeout(m4);
-            if ((o4 === v4 || !o4) && clearTimeout) return o4 = clearTimeout, clearTimeout(m4);
-            try {
-              o4(m4);
-            } catch {
-              try {
-                return o4.call(null, m4);
-              } catch {
-                return o4.call(this, m4);
-              }
-            }
-          })(u3);
-        }
-      }
-      function n2(u3, g4) {
-        this.fun = u3, this.array = g4;
-      }
-      function c4() {
-      }
-      e.nextTick = function(u3) {
-        var g4 = new Array(arguments.length - 1);
-        if (arguments.length > 1) for (var m4 = 1; m4 < arguments.length; m4++) g4[m4 - 1] = arguments[m4];
-        p3.push(new n2(u3, g4)), p3.length !== 1 || y4 || l2(t);
-      }, n2.prototype.run = function() {
-        this.fun.apply(null, this.array);
-      }, e.title = "browser", e.browser = true, e.env = {}, e.argv = [], e.version = "", e.versions = {}, e.on = c4, e.addListener = c4, e.once = c4, e.off = c4, e.removeListener = c4, e.removeAllListeners = c4, e.emit = c4, e.prependListener = c4, e.prependOnceListener = c4, e.listeners = function(u3) {
-        return [];
-      }, e.binding = function(u3) {
-        throw new Error("process.binding is not supported");
-      }, e.cwd = function() {
-        return "/";
-      }, e.chdir = function(u3) {
-        throw new Error("process.chdir is not supported");
-      }, e.umask = function() {
-        return 0;
-      };
-    }, function(a4, s4, r2) {
-      function o4(d4, v4) {
-        for (var l2 = 0; l2 < v4.length; l2++) {
-          var f2 = v4[l2];
-          f2.enumerable = f2.enumerable || false, f2.configurable = true, "value" in f2 && (f2.writable = true), Object.defineProperty(d4, f2.key, f2);
-        }
-      }
-      var e = r2(9);
-      a4.exports = (function() {
-        function d4() {
-          (function(p3, y4) {
-            if (!(p3 instanceof y4)) throw new TypeError("Cannot call a class as a function");
-          })(this, d4);
-        }
-        var v4, l2, f2;
-        return v4 = d4, f2 = [{ key: "urlEncode", value: function(p3) {
-          return e(p3);
-        } }, { key: "jsonEncode", value: function(p3) {
-          return JSON.stringify(p3);
-        } }, { key: "formEncode", value: function(p3) {
-          if (this.isFormData(p3)) return p3;
-          if (this.isFormElement(p3)) return new FormData(p3);
-          if (this.isObject(p3)) {
-            var y4 = new FormData();
-            return Object.keys(p3).forEach(function(w3) {
-              var b4 = p3[w3];
-              y4.append(w3, b4);
-            }), y4;
-          }
-          throw new Error("`data` must be an instance of Object, FormData or <FORM> HTMLElement");
-        } }, { key: "isObject", value: function(p3) {
-          return Object.prototype.toString.call(p3) === "[object Object]";
-        } }, { key: "isFormData", value: function(p3) {
-          return p3 instanceof FormData;
-        } }, { key: "isFormElement", value: function(p3) {
-          return p3 instanceof HTMLFormElement;
-        } }, { key: "selectFiles", value: function() {
-          var p3 = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-          return new Promise(function(y4, w3) {
-            var b4 = document.createElement("INPUT");
-            b4.type = "file", p3.multiple && b4.setAttribute("multiple", "multiple"), p3.accept && b4.setAttribute("accept", p3.accept), b4.style.display = "none", document.body.appendChild(b4), b4.addEventListener("change", function(t) {
-              var n2 = t.target.files;
-              y4(n2), document.body.removeChild(b4);
-            }, false), b4.click();
-          });
-        } }, { key: "parseHeaders", value: function(p3) {
-          var y4 = p3.trim().split(/[\r\n]+/), w3 = {};
-          return y4.forEach(function(b4) {
-            var t = b4.split(": "), n2 = t.shift(), c4 = t.join(": ");
-            n2 && (w3[n2] = c4);
-          }), w3;
-        } }], (l2 = null) && o4(v4.prototype, l2), f2 && o4(v4, f2), d4;
-      })();
-    }, function(a4, s4) {
-      var r2 = function(e) {
-        return encodeURIComponent(e).replace(/[!'()*]/g, escape).replace(/%20/g, "+");
-      }, o4 = function(e, d4, v4, l2) {
-        return d4 = d4 || null, v4 = v4 || "&", l2 = l2 || null, e ? (function(f2) {
-          for (var p3 = new Array(), y4 = 0; y4 < f2.length; y4++) f2[y4] && p3.push(f2[y4]);
-          return p3;
-        })(Object.keys(e).map(function(f2) {
-          var p3, y4, w3 = f2;
-          if (l2 && (w3 = l2 + "[" + w3 + "]"), typeof e[f2] == "object" && e[f2] !== null) p3 = o4(e[f2], null, v4, w3);
-          else {
-            d4 && (y4 = w3, w3 = !isNaN(parseFloat(y4)) && isFinite(y4) ? d4 + Number(w3) : w3);
-            var b4 = e[f2];
-            b4 = (b4 = (b4 = (b4 = b4 === true ? "1" : b4) === false ? "0" : b4) === 0 ? "0" : b4) || "", p3 = r2(w3) + "=" + r2(b4);
-          }
-          return p3;
-        })).join(v4).replace(/[!'()*]/g, "") : "";
-      };
-      a4.exports = o4;
-    }]);
-  });
-})(H3);
-var q3 = H3.exports;
-
 // node_modules/@editorjs/simple-image/dist/simple-image.mjs
 (function() {
   "use strict";
@@ -16543,9 +15995,24 @@ document.getElementById("title-content").textContent = title;
 document.getElementById("excerpt-content").textContent = excerpt;
 var statusToggle = document.getElementById("statusToggle");
 var statusLabel = document.getElementById("statusLabel");
-if (status === "PUBLISHED") {
-  statusToggle.value = "PUBLISHED";
+switch (status) {
+  case "PUBLISHED":
+    statusLabel.textContent = `Status: ${status}`;
+    statusToggle.checked = true;
+    break;
+  case "DRAFT":
+    statusLabel.textContent = `Status: ${status}`;
+    statusToggle.checked = false;
+    break;
+  default:
+    console.log("Status Error");
+    break;
 }
+statusToggle.addEventListener("change", () => {
+  status = statusToggle.checked ? "PUBLISHED" : "DRAFT";
+  statusLabel.textContent = `Status: ${status}`;
+  console.log(status);
+});
 var blocks = data.data.post.content.blocks;
 var editor = new Aa({
   holder: "editorjs",
@@ -16639,37 +16106,6 @@ lucide.createIcons();
    * @copyright CodeX 2018
    * @license The MIT License (MIT)
    * @version 2.0.0
-   *)
-
-@editorjs/image/dist/image.mjs:
-  (**
-   * Image Tool for the Editor.js
-   * @author CodeX <team@codex.so>
-   * @license MIT
-   * @see {@link https://github.com/editor-js/image}
-   *
-   * To developers.
-   * To simplify Tool structure, we split it to 4 parts:
-   *  1) index.ts — main Tool's interface, public API and methods for working with data
-   *  2) uploader.ts — module that has methods for sending files via AJAX: from device, by URL or File pasting
-   *  3) ui.ts — module for UI manipulations: render, showing preloader, etc
-   *
-   * For debug purposes there is a testing server
-   * that can save uploaded files and return a Response {@link UploadResponseFormat}
-   *
-   *       $ node dev/server.js
-   *
-   * It will expose 8008 port, so you can pass http://localhost:8008 with the Tools config:
-   *
-   * image: {
-   *   class: ImageTool,
-   *   config: {
-   *     endpoints: {
-   *       byFile: 'http://localhost:8008/uploadFile',
-   *       byUrl: 'http://localhost:8008/fetchUrl',
-   *     }
-   *   },
-   * },
    *)
 */
 //# sourceMappingURL=edit.bundle.js.map
