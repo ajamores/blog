@@ -19,8 +19,9 @@
     "start": "node src/server.js",
     "dev:server": "nodemon src/server.js",
     "dev:css": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/style.css --watch",
-    "dev:js": "esbuild public/js/edit.js --bundle --outfile=public/js/edit.bundle.js --format=esm --watch --sourcemap",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:css\" \"npm run dev:js\"",
+    "dev:js:edit": "esbuild public/js/edit.js --bundle --outfile=public/js/edit.bundle.js --format=esm --watch --sourcemap",
+    "dev:js:create": "esbuild public/js/create.js --bundle --outfile=public/js/create.bundle.js --format=esm --watch --sourcemap",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:css\" \"npm run dev:js:edit\" \"npm run dev:js:create\" ",
     "seed:init": "node prisma/seed.js"
   },
   "dependencies": {

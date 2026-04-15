@@ -15971,46 +15971,26 @@ var m3 = class _m {
 
 // public/js/api.js
 var BASE_URL = `http://localhost:8080`;
-var getBlogPost = async (slug2) => {
-  const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
-    method: "GET",
-    credentials: "include"
-  });
-  if (!res.ok) {
-    throw new Error("Error fetching blog: " + slug2);
-  }
-  const data2 = await res.json();
-  return data2;
-};
-var updateBlogPost = async (slug2, payload) => {
+var createBlogPost = async (body) => {
   try {
-    const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
-      method: "PATCH",
-      headers: { "Content-type": "application/json" },
+    const res = await fetch(`${BASE_URL}/blog/admin/create`, {
+      method: "POST",
       credentials: "include",
-      body: payload
+      headers: { "Content-type": "application/json" },
+      body
     });
     if (!res.ok) {
-      const data2 = await res.json();
-      throw new Error(data2.error || "failed to update post");
+      throw new Error("Error creating new blog post");
     }
-    return res.json();
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
-// public/js/edit.js
-var slug = window.location.pathname.split("/")[3];
-console.log("SLUG: " + slug);
-var data = await getBlogPost(slug);
-console.log(data);
-var title = data.data.post.title;
-document.getElementById("title-content").textContent = title;
-var excerpt = data.data.post.excerpt;
-document.getElementById("excerpt-content").textContent = excerpt;
-var categories = data.data.post.categories;
-var tags = categories.map((category) => category.name);
+// public/js/create.js
+var tags = [];
 var renderTag = (tag) => {
   const t = document.createElement("div");
   t.className = "t";
@@ -16022,9 +16002,6 @@ var renderTag = (tag) => {
   });
   document.getElementById("categories").append(t);
 };
-tags.forEach((tag) => {
-  renderTag(tag);
-});
 var tagInput = document.getElementById("tag-input");
 var tagBtn = document.getElementById("add-tag");
 var tagError = document.getElementById("add-error");
@@ -16039,27 +16016,15 @@ tagBtn.addEventListener("click", () => {
     tagError.textContent = ` Error: ${input} already exists`;
   }
 });
-var status = data.data.post.status;
+var status = "DRAFT";
 var statusToggle = document.getElementById("statusToggle");
 var statusLabel = document.getElementById("statusLabel");
-switch (status) {
-  case "PUBLISHED":
-    statusLabel.textContent = `Status: ${status}`;
-    statusToggle.checked = true;
-    break;
-  case "DRAFT":
-    statusLabel.textContent = `Status: ${status}`;
-    statusToggle.checked = false;
-    break;
-  default:
-    console.log("Status Error");
-    break;
-}
+statusLabel.textContent = `Status: ${status}`;
+statusToggle.checked = false;
 statusToggle.addEventListener("change", () => {
   status = statusToggle.checked ? "PUBLISHED" : "DRAFT";
   statusLabel.textContent = `Status: ${status}`;
 });
-var blocks = data.data.post.content.blocks;
 var editor = new Aa({
   holder: "editorjs",
   autofocus: true,
@@ -16087,8 +16052,7 @@ var editor = new Aa({
   },
   onReady: () => {
     console.log("Editor.js is ready to work!");
-  },
-  data: { blocks }
+  }
 });
 var saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener("click", async () => {
@@ -16111,7 +16075,7 @@ saveBtn.addEventListener("click", async () => {
   });
   let saveStatus = document.getElementById("save-status");
   try {
-    const req = await updateBlogPost(slug, JSON.stringify(payload));
+    const req = await createBlogPost(JSON.stringify(payload));
     console.log(req);
     saveStatus.textContent = req.status === "success" ? "Blog post saved successfully!" : "Error when saving post";
   } catch (error) {
@@ -16183,4 +16147,4 @@ lucide.createIcons();
    * @version 2.0.0
    *)
 */
-//# sourceMappingURL=edit.bundle.js.map
+//# sourceMappingURL=create.bundle.js.map

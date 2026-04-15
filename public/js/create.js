@@ -1,5 +1,5 @@
-import EditorJS from '@editorjs/editorjs';
 
+import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
 import List from '@editorjs/list';
 import Quote from '@editorjs/quote';
@@ -10,28 +10,14 @@ import Delimiter from '@editorjs/delimiter';
 // import ImageTool from '@editorjs/image';
 import SimpleImage from '@editorjs/simple-image'
 import Embed from '@editorjs/embed';
-import { getBlogPost } from './api.js';
-import { updateBlogPost } from './api.js';
+import { createBlogPost } from './api.js';
 
 
-//get article slug
-const slug = window.location.pathname.split('/')[3]
-console.log("SLUG: " + slug);
 
-//fetch data according to slug
-const data = await getBlogPost(slug);
-console.log(data);
 
-const title = data.data.post.title;
-document.getElementById('title-content').textContent = title;
 
-const excerpt = data.data.post.excerpt;
-document.getElementById('excerpt-content').textContent = excerpt;
 
-//Grab info
-let categories =  data.data.post.categories;
-//create array of tags
-let tags = categories.map(category => category.name);
+let tags= [];
 
 const renderTag = (tag) => {
   const t  = document.createElement('div');
@@ -48,11 +34,6 @@ const renderTag = (tag) => {
 
   document.getElementById("categories").append(t);
 }
-
-//render them 
-tags.forEach(tag => {
-  renderTag(tag);
-});
 
 //For adding tags 
 const tagInput = document.getElementById('tag-input');
@@ -74,30 +55,12 @@ tagBtn.addEventListener('click', () => {
 });
 
 
-
-
-
-
-
-let status = data.data.post.status; //let to allow change not const
-//status toggle logic 
+//status default draft 
+let status = "DRAFT";
 const statusToggle = document.getElementById("statusToggle");
 const statusLabel = document.getElementById("statusLabel");
-
-//First determine what toggle should look like based on intial status
-switch (status) {
-  case "PUBLISHED":
-    statusLabel.textContent = `Status: ${status}`;
-    statusToggle.checked = true;
-    break;
-  case "DRAFT": 
-    statusLabel.textContent = `Status: ${status}`;
-    statusToggle.checked = false;
-    break;
-  default:
-    console.log("Status Error")
-    break;
-}
+statusLabel.textContent = `Status: ${status}`;
+statusToggle.checked = false;
 
 //Now we listen for any statusToggle changes and update stauts accordingly
 statusToggle.addEventListener('change', () => {
@@ -107,8 +70,6 @@ statusToggle.addEventListener('change', () => {
 });
 
 
-//Blocks is the content for post 
-const blocks = data.data.post.content.blocks;
 
 const editor = new EditorJS({
   holder: 'editorjs',
@@ -140,7 +101,6 @@ const editor = new EditorJS({
   },
 
   onReady: () => {console.log('Editor.js is ready to work!')},
-  data:{blocks}
 });
 
 
@@ -172,7 +132,7 @@ saveBtn.addEventListener('click', async  () => {
 
   let saveStatus = document.getElementById('save-status');
   try{
-    const req = await updateBlogPost(slug, JSON.stringify(payload));
+    const req = await createBlogPost(JSON.stringify(payload));
     console.log(req);
     saveStatus.textContent = req.status === "success" ? "Blog post saved successfully!" : "Error when saving post"; 
 
@@ -183,6 +143,7 @@ saveBtn.addEventListener('click', async  () => {
 
 
 });
+
 
 
 lucide.createIcons();

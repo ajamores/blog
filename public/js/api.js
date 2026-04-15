@@ -57,6 +57,50 @@ const getBlogPost = async (slug) => {
     return data;
 }
 
+const createBlogPost = async (body) => {
+
+    try {
+        const res = await fetch(`${BASE_URL}/blog/admin/create`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {'Content-type': 'application/json'},
+        body: body
+        })
+
+        if(!res.ok){
+            throw new Error('Error creating new blog post')
+        }
+
+        const data = await res.json();
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const updateBlogPost = async (slug, payload) => {
+
+    try {
+        const res = await fetch(`${BASE_URL}/blog/admin/${slug}`, {
+        method: 'PATCH',
+        headers: {'Content-type': 'application/json'},
+        credentials: 'include',
+        body: payload
+        })
+
+        if(!res.ok){
+            const data = await res.json();
+            throw new Error(data.error || "failed to update post")
+        }
+
+        return res.json();
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 const login = async (username, password) => {
 
     const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -74,6 +118,21 @@ const login = async (username, password) => {
     return res.json();
 }
 
+const logout = async () => {
+    try {
+        const res = fetch(`${BASE_URL}/auth/logout`);
+
+        if(!res.ok){
+            throw new Error('Error when logging out');
+        }
+
+        return await res.json();
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 
-export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, getBlogPost, login};
+
+export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, getBlogPost, updateBlogPost, createBlogPost, login};

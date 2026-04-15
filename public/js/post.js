@@ -86,16 +86,18 @@ post.content.blocks.forEach(block => {
         const figure = document.createElement('figure');
         figure.className = 'post-image';
 
+        console.log(block.data)
+
         element = document.createElement('img');
         element.loading = 'lazy';
-        element.src = block.data.file.url + '?w=800&q=75&auto=format';
+        element.src = block.data.url + '?w=800&q=75&auto=format';
         element.alt = block.data.caption || '';
 
         figure.appendChild(element);
 
         if (block.data.caption) {
             let caption = document.createElement('figcaption');
-            caption.textContent = block.data.caption;
+            caption.innerHTML = block.data.caption;
             figure.appendChild(caption);
         }
 

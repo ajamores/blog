@@ -12,8 +12,6 @@ posts.forEach(elem => {
     let post = document.createElement("article");
     post.className = "post"
 
-
-
     let postTitle = document.createElement("h2");
     postTitle.className = "postTitle";
     postTitle.textContent = elem.title;
@@ -47,6 +45,10 @@ posts.forEach(elem => {
 
     post.append(postDate, postTitle, postExcerpt, postCategories, edit);
     container.append(post);
+
+
+    //logout listener
+    
 
     
 });

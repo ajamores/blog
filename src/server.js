@@ -17,11 +17,13 @@ const PORT = 8080;
 config();
 connectDB();
 
+//limits every request to your server — static files, API calls, page loads, everything — to 100 requests per 15 minutes per IP
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100
 })
 
+//limit requests for logging in 
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 10 // only 10 login attempts per 15 min
@@ -31,7 +33,9 @@ const authLimiter = rateLimit({
 //-------------MiddleWares---------------
 
 //Rate limiter
-app.use(limiter);
+if (process.env.NODE_ENV === 'production') {
+  app.use(limiter);
+}
 
 // protect against web vulnerabilities by setting HTTP headers
 app.use(helmet({
@@ -52,14 +56,14 @@ app.use(helmet({
 // }))
 
 //dont forget express comes with build in middle ware like json
-app.use(express.json()); // parses JSON bodies first
+app.use(express.json({limit: '10mb'})); // parses JSON bodies first
 
 app.use(cookieParser());
 
 //HTML forms submit data in a format called application/x-www-form-urlencoded which
 //looks like this in the raw request: username=armand&password=1234
 //express.urlencoded reads that raw string and converts it into a proper JS object: 
-// app.use(express.urlencoded({ extended: true })); //Going to have front end handle login instead
+// app.use(express.urlencoded({ extended: true })); //No need not using params 
 
 //middleware for server logging
 app.use((req, res, next) => {
@@ -78,7 +82,7 @@ app.use((req, res, next) => {
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
 import categoryRoutes from './routes/categoryRoutes.js'
-import { file, success } from 'zod';
+
 
 
 
@@ -87,20 +91,20 @@ app.use("/blog", blogRoutes);
 app.use("/category", categoryRoutes);
 
 //ES Module does not give __dirname for free, need to create yourself 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 //`express.static` tells Express "serve everything inside this folder as if it's at the root URL." So your `public/`
 // folder becomes the root for static files:
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.static(path.join(__dirname, '../public')));
 
 //TODO: Refactor routes into routes folder 
 // Page routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')))
-app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')))
-app.get('/admin/login', (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')))
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')));
+app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')));
+app.get('/admin/login', (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')));
 
-app.get('/admin/dashboard', requireAuth ,(req, res) => res.sendFile(path.join(__dirname, '../views/admin/dashboard.html')))
-app.get('/admin/edit/:id', requireAuth, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/edit.html')))
-
+app.get('/admin/dashboard', requireAuth ,(req, res) => res.sendFile(path.join(__dirname, '../views/admin/dashboard.html')));
+app.get('/admin/edit/:id', requireAuth, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/edit.html')));
+app.get('/admin/create', requireAuth, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/create.html')));
 
 // ↓ add these two lines at the bottom, order matters
 app.use(notFound);      // catches any request that didn't match a route above

@@ -1,0 +1,47 @@
+.t{
+    background-color: oklch(0.7 0.16 253.42);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    transition: all 0.3 ease-in;
+    animation: pop 0.15s ease;
+}
+
+.t:hover{
+    background-color: wheat;
+}
+
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+.tag-remove{
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.5rem;
+    border-radius: 360px;
+    cursor: pointer;
+    font-size: larger;
+    transition: all 0.3 ease-in;
+}
+
+.tag-remove:hover{
+    background-color: black;
+    color: wheat;
+}
+
+#add-error{
+    padding-top: 0.5rem;
+    color: rgb(128, 238, 54);
+}
+
+.codex-editor__redactor {
+  padding-bottom: 50px !important;
+}
