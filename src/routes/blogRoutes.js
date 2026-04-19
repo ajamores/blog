@@ -21,7 +21,7 @@ router.use(authMiddleware);
 router.post("/admin/create", validateRequest(createBlogPostSchema), createBlogPost);
 router.get("/admin/all", getAllBlogPosts);
 router.get("/admin/:slug", getBlogPost);
-router.delete("/admin/:slug", deleteBlogPost);
+router.delete("/admin/delete/:slug", deleteBlogPost);
 router.patch("/admin/:slug", validateRequest(updateBlogPostSchema), updateBlogPost);
 
 //Editor.js requires endpoint in comfig - see edit and create js files 

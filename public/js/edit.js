@@ -10,8 +10,7 @@ import Delimiter from '@editorjs/delimiter';
 // import ImageTool from '@editorjs/image';
 import SimpleImage from '@editorjs/simple-image'
 import Embed from '@editorjs/embed';
-import { getBlogPost } from './api.js';
-import { updateBlogPost } from './api.js';
+import { getBlogPost, updateBlogPost, deleteBlogPost } from './api.js';
 
 
 //get article slug
@@ -144,6 +143,8 @@ const editor = new EditorJS({
 });
 
 
+
+//SAVE LOGIC 
 const saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener('click', async  () => {
   
@@ -184,5 +185,23 @@ saveBtn.addEventListener('click', async  () => {
 
 });
 
+//DELETE LOGIC
+const deleteBtn = document.getElementById("delete-btn");
+deleteBtn.addEventListener('click', async () => {
+  const confirmed = confirm('Are you sure you want to delete this post? This cannot be undone.');
+  if(!confirmed){
+    return
+  }
+
+  try {
+    const req = await deleteBlogPost(slug);
+    console.log(req);
+    if (req.status === "success") {
+      window.location.href = "/admin/dashboard";
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 lucide.createIcons();

@@ -1,4 +1,5 @@
 
+import { logout } from './api.js';
 import { getAllBlogPosts } from '/js/api.js'
 
 const postData = await getAllBlogPosts();
@@ -46,10 +47,12 @@ posts.forEach(elem => {
     post.append(postDate, postTitle, postExcerpt, postCategories, edit);
     container.append(post);
 
+});
 
-    //logout listener
-    
 
-    
+//logout listener
+const logoutBtn = document.getElementById("logout");
+logoutBtn.addEventListener("click", async () => {
+    await logout();
 });
 

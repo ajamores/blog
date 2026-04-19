@@ -101,6 +101,18 @@ const updateBlogPost = async (slug, payload) => {
 
 }
 
+const deleteBlogPost = async (slug) => {
+    const res = await fetch(`${BASE_URL}/blog/admin/delete/${slug}`, {
+        method: 'DELETE',
+        credentials: 'include',
+    })
+    if(!res.ok){
+        const data = await res.json();
+        throw new Error(data.error || "failed to delete post")
+    }
+    return res.json();
+}
+
 const login = async (username, password) => {
 
     const res = await fetch(`${BASE_URL}/auth/login`, {
@@ -120,14 +132,18 @@ const login = async (username, password) => {
 
 const logout = async () => {
     try {
-        const res = fetch(`${BASE_URL}/auth/logout`);
+
+        const res = await fetch(`${BASE_URL}/auth/logout`, {
+            method: 'POST',
+            credentials: 'include'
+        });
 
         if(!res.ok){
             throw new Error('Error when logging out');
         }
 
-        return await res.json();
-
+        window.location.href = '/';
+;
     } catch (error) {
         console.log(error);
     }
@@ -135,4 +151,4 @@ const logout = async () => {
 
 
 
-export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, getBlogPost, updateBlogPost, createBlogPost, login};
+export {getAllPublishedBLogPosts, getPublishedBlogPost, getAllBlogPosts, getBlogPost, updateBlogPost, createBlogPost, deleteBlogPost, login, logout};

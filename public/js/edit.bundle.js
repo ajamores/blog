@@ -15999,6 +15999,17 @@ var updateBlogPost = async (slug2, payload) => {
     console.log(error);
   }
 };
+var deleteBlogPost = async (slug2) => {
+  const res = await fetch(`${BASE_URL}/blog/admin/delete/${slug2}`, {
+    method: "DELETE",
+    credentials: "include"
+  });
+  if (!res.ok) {
+    const data2 = await res.json();
+    throw new Error(data2.error || "failed to delete post");
+  }
+  return res.json();
+};
 
 // public/js/edit.js
 var slug = window.location.pathname.split("/")[3];
@@ -16117,6 +16128,22 @@ saveBtn.addEventListener("click", async () => {
   } catch (error) {
     console.log(error);
     saveStatus.textContent = "Error when saving post";
+  }
+});
+var deleteBtn = document.getElementById("delete-btn");
+deleteBtn.addEventListener("click", async () => {
+  const confirmed = confirm("Are you sure you want to delete this post? This cannot be undone.");
+  if (!confirmed) {
+    return;
+  }
+  try {
+    const req = await deleteBlogPost(slug);
+    console.log(req);
+    if (req.status === "success") {
+      window.location.href = "/admin/dashboard";
+    }
+  } catch (error) {
+    console.log(error);
   }
 });
 lucide.createIcons();

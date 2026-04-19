@@ -10,7 +10,7 @@
 </head>
 <body class=" bg-ctp-accent pt-16">
 
-    <main id="container " class="max-w-4xl min-h-screen  mx-auto ">
+    <main id="container " class="max-w-4xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-5xl text-white  underline underline-offset-2 decoration-2 ">Edit Post</h1>
         <a href="/admin/dashboard" id="backToBlog" class="flex gap-1 my-5 text-ctp-green hover:text-white group  w-fit"  >
             <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform duration-200 ease-out"></i>
@@ -19,18 +19,18 @@
 
         <div id="title">
             <h2 class="text-white text-2xl">Title</h2>
-            <textarea rows="2" cols="100" id="title-content" class="bg-blue-400 "></textarea>
+            <textarea rows="2" cols="100" id="title-content" class="bg-blue-400 w-full"></textarea>
         </div>
         <div id="excerpt">
             <h2 class="text-white text-2xl">Excerpt</h2>
-            <textarea rows="4" cols="100"  id="excerpt-content" class="bg-blue-400"></textarea>
+            <textarea rows="4" cols="100"  id="excerpt-content" class="bg-blue-400 w-full"></textarea>
         </div>
         
         <div id="categories-section" class=" my-4 flex flex-col">
             <h2 class="pl-2 text-white text-2xl">Categories</h2>
             <div id="categories" class=" flex gap-2 mt-2"></div>
             <div id="tag-control" class="mt-4 flex gap-2">
-                <input type="text" id="tag-input" class=" bg-blue-400">
+                <input type="text" id="tag-input" class=" bg-blue-400 min-w-0 flex-1">
                <button id="add-tag" class=" hover:scale-105 px-4 py-1.5 bg-ctp-green text-ctp-base font-medium rounded-lg cursor-pointer hover:brightness-110 transition-all duration-200 ease-out">
                     Add
                 </button>
@@ -59,11 +59,21 @@
         <hr class="text-white">
 
         <div id="editorjs" class="max-w-full prose pt-10 "></div>
-       <!-- Save button -->
-        <button id="save-btn" class="flex items-center gap-2 mx-auto my-8 px-8 py-3 bg-ctp-green text-ctp-base font-semibold rounded-lg cursor-pointer hover:scale-110  hover:brightness-110 active:scale-95 transition-all duration-200 ease-out">
-        <i data-lucide="save" class="w-4 h-4"></i>
-        Save Post
-        </button>
+
+        <div id="btn-container" class="flex">
+            
+            <!-- Save button -->
+            <button id="save-btn" class="flex items-center gap-2 mx-auto my-8 px-8 py-3 bg-ctp-green text-ctp-base font-semibold rounded-lg cursor-pointer hover:scale-110  hover:brightness-110 active:scale-95 transition-all duration-200 ease-out">
+            <i data-lucide="save" class="w-4 h-4"></i>
+            Save Post
+            </button>
+            
+            <!-- delete button -->
+            <button id="delete-btn" class="flex items-center gap-2 mx-auto my-8 px-8 py-3 bg-ctp-red text-ctp-base font-semibold rounded-lg cursor-pointer hover:scale-110  hover:brightness-110 active:scale-95 transition-all duration-200 ease-out">
+            <i data-lucide="save" class="w-4 h-4"></i>
+            Delete Post
+            </button>
+        </div>
 
         <div id="save-status" class="flex justify-center pb-10">
 

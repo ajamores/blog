@@ -65,8 +65,10 @@ posts.forEach(element => {
     })
 
 
-    readMore.textContent = 'Read More ->';
-    readMore.className = 'readbtn';
+    readMore.innerHTML = 'Read More <i data-lucide="arrow-right"></i>';
+    readMore.id = 'readbtn';
+    readMore.className = 'flex items-center gap-1';
+
     postCategories.append(readMore);
     
 
@@ -79,6 +81,27 @@ posts.forEach(element => {
 
 });
 
+//get last tag 
+const lastTag = tags.lastElementChild;
+lastTag.setAttribute('draggable', true);
+lastTag.addEventListener('dragstart', (e) => {
+    e.dataTransfer.setData('text/plain', 'secret');
+});
+
+const sunMoon = document.getElementById("sunMoon");
+sunMoon.addEventListener('dragover', (e) => e.preventDefault());
+sunMoon.addEventListener('drop', (e) => {
+  e.preventDefault();
+  if (e.dataTransfer.getData('text/plain') === 'secret') {
+    window.location.href = '/admin/login';
+  }
+});
+
+
+document.addEventListener('mousemove', (e) => {
+  document.documentElement.style.setProperty('--spotlight-x', `${e.clientX}px`);
+  document.documentElement.style.setProperty('--spotlight-y', `${e.clientY}px`);
+});
 
 lucide.createIcons();
 

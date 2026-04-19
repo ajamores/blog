@@ -10,14 +10,14 @@
 <body class="bg-ctp-base min-h-screen ">
     <div id="container">
         <header class="bg-ctp-mantle text-white sticky top-0 z-100">
-            <nav class="flex max-w-4xl mx-auto justify-between items-center px-7 py-4 ">
+            <nav class="flex max-w-4xl mx-auto justify-between items-center px-7 py-4 sm:px-7">
                 <h2>My Blog</h2>
-                <a href="/admin/create">Create Post</a>
-                <a href="#">Logout</a>
+                <a href="/admin/create" class="hover:scale-105 hover:text-green-500 transition-all duration-300 ease-in-out">Create Post</a>
+                <button id="logout" class="cursor-pointer hover:scale-105 hover:text-green-500 transition-all duration-300 ease-in-out">Logout</button>
             </nav>
         </header>
 
-        <main class="grid grid-cols-3 gap-4 mt-30 px-10 pb-15" id="posts">
+        <main class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-30 px-4 sm:px-6 lg:px-10 pb-15" id="posts">
 
         </main>
     </div>

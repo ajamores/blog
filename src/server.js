@@ -10,6 +10,13 @@ import { fileURLToPath } from 'url'
 import { requireAuth } from './middleware/requireAuth.js';
 import cookieParser from 'cookie-parser';
 
+//------------Route Endpoints--------------------\
+import authRoutes from './routes/authRoutes.js';
+import blogRoutes from './routes/blogRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js'
+import { loginGuard } from './middleware/loginGuard.js';
+
+
 
 //start app/configs
 const app = express();
@@ -78,10 +85,6 @@ app.use((req, res, next) => {
 
 
 
-//------------Route Endpoints--------------------\
-import authRoutes from './routes/authRoutes.js';
-import blogRoutes from './routes/blogRoutes.js';
-import categoryRoutes from './routes/categoryRoutes.js'
 
 
 
@@ -100,7 +103,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 // Page routes
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')));
 app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')));
-app.get('/admin/login', (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')));
+app.get('/admin/login', loginGuard, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')));
 
 app.get('/admin/dashboard', requireAuth ,(req, res) => res.sendFile(path.join(__dirname, '../views/admin/dashboard.html')));
 app.get('/admin/edit/:id', requireAuth, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/edit.html')));
