@@ -6,12 +6,17 @@
     <title>blog-frontend</title>
     <link rel="stylesheet" href="/css/style.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
 
     <!--Light mode-->
     <!-- <div class="bg-linear-to-r from-stone-200 to-sky-300 text-white min-h-screen pt-16 pb-16"> -->
-      <div class="dark bg-linear-to-r from-ctp-base to-ctp-mantle text-white min-h-screen pt-16 pb-16">
+      <div class="bg-linear-to-r from-ctp-base to-ctp-mantle text-white min-h-screen pt-16 pb-16">
 
       <header class="fixed top-0 left-0 right-0 py-4  bg-ctp-latte-text/80 shadow-2xl backdrop-blur-sm z-10 ">
         <div class=" max-w-6xl mx-auto flex justify-between px-4 sm:px-6">
@@ -30,8 +35,19 @@
         </div>
       </header>
 
+        <!-- Mobile drawer -->
+      <div id="mobileMenu" class="hidden md:hidden flex-col gap-4 px-6 pt-4 pb-6 text-lg">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="/">Blog</a>
+        <a href="#">Resume</a>
+        <a href="#">Github</a>
+        <a href="#">Linkedin</a>
+        <a href="#">Youtube</a>
+      </div>
+
       <main class="mt-24 text-center text-ctp-mantle px-4 sm:px-6 ">
-        <h1 class="text-4xl mb-10 font-extrabold sm:text-5xl md:text-6xl text-ctp-latte-base">Things I Think About</h1>
+        <h1 class="text-4xl mb-10 font-extrabold sm:text-5xl md:text-6xl text-white relative z-2">Things I Think About</h1>
         <h2 class="text-ctp-subtext text-2xl">A blog to spill my thoughts on life, goals, technology and more </h2>
         <div id="tags" class="flex gap-6  justify-center mt-6 flex-wrap"></div>
         <div id="posts" class="mt-10 flex flex-col items-center gap-9 px-4 "></div>

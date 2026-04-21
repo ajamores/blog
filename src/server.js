@@ -44,14 +44,15 @@ if (process.env.NODE_ENV === 'production') {
   app.use(limiter);
 }
 
-// protect against web vulnerabilities by setting HTTP headers
+// protect against web vulnerabilities (XSS) by setting HTTP headers
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://unpkg.com", "https://cdn.jsdelivr.net"],
+            scriptSrc: ["'self'", "https://unpkg.com", "https://cdn.jsdelivr.net","'sha256-QAw++TxTiQghvYBPPNzvdXLegLmMy8r1QFgK2Oi++3U='"],
             imgSrc: ["'self'", "data:", "https:"],
             connectSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
+            
         }
     }
 }))

@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/post.css">
-    <link rel="stylesheet" href="/css/input.css">
     <link rel="stylesheet" href="/css/style.css" />
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
+        document.documentElement.classList.add('dark')
+      }
+    </script>
 </head>
 <body class="bg-sky-800">
 
@@ -16,7 +20,7 @@
       <header class="fixed top-0 left-0 right-0 py-4  bg-ctp-latte-text/80 shadow-1xl backdrop-blur-sm ">
         <div class=" max-w-6xl mx-auto flex justify-between">
           <h1 class="  sm:ml-15 font-extrabold text-2xl text-ctp-peach">Armand Amores</h1>
-          <nav class="  sm:mr-15  gap-4 text-lg flex">
+          <nav class="  sm:mr-15  gap-4 text-lg flex" id="navbar">
             <a href="#"  class="hidden md:flex" >Home</a>
             <a href="#" class="hidden md:flex">About</a>
             <a href="/" class="hidden md:flex">Blog</a>
