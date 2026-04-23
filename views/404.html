@@ -1,16 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-      if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
-        document.documentElement.classList.add('dark')
-      }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
+      document.documentElement.classList.add('dark')
+    }
+  </script>
+
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
+
+<body class="bg-sky-100  dark:bg-sky-800">
+
+  <div class=" text-white max-h-max pt-16 pb-16">
+
+    <header class="fixed top-0 left-0 right-0 py-4 bg-ctp-latte-text/80 shadow-1xl backdrop-blur-sm z-10 ">
+      <div class=" max-w-6xl mx-auto flex justify-between px-4 sm:px-6">
+        <h1 class="  sm:ml-15 font-extrabold text-2xl  text-ctp-peach ">Armand Amores</h1>
+        <nav class="  sm:mr-15  gap-4 text-lg flex" id="navbar">
+          <a href="#" class="hidden md:flex">Home</a>
+          <a href="#" class="hidden md:flex ">About</a>
+          <a href="/" class="hidden md:flex ">Blog</a>
+          <a href="#" class="hidden md:flex ">Resume</a>
+          <button id="sunMoon" class="border rounded-4xl p-1 cursor-pointer  "><i data-lucide="sun"></i></button>
+          <button id="menuBtn" class="block md:hidden "><i data-lucide="menu"></i></button>
+          <a href="#" class="hidden md:flex ">Github</a>
+          <a href="#" class="hidden md:flex ">Linkedin</a>
+          <a href="#" class="hidden md:flex ">Youtube</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div id="mobileMenu"
+      class="hidden md:hidden flex-col gap-4 px-6 pt-4 pb-6 text-lg text-black dark:text-white cursor-pointer">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="/">Blog</a>
+      <a href="#">Resume</a>
+      <a href="#">Github</a>
+      <a href="#">Linkedin</a>
+      <a href="#">Youtube</a>
+    </div>
+
+    <main class="text-slate-700 dark:text-white flex flex-col justify-center min-h-screen my-auto items-center">
+
+        <h1 class="text-6xl">Page not found</h1>
     
+      
+    </main>
+
+
+  </div>
+    <script type="module" src="/js/404.js"></script>
+  <script>lucide.createIcons()</script>
 </body>
+
 </html>

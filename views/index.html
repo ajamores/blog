@@ -14,29 +14,28 @@
   </head>
   <body>
 
-    <!--Light mode-->
-    <!-- <div class="bg-linear-to-r from-stone-200 to-sky-300 text-white min-h-screen pt-16 pb-16"> -->
-      <div class="bg-linear-to-r from-ctp-base to-ctp-mantle text-white min-h-screen pt-16 pb-16">
 
-      <header class="fixed top-0 left-0 right-0 py-4  bg-ctp-latte-text/80 shadow-2xl backdrop-blur-sm z-10 ">
+      <div class="bg-linear-to-r from-stone-200 to-sky-300 dark:from-ctp-base dark:to-ctp-mantle text-white min-h-screen pt-16 pb-16">
+
+      <header class="fixed top-0 left-0 right-0 py-4 bg-ctp-latte-text/80 shadow-1xl backdrop-blur-sm z-10 ">
         <div class=" max-w-6xl mx-auto flex justify-between px-4 sm:px-6">
-          <h1 class="  sm:ml-15 font-extrabold text-2xl text-ctp-peach ">Armand Amores</h1>
-          <nav class="  sm:mr-15  gap-4 text-lg flex" id="navbar">
+          <h1 class="   font-extrabold text-2xl  text-ctp-peach ">Armand Amores</h1>
+          <nav class="    gap-4 text-lg flex items-center" id="navbar">
             <a href="#"  class="hidden md:flex" >Home</a>
-            <a href="#" class="hidden md:flex">About</a>
-            <a href="/" class="hidden md:flex">Blog</a>
-            <a href="#" class="hidden md:flex">Resume</a>
-            <button id="sunMoon" class="border rounded-4xl p-1 cursor-pointer "><i data-lucide="sun"></i></button>
+            <a href="#" class="hidden md:flex ">About</a>
+            <a href="/" class="hidden md:flex ">Blog</a>
+            <a href="#" class="hidden md:flex ">Resume</a>
+            <button id="sunMoon" class="border rounded-4xl p-1 cursor-pointer  "><i data-lucide="sun"></i></button>
             <button id="menuBtn" class="block md:hidden "><i data-lucide="menu"></i></button>
-            <a href="#" class="hidden md:flex">Github</a>
-            <a href="#" class="hidden md:flex">Linkedin</a>
-            <a href="#" class="hidden md:flex">Youtube</a>
+            <a href="#" class="hidden md:flex ">Github</a>
+            <a href="#" class="hidden md:flex ">Linkedin</a>
+            <a href="#" class="hidden md:flex ">Youtube</a>
           </nav>
         </div>
       </header>
 
         <!-- Mobile drawer -->
-      <div id="mobileMenu" class="hidden md:hidden flex-col gap-4 px-6 pt-4 pb-6 text-lg">
+      <div id="mobileMenu" class="hidden md:hidden flex-col gap-4 px-6 pt-4 pb-6 text-lg text-black dark:text-white cursor-pointer">
         <a href="#">Home</a>
         <a href="#">About</a>
         <a href="/">Blog</a>
@@ -47,8 +46,11 @@
       </div>
 
       <main class="mt-24 text-center text-ctp-mantle px-4 sm:px-6 ">
-        <h1 class="text-4xl mb-10 font-extrabold sm:text-5xl md:text-6xl text-white relative z-2">Things I Think About</h1>
-        <h2 class="text-ctp-subtext text-2xl">A blog to spill my thoughts on life, goals, technology and more </h2>
+       <h1 class="text-4xl mb-10 font-extrabold sm:text-5xl md:text-6xl text-slate-700 dark:text-white relative z-2" 
+          style="text-shadow: 0 0 30px rgba(255, 255, 255, 0.35);">
+        Things I Think About
+      </h1>
+        <h2 class="text-shadow-ctp-latte-text dark:text-ctp-subtext text-2xl">A blog to spill my thoughts on life, goals, technology and more </h2>
         <div id="tags" class="flex gap-6  justify-center mt-6 flex-wrap"></div>
         <div id="posts" class="mt-10 flex flex-col items-center gap-9 px-4 "></div>
       </main>

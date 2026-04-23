@@ -87,8 +87,9 @@ body {
 }
 
 .tag.active{
-  background-color: rgb(31, 173, 31);
-  border: 2px solid black;
+  background-color: #89b4fa;
+  border: 2px solid rgba(228, 221, 221, 0.212);
+  color: black;
 }
 
 .tag:hover {
@@ -107,7 +108,7 @@ body {
   background-color: white;
   align-items: flex-start;
   margin: 0 auto;
-  padding: 3rem;
+  padding: 2.5rem;
   border-radius: 2rem;
   transition: transform 0.3s ease, 
               background-color 0.3s ease, 
@@ -125,14 +126,22 @@ body {
               0 0 0 1px rgba(137, 180, 250, 0.2);
 }
 
+.post:hover .postTitle {
+  color: #fab387; /* ctp-peach */
+  text-shadow: 0 0 20px rgba(137, 180, 250, 0.4);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
 .postExcerpt{
   text-align: left;
+  font-size: large;
 }
 
 .postTitle{
-  font-size: 1.7rem;
+  font-size: xx-large;
   font-weight: 700;
   text-align: left;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
   
 }
 
@@ -201,7 +210,7 @@ body {
   background: radial-gradient(
     600px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     transparent 0%,
-    rgba(0, 0, 0, 0.12) 100%
+    rgba(0, 0, 0, 0.11) 100%
   );
   pointer-events: none;
   z-index: 0;
@@ -216,4 +225,13 @@ body {
 
 #mobileMenu a:hover {
   color: #fab387;
+}
+
+#mobileMenu {
+  position: fixed;
+  top: 57px; /* height of your navbar */
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background-color: rgb(76, 79, 105, 0.95); /* ctp-latte-text at 80% opacity */;
 }

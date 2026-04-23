@@ -49,7 +49,14 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "https://unpkg.com", "https://cdn.jsdelivr.net","'sha256-QAw++TxTiQghvYBPPNzvdXLegLmMy8r1QFgK2Oi++3U='"],
+            scriptSrc: [
+              "'self'",
+              "https://unpkg.com",
+              "https://cdn.jsdelivr.net",
+              "'sha256-QAw++TxTiQghvYBPPNzvdXLegLmMy8r1QFgK2Oi++3U='",
+              "'sha256-bgvkAmgghohc16fWnVd2DG2XqQ5feAbjTkq+60BCWr8='",
+              "'sha256-PgRYCkahO219wNjEeyXnqJ2S1b5rGzIfAIHW1OHhmAc='",
+            ],
             imgSrc: ["'self'", "data:", "https:"],
             connectSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
             

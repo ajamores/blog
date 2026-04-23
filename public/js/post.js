@@ -1,4 +1,9 @@
 import { getPublishedBlogPost } from '../js/api.js'
+import { initThemeToggle } from './theme.js'
+
+//toggle between light and dark mode
+initThemeToggle();
+
 
 const slug = window.location.pathname.split('/')[2]
 
@@ -130,5 +135,40 @@ post.content.blocks.forEach(block => {
   container.appendChild(element);
 
 });
+
+const endLine = document.createElement('hr');
+container.appendChild(endLine);
+
+const ending = document.createElement('div');
+ending.className = 'end';
+
+const thanks = document.createElement('p');
+thanks.textContent = 'Thanks for reading!'
+ending.appendChild(thanks);
+
+const more = document.createElement('a');
+more.href='/'
+more.textContent = 'More blog posts';
+ending.appendChild(more);
+
+container.appendChild(ending);
+
+
+//hambuger menu logic
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+menuBtn.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('flex');
+
+  menuBtn.innerHTML = isOpen
+  ? '<i data-lucide="menu"></i>'
+  : '<i data-lucide="x"></i>';
+
+  lucide.createIcons();
+});
+
+
 
 lucide.createIcons();

@@ -1,12 +1,26 @@
 import { Prisma } from "../generated/prisma/client.ts";
+import path from 'path'
+import { fileURLToPath } from 'url';
+
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 /**
  * 404 Not Found handler
  * Creates an error for routes that don't exist
  */
 const notFound = (req, res, next) => {
-  const error = new Error(`Route ${req.originalUrl} not found`);
-  error.statusCode = 404;
-  next(error);
+  const isApiRoute = req.originalUrl.startsWith('/blog') || 
+                     req.originalUrl.startsWith('/auth') || 
+                     req.originalUrl.startsWith('/category');
+
+  if (isApiRoute) {
+    const error = new Error(`Route ${req.originalUrl} not found`);
+    error.statusCode = 404;
+    return next(error); // goes to errorHandler, returns JSON
+  }
+
+  // Browser page request — send 404 HTML page
+  res.status(404).sendFile(path.join(__dirname, '../../views/404.html'));
 };
 
 /**

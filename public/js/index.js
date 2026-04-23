@@ -181,8 +181,14 @@ const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 
 menuBtn.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+  const isOpen = mobileMenu.classList.toggle('hidden');
   mobileMenu.classList.toggle('flex');
+
+  menuBtn.innerHTML = isOpen
+  ? '<i data-lucide="menu"></i>'
+  : '<i data-lucide="x"></i>';
+
+  lucide.createIcons();
 });
 
 
