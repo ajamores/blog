@@ -92,11 +92,6 @@ app.use((req, res, next) => {
 
 
 
-
-
-
-
-
 app.use("/auth", authLimiter ,authRoutes); //authLimiter see above for rate limit
 app.use("/blog", blogRoutes);
 app.use("/category", categoryRoutes);

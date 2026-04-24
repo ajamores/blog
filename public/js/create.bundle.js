@@ -15972,21 +15972,17 @@ var m3 = class _m {
 // public/js/api.js
 var BASE_URL = `http://localhost:8080`;
 var createBlogPost = async (body) => {
-  try {
-    const res = await fetch(`${BASE_URL}/blog/admin/create`, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-type": "application/json" },
-      body
-    });
-    if (!res.ok) {
-      throw new Error("Error creating new blog post");
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.log(error);
+  const res = await fetch(`${BASE_URL}/blog/admin/create`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-type": "application/json" },
+    body
+  });
+  if (!res.ok) {
+    throw new Error("Error creating new blog post");
   }
+  const data = await res.json();
+  return data;
 };
 
 // public/js/create.js
@@ -16058,6 +16054,7 @@ var saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener("click", async () => {
   const content = await editor.save();
   const payload = {
+    readingTime: Number(document.getElementById("ttr").value),
     title: document.getElementById("title-content").value,
     excerpt: document.getElementById("excerpt-content").value,
     categories: tags,

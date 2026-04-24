@@ -16,9 +16,7 @@
     --color-blue-400: oklch(70.7% 0.165 254.624);
     --color-slate-700: oklch(37.2% 0.044 257.287);
     --color-gray-300: oklch(87.2% 0.01 258.338);
-    --color-gray-500: oklch(55.1% 0.027 264.364);
     --color-stone-200: oklch(92.3% 0.003 48.717);
-    --color-stone-300: oklch(86.9% 0.005 56.366);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -743,6 +741,9 @@
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
   }
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
+  }
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
   }
@@ -937,9 +938,6 @@
   .bg-gray-300 {
     background-color: var(--color-gray-300);
   }
-  .bg-gray-500 {
-    background-color: var(--color-gray-500);
-  }
   .bg-sky-100 {
     background-color: var(--color-sky-100);
   }
@@ -1104,9 +1102,6 @@
   }
   .text-slate-700 {
     color: var(--color-slate-700);
-  }
-  .text-stone-300 {
-    color: var(--color-stone-300);
   }
   .text-white {
     color: var(--color-white);
@@ -1572,6 +1567,7 @@ body {
   cursor: pointer;
   white-space: nowrap;
   transition: 0.4s ease, transform 0.4s ease, text-shadow 0.4s ease;
+  border: 1px solid rgba(129, 220, 243, 0.603);
 }
 .tag.active {
   background-color: #89b4fa;
@@ -1607,6 +1603,22 @@ body {
   text-shadow: 0 0 20px rgba(137, 180, 250, 0.4);
   transition: color 0.3s ease, text-shadow 0.3s ease;
 }
+.dateTime {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.dateTime time {
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+.dateTime span {
+  word-spacing: -3px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #fff7eb, #fef3c7);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
 .postExcerpt {
   text-align: left;
   font-size: large;
@@ -1630,6 +1642,7 @@ body {
   padding: 4px 12px;
   border-radius: 999px;
   background-color: rgb(244, 222, 222);
+  border: 1px solid rgba(122, 154, 230, 0.349);
 }
 #readbtn:hover {
   background-color: white;
@@ -1655,7 +1668,6 @@ body {
 }
 .postDate {
   padding: 4px 12px;
-  margin-bottom: 1rem;
   border-radius: 999px;
   background: linear-gradient(to right, #e2e8f0, #cbd5e1);
 }

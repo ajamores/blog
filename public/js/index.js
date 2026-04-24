@@ -101,7 +101,12 @@ const renderPosts = (filteredPosts) => {
     const post = document.createElement("a");
     post.href = `/post/${element.slug}`;
     let postTitle = document.createElement("h2");
-    let postDate = document.createElement("span");
+
+    //bundle these in dateTime
+    const dateTime = document.createElement('div');
+    let postDate = document.createElement("time");
+    let ttr = document.createElement("span");
+
     let postExcerpt = document.createElement("p");
     let postCategories = document.createElement("div");
     let readMore = document.createElement('p');
@@ -112,12 +117,21 @@ const renderPosts = (filteredPosts) => {
     postTitle.className = "postTitle";
     postCategories.className = "postCategories"
     postDate.className = "postDate";
+    dateTime.className = "dateTime"
     postExcerpt.className ="postExcerpt"
 
     //give elements values
     postTitle.textContent = element.title;
+
+    //First line of post
     const date = new Date(element.createdAt).toISOString().split('T')[0];
     postDate.textContent = date;
+    postDate.dateTime = date;
+    ttr.textContent = `${element.readingTime} min read` ;
+    const seperator = document.createElement('span').textContent = '•'
+    dateTime.append(postDate, seperator, ttr);
+
+
     postExcerpt.textContent = element.excerpt;
 
     element.categories.forEach( elem => {
@@ -136,7 +150,7 @@ const renderPosts = (filteredPosts) => {
     postCategories.append(readMore);
     
     //Package it all up in post div and append to contianer
-    post.append(postDate, postTitle, postExcerpt, postCategories);
+    post.append(dateTime, postTitle, postExcerpt, postCategories);
     postContainer.append(post);
 
   });

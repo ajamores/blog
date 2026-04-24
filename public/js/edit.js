@@ -21,6 +21,9 @@ console.log("SLUG: " + slug);
 const data = await getBlogPost(slug);
 console.log(data);
 
+const ttr = data.data.post.readingTime;
+document.getElementById('ttr').value = ttr;
+
 const title = data.data.post.title;
 document.getElementById('title-content').textContent = title;
 
@@ -32,10 +35,14 @@ let categories =  data.data.post.categories;
 //create array of tags
 let tags = categories.map(category => category.name);
 
+/**
+ * display tags under categories
+ * @param {*} tag 
+ */
 const renderTag = (tag) => {
   const t  = document.createElement('div');
   t.className = 't';
-  t.innerHTML = `${tag}<span class="tag-remove">×</span>`;
+  t.innerHTML = `${DOMPurify.sanitize(tag)}<span class="tag-remove">×</span>`;
 
   //add event listener to each tag
   t.querySelector('.tag-remove').addEventListener('click', () => {
@@ -71,11 +78,6 @@ tagBtn.addEventListener('click', () => {
     tagError.textContent = ` Error: ${input} already exists`
   }
 });
-
-
-
-
-
 
 
 let status = data.data.post.status; //let to allow change not const
@@ -151,6 +153,7 @@ saveBtn.addEventListener('click', async  () => {
   const content = await editor.save();
 
   const payload = {
+    readingTime:  Number(document.getElementById('ttr').value),
     title: document.getElementById('title-content').value,
     excerpt: document.getElementById('excerpt-content').value,
     categories: tags,

@@ -7,7 +7,7 @@ const createBlogPost = async (req, res, next) => {
 
     try {
         console.log("blogController reached, createBlogPost()");
-        const { title, excerpt ,content, status, categories} = req.body;
+        const { title, excerpt ,content, status, categories, readingTime} = req.body;
         const{ id:adminId} = req.user
 
         const slug = generateSlug(title);
@@ -29,7 +29,8 @@ const createBlogPost = async (req, res, next) => {
                 slug, 
                 title, 
                 excerpt, 
-                content, 
+                content,
+                readingTime, 
                 status, 
                 categories: {
                     connectOrCreate: categories?.map((name) => ({
@@ -63,6 +64,7 @@ const getBlogPost = async (req, res, next) => {
                 slug: slug
             },
             select: {
+                readingTime: true,
                 categories: true,
                 title: true,
                 excerpt:true,
@@ -91,6 +93,7 @@ const getAllBlogPosts = async (req, res, next) => {
             orderBy : {createdAt: 'desc'},
             select: {
                 slug: true,
+                readingTime: true,
                 title: true,
                 excerpt: true,
                 createdAt:true,
@@ -126,7 +129,7 @@ const updateBlogPost = async (req, res, next) => {
     try {
         
         const { slug } = req.params;
-        const { title, excerpt, content, status, categories } = req.body;
+        const { title, excerpt, content, status, categories, readingTime} = req.body;
 
         //No need the update will already handle the error if not found 
         // const post = await prisma.post.findUniqueOrThrow({
@@ -141,6 +144,7 @@ const updateBlogPost = async (req, res, next) => {
             },
             data: {
                 slug: title ? generateSlug(title) : slug,
+                readingTime: readingTime,
                 title: title,
                 excerpt: excerpt,
                 content: content,
@@ -169,22 +173,7 @@ const updateBlogPost = async (req, res, next) => {
     }
 };
 
-const saveImage = async (req, res, next) => {
-    const { url } = req.body;
 
-    if (!url){
-        console.log("saveImage() error");
-        res.status(400).json({
-            success: 0,
-            message: "No URL provided"
-        });
-    }
-
-    res.status(200),json({
-        success: 1,
-        file: { url }
-    })
-}
 
 const deleteBlogPost = async (req, res, next) => {
     try {
@@ -227,6 +216,7 @@ const getAllPublishedBlogPosts = async (req, res, next) => {
             orderBy : {createdAt: 'desc'},
             select: {
                 slug: true,
+                readingTime: true,
                 title: true,
                 excerpt: true,
                 createdAt:true,
@@ -268,6 +258,7 @@ const getPublishedPost = async (req, res, next) => {
             },
             select: {
                 categories: true,
+                readingTime: true,
                 title: true,
                 excerpt:true,
                 createdAt:true,
@@ -287,4 +278,4 @@ const getPublishedPost = async (req, res, next) => {
     }
 }
 
-export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost, saveImage};
+export { createBlogPost , getBlogPost, getAllBlogPosts, updateBlogPost, deleteBlogPost, getAllPublishedBlogPosts, getPublishedPost};

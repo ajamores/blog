@@ -10,6 +10,7 @@ const createBlogPostSchema = z.object({
     title: z.string().min(5, "Title must be at least 5 characters").max(100, "Title is too long"),
     excerpt: z.string().min(10, "Excerpt must be at least 10 characters").max(300, "Excerpt is too long"),
     content: z.any().optional(), //Note that editor.js will send you the block json elements
+    readingTime: z.int().min(1).max(60).optional(),
     status: z.enum(['DRAFT', 'PUBLISHED'], {
         error: "Status must be DRAFT or PUBLISHED"
     }).default("DRAFT"),

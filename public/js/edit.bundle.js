@@ -15983,21 +15983,17 @@ var getBlogPost = async (slug2) => {
   return data2;
 };
 var updateBlogPost = async (slug2, payload) => {
-  try {
-    const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
-      method: "PATCH",
-      headers: { "Content-type": "application/json" },
-      credentials: "include",
-      body: payload
-    });
-    if (!res.ok) {
-      const data2 = await res.json();
-      throw new Error(data2.error || "failed to update post");
-    }
-    return res.json();
-  } catch (error) {
-    console.log(error);
+  const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
+    method: "PATCH",
+    headers: { "Content-type": "application/json" },
+    credentials: "include",
+    body: payload
+  });
+  if (!res.ok) {
+    const data2 = await res.json();
+    throw new Error(data2.error || "failed to update post");
   }
+  return res.json();
 };
 var deleteBlogPost = async (slug2) => {
   const res = await fetch(`${BASE_URL}/blog/admin/delete/${slug2}`, {
@@ -16016,6 +16012,8 @@ var slug = window.location.pathname.split("/")[3];
 console.log("SLUG: " + slug);
 var data = await getBlogPost(slug);
 console.log(data);
+var ttr = data.data.post.readingTime;
+document.getElementById("ttr").value = ttr;
 var title = data.data.post.title;
 document.getElementById("title-content").textContent = title;
 var excerpt = data.data.post.excerpt;
@@ -16025,7 +16023,7 @@ var tags = categories.map((category) => category.name);
 var renderTag = (tag) => {
   const t = document.createElement("div");
   t.className = "t";
-  t.innerHTML = `${tag}<span class="tag-remove">\xD7</span>`;
+  t.innerHTML = `${DOMPurify.sanitize(tag)}<span class="tag-remove">\xD7</span>`;
   t.querySelector(".tag-remove").addEventListener("click", () => {
     tags = tags.filter((t2) => t2 !== tag);
     console.log(tags);
@@ -16105,6 +16103,7 @@ var saveBtn = document.getElementById("save-btn");
 saveBtn.addEventListener("click", async () => {
   const content = await editor.save();
   const payload = {
+    readingTime: Number(document.getElementById("ttr").value),
     title: document.getElementById("title-content").value,
     excerpt: document.getElementById("excerpt-content").value,
     categories: tags,

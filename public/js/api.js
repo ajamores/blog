@@ -59,45 +59,40 @@ const getBlogPost = async (slug) => {
 
 const createBlogPost = async (body) => {
 
-    try {
-        const res = await fetch(`${BASE_URL}/blog/admin/create`, {
+    
+    const res = await fetch(`${BASE_URL}/blog/admin/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {'Content-type': 'application/json'},
         body: body
-        })
+        });
 
-        if(!res.ok){
-            throw new Error('Error creating new blog post')
-        }
-
-        const data = await res.json();
-
-        return data;
-    } catch (error) {
-        console.log(error);
+    if(!res.ok){
+        throw new Error('Error creating new blog post')
     }
+
+    const data = await res.json();
+
+    return data;
+
 }
 
 const updateBlogPost = async (slug, payload) => {
 
-    try {
-        const res = await fetch(`${BASE_URL}/blog/admin/${slug}`, {
-        method: 'PATCH',
-        headers: {'Content-type': 'application/json'},
-        credentials: 'include',
-        body: payload
-        })
+    const res = await fetch(`${BASE_URL}/blog/admin/${slug}`, {
+                method: 'PATCH',
+                headers: {'Content-type': 'application/json'},
+                credentials: 'include',
+                body: payload
+                })
 
-        if(!res.ok){
-            const data = await res.json();
-            throw new Error(data.error || "failed to update post")
-        }
-
-        return res.json();
-    } catch (error) {
-        console.log(error)
+    if(!res.ok){
+        const data = await res.json();
+        throw new Error(data.error || "failed to update post")
     }
+
+    return res.json();
+
 
 }
 

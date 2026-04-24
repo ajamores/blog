@@ -13,9 +13,10 @@
   <link rel="stylesheet" href="/css/post.css">
   <link rel="stylesheet" href="/css/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 </head>
 
-<body class="bg-sky-100  dark:bg-sky-800">
+<body class="bg-sky-100 dark:bg-sky-800">
 
   <div class=" text-white max-h-max pt-16 pb-16">
 
@@ -58,9 +59,9 @@
           <p>back to blog</p>
         </a>
 
-        <div class="mb-5 flex gap-2 items-center text-stone-300 bg-gray-500 w-max px-2 rounded-2xl">
+        <div class="mb-5 flex gap-2 items-center w-max px-2 rounded-2xl">
           <i data-lucide="calendar" class="w-4 h-4"></i>
-          <div id="date"></div>
+          <div id="date" class="flex gap-2"></div>
         </div>
 
         <div id="title"></div>

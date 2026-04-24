@@ -15,8 +15,6 @@ import { createBlogPost } from './api.js';
 
 
 
-
-
 let tags= [];
 
 const renderTag = (tag) => {
@@ -110,6 +108,7 @@ saveBtn.addEventListener('click', async  () => {
   const content = await editor.save();
 
   const payload = {
+    readingTime: Number(document.getElementById('ttr').value),
     title: document.getElementById('title-content').value,
     excerpt: document.getElementById('excerpt-content').value,
     categories: tags,

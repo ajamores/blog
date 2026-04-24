@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/edit.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 </head>
 <body class=" bg-ctp-accent pt-16">
 
@@ -16,6 +17,11 @@
             <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform duration-200 ease-out"></i>
             <p>back to dashboard</p>
         </a>
+
+        <div class="mb-2">
+            <h2 class="text-white text-2xl">Reading Time</h2>
+            <input id="ttr" type="number" max="60" min="1" class="bg-blue-400">
+        </div>
 
         <div id="title">
             <h2 class="text-white text-2xl">Title</h2>

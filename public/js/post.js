@@ -1,8 +1,10 @@
-import { getPublishedBlogPost } from '../js/api.js'
-import { initThemeToggle } from './theme.js'
+import { getPublishedBlogPost } from '../js/api.js';
+import { initThemeToggle } from './theme.js';
+
 
 //toggle between light and dark mode
 initThemeToggle();
+
 
 
 const slug = window.location.pathname.split('/')[2]
@@ -30,8 +32,15 @@ const dateReadable = date.toLocaleDateString("en-CA", {
 const dateElement = document.createElement("time");
 dateElement.dateTime = dateISO;
 dateElement.textContent = dateReadable;
+const seperator = document.createElement('span').textContent = '•';
+const ttr = document.createElement("p");
+ttr.textContent = `${post.readingTime} min read`;
 
-document.getElementById("date").append(dateElement);
+document.getElementById("date").append(dateElement, seperator, ttr);
+
+//set up readingTime
+
+
 
 // Render post title
 const title = document.createElement('h1');
@@ -65,14 +74,14 @@ post.content.blocks.forEach(block => {
   switch (block.type) {
     case 'header':
         element = document.createElement(`h${block.data.level}`);
-        element.innerHTML = block.data.text;
+        element.innerHTML = DOMPurify.sanitize(block.data.text);
         element.className = `post-heading post-heading--${block.data.level}`;
 
       break;
 
     case 'paragraph':
       element = document.createElement('p');
-      element.innerHTML = block.data.text;
+      element.innerHTML = DOMPurify.sanitize(block.data.text);
       element.className = 'post-paragraph';
       break;
 
@@ -81,7 +90,7 @@ post.content.blocks.forEach(block => {
         element.className = `post-list post-list--${block.data.style}`;
         block.data.items.forEach(item => {
             const li = document.createElement('li');
-            li.innerHTML = item;
+            li.innerHTML = DOMPurify.sanitize(item);
             li.className = 'post-list__item';
             element.appendChild(li);
         });
@@ -102,7 +111,7 @@ post.content.blocks.forEach(block => {
 
         if (block.data.caption) {
             let caption = document.createElement('figcaption');
-            caption.innerHTML = block.data.caption;
+            caption.innerHTML = DOMPurify.sanitize(block.data.caption);
             figure.appendChild(caption);
         }
 
@@ -113,7 +122,7 @@ post.content.blocks.forEach(block => {
 
     case 'quote':
         element = document.createElement('blockquote');
-        element.innerHTML = block.data.text;
+        element.innerHTML = DOMPurify.sanitize(block.data.text);
         element.className = 'post-quote';
         break;
 
