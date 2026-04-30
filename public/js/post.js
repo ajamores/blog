@@ -156,7 +156,7 @@ thanks.textContent = 'Thanks for reading!'
 ending.appendChild(thanks);
 
 const more = document.createElement('a');
-more.href='/'
+more.href='/blog'
 more.textContent = 'More blog posts';
 ending.appendChild(more);
 

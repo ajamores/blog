@@ -15972,7 +15972,7 @@ var m3 = class _m {
 // public/js/api.js
 var BASE_URL = `http://localhost:8080`;
 var getBlogPost = async (slug2) => {
-  const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
+  const res = await fetch(`${BASE_URL}/api/blog/admin/${slug2}`, {
     method: "GET",
     credentials: "include"
   });
@@ -15983,7 +15983,7 @@ var getBlogPost = async (slug2) => {
   return data2;
 };
 var updateBlogPost = async (slug2, payload) => {
-  const res = await fetch(`${BASE_URL}/blog/admin/${slug2}`, {
+  const res = await fetch(`${BASE_URL}/api/blog/admin/${slug2}`, {
     method: "PATCH",
     headers: { "Content-type": "application/json" },
     credentials: "include",
@@ -15996,7 +15996,7 @@ var updateBlogPost = async (slug2, payload) => {
   return res.json();
 };
 var deleteBlogPost = async (slug2) => {
-  const res = await fetch(`${BASE_URL}/blog/admin/delete/${slug2}`, {
+  const res = await fetch(`${BASE_URL}/api/blog/admin/delete/${slug2}`, {
     method: "DELETE",
     credentials: "include"
   });

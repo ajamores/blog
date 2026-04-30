@@ -15972,7 +15972,7 @@ var m3 = class _m {
 // public/js/api.js
 var BASE_URL = `http://localhost:8080`;
 var createBlogPost = async (body) => {
-  const res = await fetch(`${BASE_URL}/blog/admin/create`, {
+  const res = await fetch(`${BASE_URL}/api/blog/admin/create`, {
     method: "POST",
     credentials: "include",
     headers: { "Content-type": "application/json" },

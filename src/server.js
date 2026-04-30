@@ -53,12 +53,11 @@ app.use(helmet({
               "'self'",
               "https://unpkg.com",
               "https://cdn.jsdelivr.net",
-              "'sha256-QAw++TxTiQghvYBPPNzvdXLegLmMy8r1QFgK2Oi++3U='",
-              "'sha256-bgvkAmgghohc16fWnVd2DG2XqQ5feAbjTkq+60BCWr8='",
-              "'sha256-PgRYCkahO219wNjEeyXnqJ2S1b5rGzIfAIHW1OHhmAc='",
+              "'sha256-KfpGLjvih8O3IyFqjfSwIlZck5DEwaGTpZ1Y5XCL8f4='" // the new one from the error
             ],
             imgSrc: ["'self'", "data:", "https:"],
             connectSrc: ["'self'", "https://cdn.jsdelivr.net", "https://unpkg.com"],
+            styleSrc: ["'self'", "https:", "'unsafe-inline'", "https://cdn.jsdelivr.net"],
             
         }
     }
@@ -93,7 +92,7 @@ app.use((req, res, next) => {
 
 
 app.use("/auth", authLimiter ,authRoutes); //authLimiter see above for rate limit
-app.use("/blog", blogRoutes);
+app.use("/api/blog", blogRoutes);
 app.use("/category", categoryRoutes);
 
 //ES Module does not give __dirname for free, need to create yourself 
@@ -104,7 +103,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 //TODO: Refactor routes into routes folder 
 // Page routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../views/index.html')));
+app.get('/', (req,res) => res.sendFile(path.join(__dirname, '../views/index.html')));
+app.get('/blog', (req, res) => res.sendFile(path.join(__dirname, '../views/blog.html')));
 app.get('/post/:id', (req, res) => res.sendFile(path.join(__dirname, '../views/post.html')));
 app.get('/admin/login', loginGuard, (req, res) => res.sendFile(path.join(__dirname, '../views/admin/login.html')));
 

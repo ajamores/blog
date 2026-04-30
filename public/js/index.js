@@ -1,194 +1,9 @@
-
-import { getAllPublishedBLogPosts } from './api.js'
 import { initThemeToggle } from './theme.js'
+import { experiences } from './exp/data.js'
+import { renderExpCard } from './components/expCard.js'
 
 //toggle between light and dark mode
 initThemeToggle();
-
-
-//Fetch all published posts on start
-const postData = await getAllPublishedBLogPosts();
-//isolate posts 
-const posts = postData.data.posts;
-//set for category tags
-const categories = new Set();
-
-//send this tag first
-categories.add('all posts'); 
-//loop through each post and extract unique tags 
-posts.forEach(element => {
-    let tag = element.categories;
-
-    //for each category in a post 
-    tag.forEach(t => 
-        categories.add(t.name)
-    );
-});
-
-
-//grab tags div container
-const tags = document.getElementById('tags');
-
-
-
-//Then make tag for all the categories
-categories.forEach(element => {
-
-    const tag = document.createElement("div");
-    tag.className = "tag";
-    tag.textContent = element;
-    tags.append(tag);
-
-    if(element === 'all posts'){
-      tag.classList.add('active');
-    }
-
-    tag.addEventListener('click', () => {
-
-      //loop though each tag and turn off the active toggle
-      document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
-
-      //set the one you pressed to active
-      tag.classList.add('active');
-
-      //set new slected tag
-      selectedTag = tag.textContent;
-
-      const filteredPosts = filterPosts(selectedTag);
-
-      renderPosts(filteredPosts);
-    });
-});
-
-
-//Container to store rendered posts 
-const postContainer = document.getElementById('posts');
-
-/**
- * 
- * Filter posts based on selected or 
- * 'active' tag
- * @param {*} selectedTag 
- * @returns array of filtered posts 
- */
-const filterPosts = (selectedTag) => {
-
-  if(selectedTag === 'all posts'){
-    return posts
-  } 
-
-  const filteredPosts = posts.filter(post => 
-    post.categories.some(category => category.name === selectedTag)
-  )
-
-  return filteredPosts;
-}
-
-
-
-
-/**
- * fill post container with filtered posts 
- * @param {*} filteredPosts 
- */
-const renderPosts = (filteredPosts) => {
-
-  //Clear container first 
-  postContainer.innerHTML = '';
-
-  filteredPosts.forEach(element => {
-    //construct post and contents
-    const post = document.createElement("a");
-    post.href = `/post/${element.slug}`;
-    let postTitle = document.createElement("h2");
-
-    //bundle these in dateTime
-    const dateTime = document.createElement('div');
-    let postDate = document.createElement("time");
-    let ttr = document.createElement("span");
-
-    let postExcerpt = document.createElement("p");
-    let postCategories = document.createElement("div");
-    let readMore = document.createElement('p');
-
-    //Post class
-    post.className = "post";
-
-    postTitle.className = "postTitle";
-    postCategories.className = "postCategories"
-    postDate.className = "postDate";
-    dateTime.className = "dateTime"
-    postExcerpt.className ="postExcerpt"
-
-    //give elements values
-    postTitle.textContent = element.title;
-
-    //First line of post
-    const date = new Date(element.createdAt).toISOString().split('T')[0];
-    postDate.textContent = date;
-    postDate.dateTime = date;
-    ttr.textContent = `${element.readingTime} min read` ;
-    const seperator = document.createElement('span').textContent = '•'
-    dateTime.append(postDate, seperator, ttr);
-
-
-    postExcerpt.textContent = element.excerpt;
-
-    element.categories.forEach( elem => {
-        let tag = document.createElement("div")
-        tag.className = "tag";
-        // console.log(elem.name);
-        tag.textContent = elem.name
-        postCategories.append(tag);
-    })
-
-
-    readMore.innerHTML = 'Read More <i data-lucide="arrow-right"></i>';
-    readMore.id = 'readbtn';
-    readMore.className = 'flex items-center gap-1';
-
-    postCategories.append(readMore);
-    
-    //Package it all up in post div and append to contianer
-    post.append(dateTime, postTitle, postExcerpt, postCategories);
-    postContainer.append(post);
-
-  });
-
-  lucide.createIcons();
-}
-
-//default
-let selectedTag = 'all posts';
-
-renderPosts(filterPosts(selectedTag));
-
-
-
-
-
-//get last tag for login logic
-const lastTag = tags.lastElementChild;
-lastTag.setAttribute('draggable', true);
-lastTag.addEventListener('dragstart', (e) => {
-    e.dataTransfer.setData('text/plain', 'secret');
-});
-
-const sunMoon = document.getElementById("sunMoon");
-sunMoon.addEventListener('dragover', (e) => e.preventDefault());
-sunMoon.addEventListener('drop', (e) => {
-  e.preventDefault();
-  if (e.dataTransfer.getData('text/plain') === 'secret') {
-    window.location.href = '/admin/login';
-  }
-});
-
-//Mouse glow logic
-document.addEventListener('mousemove', (e) => {
-  document.documentElement.style.setProperty('--spotlight-x', `${e.clientX}px`);
-  document.documentElement.style.setProperty('--spotlight-y', `${e.clientY}px`);
-});
-
 
 //hambuger menu logic
 const menuBtn = document.getElementById('menuBtn');
@@ -205,15 +20,123 @@ menuBtn.addEventListener('click', () => {
   lucide.createIcons();
 });
 
+//Mouse glow logic
+document.addEventListener('mousemove', (e) => {
+  document.documentElement.style.setProperty('--spotlight-x', `${e.clientX}px`);
+  document.documentElement.style.setProperty('--spotlight-y', `${e.clientY}px`);
+});
+
+
+document.querySelectorAll('.skill-list').forEach(list => {
+    const accent  = list.dataset.accent;
+    const shadow  = list.dataset.shadow;
+
+    list.querySelectorAll('.skill-card').forEach(card => {
+
+        card.addEventListener('mouseenter', () => {
+            card.style.borderColor = accent;
+            card.style.boxShadow  = `0 0 0 1px ${accent}, 0 8px 32px ${shadow}, 0 0 60px ${shadow}`;
+            card.querySelector('i').style.filter  = `drop-shadow(0 0 8px ${accent})`;
+            card.querySelector('span').style.color = accent;
+        });
+
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width)  * 100;
+            const y = ((e.clientY - rect.top)  / rect.height) * 100;
+            card.style.setProperty('--mx', `${x}%`);
+            card.style.setProperty('--my', `${y}%`);
+
+            // subtle tilt
+            const tiltX = ((e.clientY - rect.top)  / rect.height - 0.5) * -12;
+            const tiltY = ((e.clientX - rect.left) / rect.width  - 0.5) *  12;
+            card.style.transform = `translateY(-4px) scale(1.06) perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.borderColor = '';
+            card.style.boxShadow   = '';
+            card.style.transform   = '';
+            card.querySelector('i').style.filter   = '';
+            card.querySelector('span').style.color  = '';
+        });
+    });
+});
+
+
+const insertExp = (filteredExp) => {
+
+    filteredExp.forEach(exp => {
+    const left = exp.side === 'left' ? renderExpCard(exp) : '<div></div>'
+    const right = exp.side === 'right' ? renderExpCard(exp) : '<div></div>'
+    
+    layout.innerHTML += `
+        ${left}
+        <div class="flex flex-col items-center h-full">
+        <div class="w-0.5 bg-ctp-peach/40 flex-1"></div>
+        <div class="w-4 h-4 rounded-full bg-ctp-peach shrink-0"></div>
+        <div class="w-0.5 bg-ctp-peach/40 flex-1"></div>
+        </div>
+        ${right}
+    `
+    })
+
+    document.querySelectorAll('.info').forEach(i => i.classList.add('hidden'))
+
+    const more = document.querySelectorAll('.more-btn')
+    more.forEach(btn => {
+    btn.classList.add('cursor-pointer')
+    btn.addEventListener('click', () => {
+        const currentInfo = btn.closest('.exp').querySelector('.info')
+        const isHidden = currentInfo.classList.contains('hidden')
+        document.querySelectorAll('.info').forEach(i => i.classList.add('hidden'))
+        if (isHidden) currentInfo.classList.remove('hidden')
+    })
+    })
+}
+
+
+const layout = document.getElementById('exp-layout')
+
+//set default button to work active
+let expChoice = 'work';
+document.getElementById('exp-btns').firstElementChild.classList.add('active');
+
+let filteredExp = experiences.filter(ex => {
+    return ex.type === expChoice;
+});
+
+// console.log(filteredExp); 
+insertExp(filteredExp); //Get default work exps on first 
+
+document.querySelectorAll('#exp-btns button').forEach(btn => {
+
+    console.log('click')
+    
+    btn.addEventListener('click', () => {
+
+        layout.innerHTML = ''
+
+        document.querySelectorAll('#exp-btns button').forEach(btn => {
+            btn.classList.remove('active');
+        })
+        btn.classList.add('active');
+
+        expChoice = btn.textContent.toLowerCase().trim();
+        filteredExp = experiences.filter( ex => {
+            return ex.type === expChoice;
+        })
+        console.log(filteredExp);
+        insertExp(filteredExp);
+        lucide.createIcons();
+    });
+
+});
+
+
+
+
+
 
 
 lucide.createIcons();
-
-
-
-
-
-
-
-
-

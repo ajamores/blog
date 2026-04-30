@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * Creates an error for routes that don't exist
  */
 const notFound = (req, res, next) => {
-  const isApiRoute = req.originalUrl.startsWith('/blog') || 
+  const isApiRoute = req.originalUrl.startsWith('/api/blog') || 
                      req.originalUrl.startsWith('/auth') || 
                      req.originalUrl.startsWith('/category');
 
