@@ -92,7 +92,7 @@
         class="py-12 bg-linear-to-r from-stone-200 to-sky-300 dark:from-ctp-base dark:to-ctp-mantle text-white">
 
         <div class="skills-heading-wrap">
-            <h2 class="skills-heading font-mono text-ctp-peach tracking-widest text-5xl font-bold text-center mb-10">
+            <h2 class="skills-heading font-mono text-ctp-peach tracking-tight text-5xl font-bold text-center mb-10">
                 What I Work With</h2>
         </div>
 
@@ -153,13 +153,25 @@
         class="py-12 bg-linear-to-r from-stone-200 to-sky-300 dark:from-ctp-base dark:to-ctp-mantle text-white">
 
         <div class="skills-heading-wrap">
-            <h2 class="skills-heading font-mono text-ctp-peach tracking-widest text-5xl font-bold text-center mb-8">Things I've Been To</h2>
+            <h2 class="skills-heading font-mono text-ctp-peach text-5xl font-bold text-center mb-4 tracking-tight">
+                Things I've Been Up To</h2>
         </div>
 
-        <div id="exp-btn-container" class=" flex justify-center">
-            <div id="exp-btns" class="flex gap-10 border rounded-2xl max-w-fit px-4 py-2 ">
-                <button class="cursor-pointer">Work</button>
-                <button class="cursor-pointer">Education</button>
+        <div class="text-center mb-4 text-[1.1rem]">
+            <p>a curated timeline of the many experiences I've been through in my life</p>
+        </div>
+
+        <div id="exp-btn-container" class="flex justify-center">
+            <div id="exp-btns" class="flex gap-1 border border-ctp-peach/30 rounded-2xl max-w-fit p-2">
+                <button data-type="work"
+                    class="exp-filter-btn cursor-pointer px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-ctp-peach/10 hover:text-ctp-peach">On
+                    the Job</button>
+                <button data-type="education"
+                    class="exp-filter-btn cursor-pointer px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-ctp-peach/10 hover:text-ctp-peach">In
+                    the Classroom</button>
+                <button data-type="hobbies"
+                    class="exp-filter-btn cursor-pointer px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-ctp-peach/10 hover:text-ctp-peach">Off
+                    the Clock</button>
             </div>
         </div>
 
@@ -174,7 +186,8 @@
     <section id="projects"
         class="py-12 bg-linear-to-r from-stone-200 to-sky-300 dark:from-ctp-base dark:to-ctp-mantle text-white">
         <div class="skills-heading-wrap">
-            <h2 class="skills-heading font-mono text-ctp-peach tracking-widest text-5xl font-bold text-center mb-8">Things I've Built</h2>
+            <h2 class="skills-heading font-mono text-ctp-peach tracking-tight text-5xl font-bold text-center mb-8">
+                Things I've Built</h2>
         </div>
     </section>
 

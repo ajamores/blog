@@ -12,7 +12,7 @@ export function renderExpCard(exp) {
       <div class="flex gap-12 items-start">
         <div class="flex-1">
           <h3 class="text-xl font-bold mb-1">${exp.title}</h3>
-          <p class="text-sm font-semibold text-ctp-peach">@ ${exp.company}</p>
+          <p class="text-sm font-semibold text-ctp-peach">${exp.company === '' ? '': '@'} ${exp.company}</p>
           <span class="text-ctp-peach text-sm">${exp.date}</span>
           <p class="mt-4 text-sm">${exp.summary}</p>
           <div class="info hidden mt-5">
@@ -20,8 +20,8 @@ export function renderExpCard(exp) {
             <ul class="space-y-3 mt-4">${bullets}</ul>
           </div>
         </div>
-        <button class="more-btn shrink-0">
-          <i data-lucide="chevron-down" class="text-white w-5 h-5"></i>
+        <button class="more-btn transition-transform duration-300 shrink-0  cursor-pointer">
+          <i data-lucide="chevron-down" class="text-white w-7 h-7"></i>
         </button>
       </div>
     </div>

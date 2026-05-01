@@ -342,3 +342,8 @@ body {
   background-color: white;
   color: black;
 }
+
+.exp:hover .more-btn svg {
+    color: #fab387;
+    transition: color 0.3s ease;
+}
