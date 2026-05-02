@@ -1,6 +1,8 @@
 import { initThemeToggle } from './theme.js'
-import { experiences } from './exp/data.js'
+import { experiences } from './data/exp.js'
 import { renderExpCard } from './components/expCard.js'
+import { projects } from './data/proj.js'
+import { renderProjCard } from './components/projCard.js'
 
 //toggle between light and dark mode
 initThemeToggle();
@@ -169,6 +171,27 @@ document.querySelectorAll('#exp-btns button').forEach(btn => {
     });
 
 });
+
+//--------------Logic for projects--------------------
+const container = document.getElementById('proj-container')
+
+projects.forEach(proj => {
+    container.innerHTML += renderProjCard(proj)
+})
+
+lucide.createIcons()
+
+document.querySelectorAll('.learn-more').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const panel = btn.closest('.proj-info').querySelector('.proj-details')
+        const isHidden = panel.classList.contains('hidden')
+        panel.classList.toggle('hidden')
+        btn.innerHTML = isHidden
+            ? 'Hide Details <i data-lucide="arrow-up" class="w-4 h-4"></i>'
+            : 'Learn More <i data-lucide="arrow-down" class="w-4 h-4"></i>'
+        lucide.createIcons()
+    })
+})
 
 
 
