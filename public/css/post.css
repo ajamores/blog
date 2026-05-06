@@ -5,31 +5,32 @@
 } */
 
 
-#date{
+#date {
   align-items: center;
 }
 
-#date time{
-    padding: 4px 12px;
-    border-radius: 999px;
-background: rgba(14, 165, 233, 0.15); /* sky tint */
-color: #0ea5e9; /* sky-500 — readable on both light and dark */
-border: 1px solid rgba(14, 165, 233, 0.3);
+#date time {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(241, 245, 249, 0.4);
+
+  color: #0f172a;
 }
 
-#date p{
-    padding: 4px 12px;
-    border-radius: 999px;
-background: rgba(238, 171, 55, 0.15); /* amber tint */
-color: #f59e0b; /* amber-500 — readable on both light and dark */
-border: 1px solid rgba(245, 158, 11, 0.3);
+#date p {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(226, 232, 240, 0.6);
+  /* was #e2e8f0 */
+  color: #1e293b;
 }
 
 .post-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: 2.87rem;
+  font-weight: 900;
+  line-height: 1;
   margin-bottom: 2rem;
+  letter-spacing: -0.06em;
 }
 
 .post-heading {
@@ -37,9 +38,23 @@ border: 1px solid rgba(245, 158, 11, 0.3);
   margin: 2rem 0 0.75rem;
 }
 
-.post-heading--2 { font-size: 1.75rem; }
-.post-heading--3 { font-size: 1.375rem; }
-.post-heading--4 { font-size: 1.125rem; }
+.post-heading--2 {
+  font-size: 2.25rem;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.post-heading--3 {
+  font-size: 1.375rem;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
+
+.post-heading--4 {
+  font-size: 1.125rem;
+  letter-spacing: -0.06em;
+  line-height: 1;
+}
 
 .post-paragraph {
   font-size: 1.125rem;
@@ -87,12 +102,11 @@ border: 1px solid rgba(245, 158, 11, 0.3);
   font-size: 0.9rem;
 }
 
-.end{
+.end {
   display: flex;
   justify-content: space-between;
 }
 
-.end a:hover{
+.end a:hover {
   color: orange;
 }
-

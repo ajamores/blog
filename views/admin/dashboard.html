@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,33 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
+
 <body class="bg-ctp-base min-h-screen ">
     <div id="container">
-        <header class="bg-ctp-mantle text-white sticky top-0 z-100">
-            <nav class="flex max-w-4xl mx-auto justify-between items-center px-7 py-4 sm:px-7">
-                <h2>My Blog</h2>
-                <a href="/admin/create" class="hover:scale-105 hover:text-green-500 transition-all duration-300 ease-in-out">Create Post</a>
-                <button id="logout" class="cursor-pointer hover:scale-105 hover:text-green-500 transition-all duration-300 ease-in-out">Logout</button>
+        <header class="sticky top-0 z-50 bg-ctp-mantle/80 backdrop-blur-md border-b border-white/5">
+            <nav class="max-w-5xl mx-auto flex items-center justify-between px-6 py-4">
+
+                <!-- Logo / Title -->
+                <h2 class="text-xl font-semibold tracking-tight text-ctp-peach">
+                    My Blog
+                </h2>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-4">
+
+                    <a href="/admin/create" class="px-4 py-1.5 rounded-lg bg-ctp-peach/10 text-ctp-peach text-xl
+               hover:bg-ctp-peach hover:text-black 
+               transition-all duration-200 cursor-pointer">
+                        Create
+                    </a>
+
+                    <button id="logout" class="px-4 py-1.5 rounded-lg border border-white/10 text-white/80 text-xl
+               hover:text-red-400 hover:border-red-400
+               transition-all duration-200 cursor-pointer">
+                        Logout
+                    </button>
+
+                </div>
             </nav>
         </header>
 
@@ -23,4 +44,5 @@
     </div>
     <script type="module" src="/js/dashboard.js"></script>
 </body>
+
 </html>

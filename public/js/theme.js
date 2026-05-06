@@ -15,3 +15,9 @@ export const initThemeToggle = () => {
         lucide.createIcons()
     })
 }
+
+
+//Localstorage for light and dark mode 
+if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
+    document.documentElement.classList.add('dark')
+}

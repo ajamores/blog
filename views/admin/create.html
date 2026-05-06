@@ -8,72 +8,86 @@
     <link rel="stylesheet" href="/css/edit.css"/>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class=" bg-ctp-accent pt-16">
-     <main id="container " class="max-w-4xl min-h-screen  mx-auto ">
+<body class="bg-stone-100 pt-16 text-gray-900">
 
-        <h1 class="text-5xl text-white  underline underline-offset-2 decoration-2 ">Create a Post</h1>
+    <main id="container" class="max-w-6xl min-h-screen mx-auto px-10 pb-20 bg-amber-50 shadow-sm rounded-xl my-6">
 
-        <a href="/admin/dashboard" id="backToBlog" class="flex gap-1 my-5 text-ctp-green hover:text-white group  w-fit"  >
-            <i data-lucide="arrow-left" class="group-hover:-translate-x-1 transition-transform duration-200 ease-out"></i>
+        <h1 class="text-5xl font-bold tracking-tight text-gray-900 mt-8 mb-1">Create a Post</h1>
+        <hr class="border-gray-200 mb-6">
+
+        <a href="/admin/dashboard" id="backToBlog" class="flex gap-1 mb-8 text-gray-400 hover:text-gray-700 group w-fit text-xl">
+            <i data-lucide="arrow-left" class="w-6 h-6 group-hover:-translate-x-1 transition-transform duration-200 ease-out"></i>
             <p>back to dashboard</p>
         </a>
 
-        <div class="mb-2">
-            <h2 class="text-white text-2xl">Reading Time</h2>
-            <input id="ttr" type="number" max="60" min="1" class="bg-blue-400">
+        <div class="mb-6">
+            <label class="block text-base font-semibold text-gray-600 mb-1">Reading Time (min)</label>
+            <input id="ttr" type="number" max="60" min="1"
+                class="w-24 px-3 py-2 rounded-lg border border-gray-200 bg-white text-gray-900
+                focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400
+                transition-all duration-200" />
         </div>
 
-        <div id="title">
-            <h2 class="text-white text-2xl">Title</h2>
-            <textarea rows="2" cols="100" id="title-content" class="bg-blue-400 "></textarea>
+        <div id="title" class="mb-6">
+            <label class="block text-base font-semibold text-gray-600 mb-1">Title</label>
+            <textarea rows="2" id="title-content" placeholder="Post title..."
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white
+                text-gray-900 text-3xl font-bold tracking-tight
+                placeholder-gray-300
+                focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400
+                resize-none transition-all duration-200"></textarea>
         </div>
-        <div id="excerpt">
-            <h2 class="text-white text-2xl">Excerpt</h2>
-            <textarea rows="4" cols="100"  id="excerpt-content" class="bg-blue-400"></textarea>
+
+        <div id="excerpt" class="mb-6">
+            <label class="block text-base font-semibold text-gray-600 mb-1">Excerpt</label>
+            <textarea rows="4" id="excerpt-content"
+                class="w-full px-4 py-3 rounded-lg border border-gray-200 bg-white
+                text-gray-700 text-base
+                placeholder-gray-300
+                focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400
+                resize-none transition-all duration-200"></textarea>
         </div>
-        
-        <div id="categories-section" class=" my-4 flex flex-col">
-            <h2 class="pl-2 text-white text-2xl">Categories</h2>
-            <div id="categories" class=" flex gap-2 mt-2"></div>
-            <div id="tag-control" class="mt-4 flex gap-2">
-                <input type="text" id="tag-input" class=" bg-blue-400">
-               <button id="add-tag" class=" hover:scale-105 px-4 py-1.5 bg-ctp-green text-ctp-base font-medium rounded-lg cursor-pointer hover:brightness-110 transition-all duration-200 ease-out">
+
+        <div id="categories-section" class="mb-6 flex flex-col">
+            <label class="block text-base font-semibold text-gray-600 mb-2">Categories</label>
+            <div id="categories" class="flex gap-2 flex-wrap mb-3"></div>
+            <div id="tag-control" class="flex gap-2">
+                <input type="text" id="tag-input"
+                    class="min-w-0 flex-1 px-3 py-2 rounded-lg border border-gray-200 bg-white text-gray-900
+                    focus:outline-none focus:ring-1 focus:ring-gray-400 focus:border-gray-400
+                    transition-all duration-200">
+                <button id="add-tag"
+                    class="px-4 py-2 bg-gray-900 text-white text-lg font-medium rounded-lg cursor-pointer hover:bg-gray-700 transition-all duration-200">
                     Add
                 </button>
-                <span id="add-error"></span>
+                <span id="add-error" class="text-red-500 text-lg self-center"></span>
             </div>
         </div>
 
-        <label class="flex items-center cursor-pointer relative pb-2">
-            <!-- hidden checkbox (state) -->
-            <input id="statusToggle" type="checkbox" class="sr-only peer">
-
-            <!-- track -->
-            <div class="w-12 h-6 bg-gray-300 rounded-full peer-checked:bg-ctp-green transition-colors"></div>
-
-            <!-- knob -->
-            <div class="absolute w-5 h-5 bg-white rounded-full shadow transform transition-transform
-                        translate-x-1 peer-checked:translate-x-6">
-            </div>
-
-            <!-- label -->
-            <span class="ml-3 text-sm font-medium">
-                <span id="statusLabel">Status: </span>
-            </span>
-        </label>
-
-        <hr class="text-white">
-
-        <div id="editorjs" class="max-w-full prose pt-10 "></div>
-       <!-- Save button -->
-        <button id="save-btn" class="flex items-center gap-2 mx-auto my-8 px-8 py-3 bg-ctp-green text-ctp-base font-semibold rounded-lg cursor-pointer hover:scale-110  hover:brightness-110 active:scale-95 transition-all duration-200 ease-out">
-        <i data-lucide="save" class="w-4 h-4"></i>
-        Save Post
-        </button>
-
-        <div id="save-status" class="flex justify-center pb-10">
-
+        <div class="mb-6 flex items-center gap-3">
+            <label class="flex items-center cursor-pointer relative">
+                <input id="statusToggle" type="checkbox" class="sr-only peer">
+                <div class="w-11 h-6 bg-gray-200 rounded-full peer-checked:bg-gray-900 transition-colors"></div>
+                <div class="absolute w-4 h-4 bg-white rounded-full shadow transform transition-transform translate-x-1 peer-checked:translate-x-6"></div>
+            </label>
+            <span id="statusLabel" class="text-lg font-medium text-gray-600">Status:</span>
         </div>
+
+        <hr class="border-gray-200 mb-6">
+
+        <label class="block text-base font-semibold text-gray-600 mb-2">Content</label>
+        <div id="editorjs" class="max-w-full prose border border-gray-200 rounded-lg px-6 pt-4 pb-10 min-h-96 bg-white"></div>
+
+        <div class="mt-8">
+            <button id="save-btn"
+                class="flex items-center gap-2 px-6 py-2.5 bg-gray-900 text-white text-lg font-medium rounded-lg cursor-pointer hover:bg-gray-700 active:scale-95 transition-all duration-200">
+                <i data-lucide="save" class="w-4 h-4"></i>
+                Save Post
+            </button>
+        </div>
+
+        <div id="save-status" class="flex justify-start mt-4 text-lg text-gray-500"></div>
+
     </main>
 
     <script type="module" src="/js/create.bundle.js"></script>

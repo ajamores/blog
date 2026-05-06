@@ -5,11 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <script>
-    if (localStorage.theme === 'dark' || !('theme' in localStorage)) {
-      document.documentElement.classList.add('dark')
-    }
-  </script>
+  <script type="module" src="/js/theme.js"></script>
   <link rel="stylesheet" href="/css/post.css">
   <link rel="stylesheet" href="/css/style.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -69,9 +65,9 @@
         <div id="categories" class="flex gap-4 my-5"></div>
         <hr class="mb-10">
 
-         
+
       </div>
-      
+
     </main>
 
 
