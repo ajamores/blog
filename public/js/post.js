@@ -33,12 +33,16 @@ const dateElement = document.createElement("time");
 dateElement.dateTime = dateISO;
 dateElement.textContent = dateReadable;
 const seperator = document.createElement('span').textContent = '•';
-const ttr = document.createElement("p");
+
+document.getElementById("date").append(dateElement, seperator);
+
+
+const ttrElem = document.getElementById('ttr');
+const ttr = document.createElement('p')
 ttr.textContent = `${post.readingTime} min read`;
+ttrElem.appendChild(ttr) ;
 
-document.getElementById("date").append(dateElement, seperator, ttr);
 
-//set up readingTime
 
 
 

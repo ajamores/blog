@@ -176,15 +176,10 @@ document.querySelectorAll('.skill-list').forEach(list => {
     const accent = list.dataset.accent;
     const shadow = list.dataset.shadow;
 
+    list.style.setProperty('--accent', accent);
+    list.style.setProperty('--shadow', shadow);
+
     list.querySelectorAll('.skill-card').forEach(card => {
-
-        card.addEventListener('mouseenter', () => {
-            card.style.borderColor = accent;
-            card.style.boxShadow = `0 0 0 1px ${accent}, 0 8px 32px ${shadow}, 0 0 60px ${shadow}`;
-            card.querySelector('i').style.filter = `drop-shadow(0 0 8px ${accent})`;
-            card.querySelector('span').style.color = accent;
-        });
-
         card.addEventListener('mousemove', e => {
             const rect = card.getBoundingClientRect();
             const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -192,18 +187,13 @@ document.querySelectorAll('.skill-list').forEach(list => {
             card.style.setProperty('--mx', `${x}%`);
             card.style.setProperty('--my', `${y}%`);
 
-            // subtle tilt
             const tiltX = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
             const tiltY = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
             card.style.transform = `translateY(-4px) scale(1.06) perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
-            card.style.borderColor = '';
-            card.style.boxShadow = '';
             card.style.transform = '';
-            card.querySelector('i').style.filter = '';
-            card.querySelector('span').style.color = '';
         });
     });
 });
@@ -260,9 +250,9 @@ const insertExp = (filteredExp) => {
         layout.innerHTML += `
         ${left}
         <div class="flex flex-col items-center h-full">
-        <div class="w-0.5 bg-ctp-peach/40 flex-1"></div>
-        <div class="w-4 h-4 rounded-full bg-ctp-peach shrink-0"></div>
-        <div class="w-0.5 bg-ctp-peach/40 flex-1"></div>
+        <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
+        <div class="w-4 h-4 rounded-full bg-sky-500 dark:bg-ctp-peach shrink-0"></div>
+        <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
         </div>
         ${right}
     `
@@ -274,36 +264,17 @@ const insertExp = (filteredExp) => {
 
     const exp = document.querySelectorAll('.exp')
     exp.forEach(card => {
-        card.classList.add('cursor-pointer')
         const btn = card.querySelector('.more-btn')
-
-        card.addEventListener('mouseenter', () => {
-            card.style.transform = 'translateY(-4px)'
-            card.style.transition = 'all 0.3s ease'
-            card.style.boxShadow = '0 0 25px rgba(250,179,135,0.25), 0 0 60px rgba(250,179,135,0.1)'
-            card.style.borderColor = 'rgba(250,179,135,0.7)'
-            btn.style.color = '#fab387'
-            btn.style.transition = 'color 0.3s ease, transform 0.3s ease'
-        })
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'translateY(0)'
-            card.style.boxShadow = '0 0 15px rgba(250,179,135,0.2)'
-            card.style.borderColor = 'rgba(250,179,135,0.5)'
-            btn.style.color = ''
-        })
 
         card.addEventListener('click', () => {
             const currentInfo = card.querySelector('.info')
             const isHidden = currentInfo.classList.contains('hidden')
 
-            // close all first
             document.querySelectorAll('.info').forEach(i => {
                 i.classList.add('hidden')
                 i.classList.remove('visible')
             })
 
-            // reset all chevrons
             document.querySelectorAll('.more-btn').forEach(b => b.style.transform = '')
 
             if (isHidden) {
@@ -367,15 +338,15 @@ lucide.createIcons()
 document.querySelectorAll('.learn-more').forEach(btn => {
     btn.addEventListener('click', () => {
         const panel = btn.closest('.proj-info').querySelector('.proj-details')
-        const isHidden = panel.classList.contains('hidden')
-        panel.classList.toggle('hidden')
-        btn.innerHTML = isHidden
+        panel.classList.toggle('visible')
+        const isVisible = panel.classList.contains('visible')
+
+        btn.innerHTML = isVisible
             ? 'Hide Details <i data-lucide="arrow-up" class="w-4 h-4"></i>'
             : 'Learn More <i data-lucide="arrow-down" class="w-4 h-4"></i>'
         lucide.createIcons()
     })
 })
-
 const projObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {

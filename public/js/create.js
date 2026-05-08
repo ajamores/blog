@@ -133,7 +133,7 @@ saveBtn.addEventListener('click', async  () => {
   try{
     const req = await createBlogPost(JSON.stringify(payload));
     console.log(req);
-    saveStatus.textContent = req.status === "success" ? "Blog post saved successfully!" : "Error when saving post"; 
+    saveStatus.textContent = req.status === "success" ? "Blog post saved successfully!" : `Error when saving post: ${req.fieldError}`; 
 
   } catch(error){
     console.log(error);

@@ -12,7 +12,7 @@
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js"></script>
 </head>
 
-<body class="bg-sky-100 dark:bg-sky-800">
+<body class="bg-white/30 dark:bg-sky-800">
 
   <div class=" text-white max-h-max pt-16 pb-16">
 
@@ -56,9 +56,20 @@
         </a>
 
         <div class="mb-5 flex gap-2 items-center w-max px-2 rounded-2xl">
-          <i data-lucide="calendar" class="w-4 h-4"></i>
-          <div id="date" class="flex gap-2"></div>
+
+          <div class="flex gap-2 items-center"> 
+            <i data-lucide="calendar" class="w-4 h-4"></i>
+            <div id="date" class="flex gap-2"></div>
+          </div>
+
+          <div class="flex gap-2 items-center">
+            <i data-lucide="clock" class="w-4 h-4"></i>
+            <div id="ttr" class="flex gap-2"></div>
+          </div>
+
         </div>
+
+
 
         <div id="title"></div>
         <div id="excerpt"></div>
@@ -73,7 +84,6 @@
 
   </div>
   <script type="module" src="/js/post.js"></script>
-  <script>lucide.createIcons()</script>
 </body>
 
 </html>
