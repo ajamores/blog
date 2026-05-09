@@ -17,7 +17,7 @@
 
 
 
-        <header class="fixed top-0 left-0 right-0 py-4  shadow-1xl backdrop-blur-sm z-10 text-white ">
+        <header class="fixed top-0 left-0 right-0 py-4 shadow-1xl backdrop-blur-sm z-10 text-white ">
             <div class=" max-w-6xl mx-auto flex justify-between px-4 sm:px-6">
                 <h1 class="font-semibold text-2xl tracking-wide text-sky-500 dark:text-ctp-peach">Armand Amores</h1>
                 <nav class="    gap-4 text-xl flex items-center text-sky-600 dark:text-white" id="navbar">
@@ -47,10 +47,11 @@
             <a href="#">Youtube</a>
         </div>
 
-        <section id="hero" class="min-h-screen flex items-center  text-white">
-            <div class="max-w-screen-2xl mx-auto  w-full flex  gap-15 items-center justify-between px-4 mt-12">
+        <section id="hero" class="min-h-screen flex items-center flex-col md:flex-row text-white">
+            <div
+                class="max-w-screen-2xl  lg:mx-auto w-full flex flex-col md:flex-col lg:flex-row gap-5 md:gap-5 lg:gap-15 items-center justify-end lg:justify-between  px-4 mt-25  md:mt-12">
 
-                <div id="hero-text" class="self-start pt-7">
+                <div id="hero-text" class="self-start pt-7 order-2 lg:order-1">
                     <p class="text-4xl uppercase tracking-widest text-sky-500 dark:text-ctp-peach mb-2">Software
                         Developer</p>
                     <h1 class="hero-name text-6xl font-bold whitespace-nowrap">
@@ -60,17 +61,20 @@
                     </h1>
                     <div id="location" class="flex gap-2 items-center pt-2">
                         <i data-lucide="map-pin" class="w-5 h-5 text-sky-700 dark:text-white"></i>
-                        <span class="text-lg text-sky-700 dark:text-white">Hamilton, ON</span>
+                        <span class="text-md  md:text-lg text-sky-700 dark:text-white">Hamilton, ON</span>
                     </div>
-                    <p class="mt-8 text-xl text-sky-900 dark:text-white ">I build web applications with JavaScript and
+                    <p class="mt-8 text-md md:text-xl text-sky-900 dark:text-white ">I build web applications with
+                        JavaScript and
                         Python, with a focus on clean
                         backends, scalable APIs and interfaces that feel good to use.</p>
-                    <p class="mt-4 text-xl text-sky-900  dark:text-white">I care deeply about how things work across the
+                    <p class="mt-4 text-md md:text-xl text-sky-900  dark:text-white">I care deeply about how things work
+                        across the
                         full stack and I have a
                         genuine
                         interest in where AI fits into modern development and how to bring that into the things I build.
                     </p>
-                    <div id="icons" class="flex gap-5 mt-6 text-sky-700 dark:text-white">
+                    <div id="icons"
+                        class="flex gap-5  mt-5 md:mt-6 text-sky-700 dark:text-white">
                         <a href="https://github.com/yourusername" target="_blank">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24"
                                 fill="currentColor">
@@ -87,8 +91,8 @@
                         </a>
                     </div>
                 </div>
-
-                <div id="image-wrapper" class="w-125 h-125 shrink-0 relative">
+                <div id="image-wrapper"
+                    class="w-72 h-72 md:w-96 md:h-96 lg:w-125 lg:h-125 shrink-0 relative order-1 lg:order-2 pt-16 md:pt-0">
                     <svg class="absolute inset-0 w-full h-full" viewBox="0 0 500 500"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="250" cy="250" r="245" fill="none" stroke="rgba(250,179,135,0.12)"
@@ -132,7 +136,7 @@
                         </g>
                     </svg>
                     <div id="image"
-                        class="absolute inset-10 rounded-full  border-8 border-sky-500 dark:border-amber-200">
+                        class="absolute inset-10 rounded-full  border-8 border-sky-500 dark:border-amber-200 ">
                         <img src="/images/aipic.jpg" alt="aipicofme" class="w-full h-full object-cover object-top  " />
                     </div>
                 </div>
@@ -152,7 +156,7 @@
                 <p>a few technologies I'm accustomed to</p>
             </div>
 
-            <div id="skills-content" class="max-w-6xl mx-auto px-12 grid grid-cols-2 gap-12">
+            <div id="skills-content" class="max-w-6xl mx-auto px-12 grid grid-cols-2 gap-12 items-start auto-rows-min">
 
                 <div class="skill-group opacity-0 flex flex-col dark:text-white text-sky-700">
                     <h3
@@ -235,13 +239,14 @@
                     Things I've Been Up To</h2>
             </div>
 
-            <div class="text-center mb-4 text-xl opacity-0 dark:text-white text-sky-700" id="exp-subheading">
+            <div class="text-center mb-4 text-xl opacity-0 dark:text-white text-sky-700 mx-7 md:mx-0"
+                id="exp-subheading">
                 <p>a curated timeline of the many experiences I've been through in my life</p>
             </div>
 
-            <div id="exp-btn-container" class="flex justify-center opacity-0">
+            <div id="exp-btn-container" class="flex justify-center opacity-0 ">
                 <div id="exp-btns"
-                    class="flex gap-2 border border-sky-900 dark:border-ctp-peach/30 rounded-2xl max-w-fit p-2 bg-sky-400 dark:bg-ctp-peach/5">
+                    class="flex gap-2 border border-sky-900 dark:border-ctp-peach/30 rounded-2xl mx-7 md:mx-0  max-w-fit p-2 bg-sky-400 dark:bg-ctp-peach/5">
                     <button data-type="work"
                         class="exp-filter-btn active cursor-pointer px-6 py-2.5 rounded-xl text-base font-semibold tracking-wide transition-all duration-200 border border-transparent hover:border-white dark:hover:border-ctp-peach/40 hover:text-white dark:hover:text-ctp-peach text-ctp-peach border-ctp-peach/40">
                         <span>On the Job</span>
@@ -257,10 +262,12 @@
                 </div>
             </div>
 
-            <div id="exp-layout"
-                class="max-w-5xl mx-auto rounded-2xl bg-sky-500/25 dark:bg-ctp-peach/7 mt-10 grid grid-cols-[1fr_2px_1fr] px-10 py-10 opacity-0">
+            <div id="exp-layout" class="md:max-w-3xl lg:max-w-5xl md:mx-auto rounded-2xl bg-sky-500/25 dark:bg-ctp-peach/7 mt-10  mr-7 md:mr-none
+                grid grid-cols-1 md:grid-cols-[1fr_2px_1fr] 
+                px-15 md:px-10 py-10 opacity-0
+                border-l-2 border-sky-500 dark:border-ctp-peach/40 md:border-l-0
+                ml-4 md:ml-auto pl-6 md:pl-10">
             </div>
-
 
         </section>
 

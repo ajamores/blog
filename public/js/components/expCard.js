@@ -5,11 +5,12 @@ export function renderExpCard(exp) {
         <span class="w-1.5 h-1.5 rounded-full bg-ctp-peach mt-2 shrink-0"></span>
         <p>${b}</p>
     </li>
-`).join('')
+    `).join('')
 
   return `
-    <div class="exp ${exp.id >= 2 ? 'mt-5' : ''}  bg-sky-500 dark:bg-ctp-mantle p-7  rounded-2xl border border-ctp-peach/50 shadow-[0_0_15px_rgba(250,179,135,0.2)] ${exp.side === 'left' ? 'mr-10' : 'ml-10'}">
-      <div class="flex gap-12 items-start">
+    <div class="exp relative ${exp.id >= 2 ? 'mt-5' : ''} bg-sky-500/60 dark:bg-ctp-mantle p-7 rounded-2xl border border-ctp-peach/50 shadow-[0_0_15px_rgba(250,179,135,0.2)] ${exp.side === 'left' ? 'md:mr-10' : 'md:ml-10'}">
+     <div class="absolute -left-8.25 top-8 w-3 h-3 rounded-full mt-15 bg-ctp-peach md:hidden"></div>   
+    <div class="flex gap-12 items-start">
         <div class="flex-1">
           <h3 class="text-2xl font-bold mb-1">${exp.title}</h3>
           <p class="text-lg font-semibold text-sky-200 dark:text-ctp-peach">${exp.company === '' ? '' : '@'} ${exp.company}</p>

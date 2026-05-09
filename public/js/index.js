@@ -248,14 +248,14 @@ const insertExp = (filteredExp) => {
 
         //Create middle divider 
         layout.innerHTML += `
-        ${left}
-        <div class="flex flex-col items-center h-full">
-        <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
-        <div class="w-4 h-4 rounded-full bg-sky-500 dark:bg-ctp-peach shrink-0"></div>
-        <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
-        </div>
-        ${right}
-    `
+            ${left}
+            <div class="hidden md:flex flex-col items-center justify-center ">
+                <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
+                <div class="w-4 h-4 rounded-full bg-sky-500 dark:bg-ctp-peach shrink-0  "></div>
+                <div class="w-0.5 bg-white dark:bg-ctp-peach/40 flex-1"></div>
+            </div>
+            ${right}
+        `
     })
 
     //Hide additional info for all exps
