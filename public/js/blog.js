@@ -1,6 +1,10 @@
 
 import { getAllPublishedBLogPosts } from './api.js'
 import { initThemeToggle } from './theme.js'
+import { renderNavBar } from './components/navBar.js';
+
+//render nav
+const nav = document.getElementById('nav-mount').innerHTML = renderNavBar();
 
 //toggle between light and dark mode
 initThemeToggle();
@@ -136,7 +140,7 @@ const renderPosts = (filteredPosts) => {
 
     element.categories.forEach( elem => {
         let tag = document.createElement("div")
-        tag.className = "tag";
+        tag.className = "tag-diff";
         // console.log(elem.name);
         tag.textContent = elem.name
         postCategories.append(tag);

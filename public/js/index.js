@@ -4,6 +4,10 @@ import { renderExpCard } from './components/expCard.js'
 import { projects } from './exp/proj.js'
 import { renderProjCard } from './components/projCard.js'
 import { getAllPublishedBLogPosts } from './api.js'
+import { renderNavBar } from './components/navBar.js'
+
+//render nav
+const nav = document.getElementById('nav-mount').innerHTML = renderNavBar();
 
 //toggle between light and dark mode
 initThemeToggle();
