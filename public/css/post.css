@@ -12,13 +12,13 @@
 #date time {
   padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(241, 245, 249, 0.8);
+  background: rgb(166 211 255 / 60%);
 
-  color: #0f172a;
 }
 
 .dark #date time{
-  background: rgba(241, 245, 249, 0.3);
+  background: rgba(241, 245, 249, 0.1);
+  
 }
 
 #ttr{
@@ -72,12 +72,21 @@
   line-height: 1;
 }
 
-.post-paragraph {
+#excerpt h2{
   font-size: 1.3rem;
+}
+
+.post-paragraph {
+  font-size: 1.27rem;
   line-height: 1.8;
   margin-bottom: 1.5rem;
   font-weight: 400;
-  color: rgb(226 232 240);
+  color:  var(--color-ctp-surface)
+}
+
+.dark .post-paragraph{
+  color: rgb(255, 255, 255);
+
 }
 
 .post-list {
@@ -128,3 +137,21 @@
 .end a:hover {
   color: orange;
 }
+
+
+#backToBlog{
+  color: var(--color-sky-700);
+}
+
+.dark #backToBlog{
+  color: var(--color-ctp-peach);
+}
+
+.end a:hover{
+  color: var(--color-sky-800);
+}
+
+.dark .end a:hover{
+  color: var(--color-ctp-peach);
+}
+

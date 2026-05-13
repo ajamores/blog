@@ -4,14 +4,14 @@ export const initThemeToggle = () => {
 
     // Set correct icon on load
     const isDarkOnLoad = document.documentElement.classList.contains('dark')
-    btn.innerHTML = isDarkOnLoad ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>'
+    btn.innerHTML = isDarkOnLoad ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';  
     lucide.createIcons()
 
     btn.addEventListener('click', () => {
         const isDark = document.documentElement.classList.toggle('dark')
         localStorage.theme = isDark ? 'dark' : 'light'
 
-        btn.innerHTML = isDark ? '<i data-lucide="moon"></i>' : '<i data-lucide="sun"></i>'
+        btn.innerHTML = isDark ? '<i data-lucide="sun"></i>':'<i data-lucide="moon"></i>';
         lucide.createIcons()
     })
 }
