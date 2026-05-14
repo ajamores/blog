@@ -9,7 +9,6 @@ const nav = document.getElementById('nav-mount').innerHTML = renderNavBar();
 initThemeToggle();
 
 
-
 const slug = window.location.pathname.split('/')[2]
 
 
@@ -17,6 +16,14 @@ const blogPost = await getPublishedBlogPost(slug);
 const post = blogPost.data.post;
 console.log(post);
 
+const metaDescription = document.querySelector('meta[name="description"]');
+
+metaDescription.setAttribute(
+    "content",
+    post.excerpt || `${post.title} — a blog post by Armand Amores.`
+);
+
+document.title = `${post.title} | Armand Amores`;
 
 
 //Set up date info

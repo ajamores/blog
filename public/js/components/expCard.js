@@ -21,7 +21,7 @@ export function renderExpCard(exp) {
             <ul id=class="space-y-3 mt-4">${bullets}</ul>
           </div>
         </div>
-        <button class="more-btn transition-transform duration-300 shrink-0  cursor-pointer">
+        <button class="more-btn transition-transform duration-300 shrink-0  cursor-pointer" aria-label="view more details on ${exp.title}}">
           <i data-lucide="chevron-down" class=" w-7 h-7"></i>
         </button>
       </div>
