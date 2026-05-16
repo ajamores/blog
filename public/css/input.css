@@ -35,13 +35,16 @@
   --color-ctp-latte-accent-20: rgba(30, 102, 245, 0.20);
   --color-ctp-latte-accent-30: rgba(30, 102, 245, 0.30);
   --color-ctp-latte-surface-50: rgba(220, 224, 232, 0.50);
+
+  --breakpoint-3xl: 1920px;
 }
+
 
 #skills,
 #experience,
 #projects,
 #latest-blogs {
-    scroll-margin-top: 60px;
+  scroll-margin-top: 60px;
 }
 
 #image-wrapper {
@@ -234,13 +237,13 @@ body {
 }
 
 .tag.active {
-  background-color:   #0369a1;
+  background-color: #0369a1;
   border: 2px solid rgba(14, 165, 233, 0.5);
   color: white;
 }
 
 .tag:hover {
-  background:  #0369a1;
+  background: #0369a1;
   color: white;
   transform: scale(1.1);
   box-shadow: 0 0 12px rgba(14, 165, 233, 0.3);
@@ -266,7 +269,7 @@ body {
   color: #1e1e2e;
 }
 
-.tag-diff{
+.tag-diff {
   background: rgba(14, 165, 233, 0.1);
   color: #0369a1;
   padding: 4px 12px;
@@ -377,6 +380,7 @@ body {
 .dark .exp:hover .more-btn {
   color: #fab387;
 }
+
 .more-btn {
   transition: color 0.3s ease, transform 0.3s ease;
 }
@@ -414,6 +418,7 @@ body {
     0 20px 60px rgba(250, 179, 135, 0.15),
     0 0 0 1px rgba(250, 179, 135, 0.2);
 }
+
 .post:hover .postTitle {
   color: rgba(2, 132, 199, 0.8);
 }
@@ -434,7 +439,7 @@ body {
 
 .dateTime span {
   word-spacing: -3px;
-  font-weight:600 ;
+  font-weight: 600;
   padding: 4px 12px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-sky-300) 60%, transparent);
@@ -451,11 +456,11 @@ body {
   border-radius: 999px;
   background: var(--color-sky-100);
   border: none;
-  font-weight:600 ;
+  font-weight: 600;
 
 }
 
-.dark .postDate{
+.dark .postDate {
   background: #f5ae822d;
 }
 
@@ -492,7 +497,7 @@ body {
 
 #readbtn {
   margin-left: auto;
-  font-weight:600;
+  font-weight: 600;
   padding: 4px 12px;
   border-radius: 999px;
   background: linear-gradient(135deg,
@@ -560,6 +565,7 @@ body {
   color: white;
   border-bottom: 1px solid rgba(250, 179, 135, 0.15);
 }
+
 #mobileMenu a:hover {
   color: #fab387;
 }
@@ -577,8 +583,8 @@ body {
   ;
 }
 
-.dark #mobileMenu{
-    background-color: rgba(24, 24, 37, 0.40);
+.dark #mobileMenu {
+  background-color: rgba(24, 24, 37, 0.40);
 }
 
 .skill-card {
@@ -666,40 +672,40 @@ body {
 }
 
 .skill-card:hover {
-    border-color: var(--color-sky-600);
+  border-color: var(--color-sky-600);
 
-    box-shadow:
-        0 0 0 1px rgb(14 165 233 / 0.25),
-        0 10px 30px rgb(14 165 233 / 0.10),
-        0 0 40px rgb(125 211 252 / 0.18);
+  box-shadow:
+    0 0 0 1px rgb(14 165 233 / 0.25),
+    0 10px 30px rgb(14 165 233 / 0.10),
+    0 0 40px rgb(125 211 252 / 0.18);
 
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .dark .skill-card:hover {
-    border-color: var(--accent);
+  border-color: var(--accent);
 
-    box-shadow:
-        0 0 0 1px var(--accent),
-        0 8px 32px var(--shadow),
-        0 0 60px var(--shadow);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 8px 32px var(--shadow),
+    0 0 60px var(--shadow);
 }
 
 .skill-card:hover i {
-    filter:
-        drop-shadow(0 0 6px rgb(125 211 252 / 0.35));
+  filter:
+    drop-shadow(0 0 6px rgb(125 211 252 / 0.35));
 }
 
 .dark .skill-card:hover i {
-    filter: drop-shadow(0 0 8px var(--accent));
+  filter: drop-shadow(0 0 8px var(--accent));
 }
 
 .skill-card:hover span {
-    color: var(--color-sky-700);
+  color: var(--color-sky-700);
 }
 
 .dark .skill-card:hover span {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 
@@ -766,8 +772,15 @@ body {
 }
 
 @keyframes panelOpen {
-    from { opacity: 0; transform: translateY(-8px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .info.visible li {
@@ -776,18 +789,51 @@ body {
 }
 
 .proj-details {
-    display: none;
+  display: none;
 }
 
 .proj-details.visible {
-    display: block;
+  display: block;
 }
 
-.proj-details.visible li{
+.proj-details.visible li {
   animation: bulletPop 0.7s ease forwards;
 }
 
 
+.proj-pic {
+  position: sticky;
+  top: 150px;
+  align-self: start;
+  border-radius: 1rem;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  box-shadow:
+    0 10px 40px rgba(14, 165, 233, 0.12);
+}
+
+.proj:hover .proj-pic {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 60px rgba(14, 165, 233, 0.22);
+}
+
+
+
+.dark .proj:hover .proj-pic {
+  border-color: rgba(250, 179, 135, 0.7);
+  box-shadow:
+    0 0 12px rgba(250, 179, 135, 0.2),
+    0 0 25px rgba(250, 179, 135, 0.15),
+    0 20px 50px rgba(250, 179, 135, 0.4),
+    0 30px 60px rgba(250, 179, 135, 0.2);
+
+}
 
 
 .tech-tags li {
@@ -847,6 +893,7 @@ body {
   border: 1px solid rgba(250, 179, 135, 0.2);
   color: white;
 }
+
 /* subtle shimmer sweep on hover */
 .homePost::before {
   content: '';

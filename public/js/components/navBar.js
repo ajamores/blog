@@ -24,10 +24,11 @@ export const renderNavBar = () => {
                     </h1>
                 </a>
                 <nav class="    gap-4 text-xl flex items-center text-sky-600 dark:text-white" id="navbar">
-                    <a href="/#hero" class="hidden md:flex">Home</a>
+                    <a href="/" class="hidden md:flex">Home</a>
                     <a href="/#skills" class="hidden md:flex ">Skills</a>
                     <a href="/#experience" class="hidden md:flex ">Experience</a>
-                    <a href="/blog" class="hidden md:flex ">Blog</a>
+                    <a href="/#projects" class="hidden md:flex ">Projects</a>
+                    
                     <button 
                         id="sunMoon"
                         aria-label="Toggle dark mode"
@@ -41,6 +42,7 @@ export const renderNavBar = () => {
                         class="block md:hidden cursor-pointer">
                         <i data-lucide="menu"></i>
                     </button>
+                    <a href="/blog" class="hidden md:flex ">Blog</a>
                     <a href="https://github.com/ajamores" class="hidden md:flex ">Github</a>
                     <a href="https://www.linkedin.com/in/armandamores/" class="hidden md:flex ">Linkedin</a>
                     <a href="https://www.youtube.com/@armandamores502" class="hidden md:flex ">Youtube</a>

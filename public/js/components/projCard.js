@@ -82,20 +82,71 @@ export function renderProjCard(proj) {
   <div class="
     proj-pic
     order-2
+    pr-4
+     md:group-hover:scale-[1.25]
+    transition-all duration-700 ease-in-out
     ${proj.side === 'left' ? 'md:order-2' : 'md:order-1'}
+    
   ">
-    <img 
-      src="${proj.image}" 
-      alt="${proj.alt}" 
-      class="rounded-2xl w-full object-cover max-h-100 md:max-h-125" 
-    />
+    
+    <div class="
+  relative overflow-hidden rounded-2xl shadow-lg
+  ring-1 ring-sky-200/20 dark:ring-ctp-peach/20
+
+  transition-all duration-300 ease-out
+    ">
+
+      <!-- Static image -->
+      <img 
+              width="800"
+        height="600"f
+        src="${proj.image}"
+        alt="${proj.alt}"
+        class="
+          proj-img
+          w-full h-full object-cover
+          transition-all duration-2000
+          group-hover:opacity-0  
+          group-hover:scale-[1.25]
+        "
+      />
+
+      <!-- Hover video -->
+      <video 
+        class="
+          proj-video
+          absolute inset-0
+          w-full h-full object-cover
+          opacity-0
+          transition-all duration-500
+          group-hover:opacity-100
+        
+          
+          
+        "
+        muted
+        loop
+        playsinline
+        preload="auto"
+      >
+        <source src="${proj.video}" type="video/mp4" />
+      </video>
+
+    </div>
   </div>
 `
 
 
 
   return `
-  <div class="proj mt-16 px-7 md:mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-start">
+  <div class="
+    proj group mt-16 px-17 py-20 md:mt-12
+    grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16
+    items-start cursor-pointer
+
+    transition-all duration-300 ease-out
+    hover:shadow-2xl rounded-2xl p-6 hover:-translate-y-2 
+  ">
     ${projInfo}
     ${image}
   </div>

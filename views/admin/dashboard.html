@@ -9,28 +9,42 @@
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
-<body class="bg-ctp-base min-h-screen ">
+<body class="bg-sky-700 min-h-screen ">
     <div id="container">
-        <header class="sticky top-0 z-50 bg-ctp-mantle/80 backdrop-blur-md border-b border-white/5">
+        <header class="sticky top-0 z-50 bg-slate-950/70 backdrop-blur-md border-b border-white/5">
             <nav class="max-w-5xl mx-auto flex items-center justify-between px-6 py-4">
 
                 <!-- Logo / Title -->
-                <h2 class="text-3xl font-semibold tracking-tight text-ctp-peach">
-                    By Armand
-                </h2>
+                <div class="relative group w-fit cursor-pointer">
+                    <h2 class="text-3xl font-semibold text-sky-200 transition-all duration-300 ease-out
+                        hover:tracking-widest
+                        hover:drop-shadow-[0_0_12px_rgba(56,189,248,0.55)]">
+                        By Armand
+                    </h2>
+                    <span class="absolute left-1/2 -translate-x-1/2 -bottom-1
+                        h-0.5 w-0
+                        bg-sky-400
+                        transition-all duration-300 ease-out
+                        group-hover:w-full block ">
+                    </span>
+                </div>
+
+
 
                 <!-- Actions -->
                 <div class="flex items-center gap-4">
 
-                    <a href="/admin/create" class="px-4 py-1.5 rounded-lg bg-ctp-peach/10 text-ctp-peach text-xl
-               hover:bg-ctp-peach hover:text-black 
-               transition-all duration-200 cursor-pointer">
+                    <a href="/admin/create" class="px-4 py-1.5 rounded-lg 
+                    bg-sky-500/20 text-sky-200 border border-sky-400/30 text-xl
+                    hover:bg-sky-400 hover:text-sky-900 hover:border-sky-400
+                    transition-all duration-200 cursor-pointer">
                         Create
                     </a>
 
-                    <button id="logout" class="px-4 py-1.5 rounded-lg border border-white/10 text-white/80 text-xl
-               hover:text-red-400 hover:border-red-400
-               transition-all duration-200 cursor-pointer">
+                    <button id="logout" class="px-4 py-1.5 rounded-lg 
+                        border border-sky-400/20 text-sky-200/80 text-xl
+                        hover:text-sky-300 hover:border-sky-400/60 hover:bg-sky-100/10
+                        transition-all duration-200 cursor-pointer">
                         Logout
                     </button>
 

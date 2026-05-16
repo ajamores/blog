@@ -1,7 +1,7 @@
 import { initThemeToggle } from './theme.js'
-import { experiences } from './exp/data.js'
+import { experiences } from './data/exp.js'
 import { renderExpCard } from './components/expCard.js'
-import { projects } from './exp/proj.js'
+import { projects } from './data/proj.js'
 import { renderProjCard } from './components/projCard.js'
 import { getAllPublishedBLogPosts } from './api.js'
 import { renderNavBar } from './components/navBar.js'
@@ -370,6 +370,37 @@ const projObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('#proj-container > *').forEach(card => {
     card.style.opacity = '0';
     projObserver.observe(card);
+});
+
+const vidObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const video = entry.target.querySelector('.proj-video');
+            if (video) video.load();
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.proj').forEach(proj => vidObserver.observe(proj));
+
+document.querySelectorAll('.proj').forEach(proj => {
+    const video = proj.querySelector('.proj-video');
+    const img = proj.querySelector('.proj-img');
+
+    if (!video) return;
+
+    proj.addEventListener('mouseenter', () => {
+        video.style.opacity = '1';
+        img.style.opacity = '0';
+        video.play();
+    });
+
+    proj.addEventListener('mouseleave', () => {
+        video.pause();
+        video.currentTime = 0;
+        video.style.opacity = '0';
+        img.style.opacity = '1';
+    });
 });
 
 //--------Logic for latest blog posts
