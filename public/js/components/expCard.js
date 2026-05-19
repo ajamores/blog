@@ -1,7 +1,7 @@
 export function renderExpCard(exp) {
 
   const bullets = exp.bullets.map((b, i) => `
-    <li class="flex items-start gap-2 text-md" style="animation-delay: ${i * 60}ms">
+    <li class="flex items-start gap-2 lg:text-sm xl:text-md" style="animation-delay: ${i * 60}ms">
         <span class="w-1.5 h-1.5 rounded-full bg-ctp-peach mt-2 shrink-0"></span>
         <p>${b}</p>
     </li>
@@ -12,10 +12,10 @@ export function renderExpCard(exp) {
      <div class="absolute -left-8.25 top-8 w-3 h-3 rounded-full mt-15 bg-ctp-peach md:hidden"></div>   
     <div class="flex gap-12 items-start">
         <div class="flex-1">
-          <h3 class="text-2xl font-bold mb-1">${exp.title}</h3>
-          <p class="text-lg font-semibold text-sky-200 dark:text-ctp-peach">${exp.company === '' ? '' : '@'} ${exp.company}</p>
+          <h3 class="text-sm md:text-md lg:text-xl xl:text-2xl font-bold mb-1">${exp.title}</h3>
+          <p class="lg:text-md xl:text-lg font-semibold text-sky-200 dark:text-ctp-peach">${exp.company === '' ? '' : '@'} ${exp.company}</p>
           <span class=" text-sky-200 dark:text-ctp-peach text-lg">${exp.date}</span>
-          <p class="mt-4 text-md">${exp.summary}</p>
+          <p class="mt-4 lg:text-sm xl:text-md">${exp.summary}</p>
           <div class="info hidden mt-5">
             <hr class="mb-4">
             <ul id=class="space-y-3 mt-4">${bullets}</ul>

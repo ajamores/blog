@@ -124,56 +124,56 @@ const heroObserver = new IntersectionObserver((entries) => {
 
 heroObserver.observe(document.getElementById('hero'));
 
-const comets = document.querySelectorAll('.comet-pair');
+// const comets = document.querySelectorAll('.comet-pair');
 
-comets.forEach((pair, i) => {
-    const thick = pair.querySelector('.thick');
-    const thin = pair.querySelector('.thin');
+// comets.forEach((pair, i) => {
+//     const thick = pair.querySelector('.thick');
+//     const thin = pair.querySelector('.thin');
 
-    let angle = (360 / comets.length) * i;
-    let speed = 0;
-    let targetSpeed = 1.2;
-    let direction = 1;
-    let dashLength = 80;
-    let phase = 'growing';
-    let frameCount = i * 200; // offset each comet's random check
+//     let angle = (360 / comets.length) * i;
+//     let speed = 0;
+//     let targetSpeed = 1.2;
+//     let direction = 1;
+//     let dashLength = 80;
+//     let phase = 'growing';
+//     let frameCount = i * 200; // offset each comet's random check
 
-    function animate() {
-        frameCount++;
-        speed += (targetSpeed - speed) * 0.02;
-        angle += speed * direction;
+//     function animate() {
+//         frameCount++;
+//         speed += (targetSpeed - speed) * 0.02;
+//         angle += speed * direction;
 
-        if (phase === 'growing') {
-            dashLength = Math.min(80, dashLength + 0.8);
+//         if (phase === 'growing') {
+//             dashLength = Math.min(80, dashLength + 0.8);
 
-            // stagger the random trigger per comet using frameCount
-            if (dashLength >= 80 && frameCount % 300 === 0 && Math.random() < 0.3) {
-                phase = 'shrinking';
-                targetSpeed = 0;
-                frameCount = 0;
-            }
-        }
+//             // stagger the random trigger per comet using frameCount
+//             if (dashLength >= 80 && frameCount % 300 === 0 && Math.random() < 0.3) {
+//                 phase = 'shrinking';
+//                 targetSpeed = 0;
+//                 frameCount = 0;
+//             }
+//         }
 
-        if (phase === 'shrinking') {
-            dashLength = Math.max(5, dashLength - 0.5);
+//         if (phase === 'shrinking') {
+//             dashLength = Math.max(5, dashLength - 0.5);
 
-            if (speed < 0.01 && dashLength <= 5) {
-                direction *= -1;
-                phase = 'growing';
-                targetSpeed = 1.4;
-            }
-        }
+//             if (speed < 0.01 && dashLength <= 5) {
+//                 direction *= -1;
+//                 phase = 'growing';
+//                 targetSpeed = 1.4;
+//             }
+//         }
 
-        thick.setAttribute('stroke-dasharray', `${dashLength} 1500`);
-        thin.setAttribute('stroke-dasharray', `${dashLength * 0.5} 1500`);
-        thick.style.transform = `rotate(${angle}deg)`;
-        thin.style.transform = `rotate(${angle}deg)`;
+//         thick.setAttribute('stroke-dasharray', `${dashLength} 1500`);
+//         thin.setAttribute('stroke-dasharray', `${dashLength * 0.5} 1500`);
+//         thick.style.transform = `rotate(${angle}deg)`;
+//         thin.style.transform = `rotate(${angle}deg)`;
 
-        requestAnimationFrame(animate);
-    }
+//         requestAnimationFrame(animate);
+//     }
 
-    animate();
-});
+//     animate();
+// });
 
 
 document.querySelectorAll('.skill-list').forEach(list => {
@@ -376,7 +376,12 @@ const vidObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const video = entry.target.querySelector('.proj-video');
-            if (video) video.load();
+            if (video) {
+                video.load();
+                vidObserver.unobserve(entry.target); // done, don't observe again
+            } else {
+                video.addEventListener('canplay', () => video.play().catch(() => { }), { once: true })
+            }
         }
     });
 }, { threshold: 0.2 });
@@ -392,7 +397,7 @@ document.querySelectorAll('.proj').forEach(proj => {
     proj.addEventListener('mouseenter', () => {
         video.style.opacity = '1';
         img.style.opacity = '0';
-        video.play();
+        video.play().catch(() => { }) // silence the abort error
     });
 
     proj.addEventListener('mouseleave', () => {

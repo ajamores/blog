@@ -79,13 +79,15 @@ export function renderProjCard(proj) {
   </div>
 `
   const image = `
-  <div class="
+
+  <div   width="1000"
+        height="600" class="
     proj-pic
     order-2
-    pr-4
      md:group-hover:scale-[1.25]
     transition-all duration-700 ease-in-out
     ${proj.side === 'left' ? 'md:order-2' : 'md:order-1'}
+    
     
   ">
     
@@ -98,8 +100,8 @@ export function renderProjCard(proj) {
 
       <!-- Static image -->
       <img 
-              width="800"
-        height="600"f
+              width="1000"
+        height="600"
         src="${proj.image}"
         alt="${proj.alt}"
         class="
@@ -109,6 +111,8 @@ export function renderProjCard(proj) {
           group-hover:opacity-0  
           group-hover:scale-[1.25]
         "
+        decoding="async" 
+        loading="lazy"
       />
 
       <!-- Hover video -->
@@ -127,9 +131,10 @@ export function renderProjCard(proj) {
         muted
         loop
         playsinline
-        preload="auto"
-      >
-        <source src="${proj.video}" type="video/mp4" />
+        preload="none"
+      >        
+      
+      <source src="${proj.video}" type="video/webm" />
       </video>
 
     </div>
@@ -140,8 +145,8 @@ export function renderProjCard(proj) {
 
   return `
   <div class="
-    proj group mt-16 px-17 py-20 md:mt-12
-    grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16
+    proj group mt-16 px-17 py-2 lg:py-10 md:mt-12
+    grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20
     items-start cursor-pointer
 
     transition-all duration-300 ease-out

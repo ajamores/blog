@@ -1,10 +1,10 @@
 
 
-const BASE_URL = `http://localhost:8080`;
+
 
 const getAllPublishedBLogPosts = async () => {
 
-    const res = await fetch(`${BASE_URL}/api/blog`);
+    const res = await fetch(`/api/blog`);
     if(!res.ok){
         throw new Error("Error fetching published blog posts");
     }
@@ -18,7 +18,7 @@ const getAllPublishedBLogPosts = async () => {
 const getPublishedBlogPost = async (slug) => {
     
    
-    const res = await fetch(`${BASE_URL}/api/blog/${slug}`);
+    const res = await fetch(`/api/blog/${slug}`);
 
     if(!res.ok){
         throw new Error("Error fetching published blog post");
@@ -29,7 +29,7 @@ const getPublishedBlogPost = async (slug) => {
 }
 
 const getAllBlogPosts = async () => {
-    const res = await fetch(`${BASE_URL}/api/blog/admin/all`, {
+    const res = await fetch(`/api/blog/admin/all`, {
         method: 'GET',
         credentials: 'include'
     });
@@ -44,7 +44,7 @@ const getAllBlogPosts = async () => {
 }
 
 const getBlogPost = async (slug) => {
-    const res = await fetch(`${BASE_URL}/api/blog/admin/${slug}`, {
+    const res = await fetch(`/api/blog/admin/${slug}`, {
         method: 'GET',
         credentials: 'include'
     })
@@ -60,7 +60,7 @@ const getBlogPost = async (slug) => {
 const createBlogPost = async (body) => {
 
     
-    const res = await fetch(`${BASE_URL}/api/blog/admin/create`, {
+    const res = await fetch(`/api/blog/admin/create`, {
         method: 'POST',
         credentials: 'include',
         headers: {'Content-type': 'application/json'},
@@ -79,7 +79,7 @@ const createBlogPost = async (body) => {
 
 const updateBlogPost = async (slug, payload) => {
 
-    const res = await fetch(`${BASE_URL}/api/blog/admin/${slug}`, {
+    const res = await fetch(`/api/blog/admin/${slug}`, {
                 method: 'PATCH',
                 headers: {'Content-type': 'application/json'},
                 credentials: 'include',
@@ -97,7 +97,7 @@ const updateBlogPost = async (slug, payload) => {
 }
 
 const deleteBlogPost = async (slug) => {
-    const res = await fetch(`${BASE_URL}/api/blog/admin/delete/${slug}`, {
+    const res = await fetch(`/api/blog/admin/delete/${slug}`, {
         method: 'DELETE',
         credentials: 'include',
     })
@@ -110,7 +110,7 @@ const deleteBlogPost = async (slug) => {
 
 const login = async (username, password) => {
 
-    const res = await fetch(`${BASE_URL}/auth/login`, {
+    const res = await fetch(`/auth/login`, {
         method: 'POST',
         headers: {'Content-type': 'application/json'},
         credentials: 'include',
@@ -128,7 +128,7 @@ const login = async (username, password) => {
 const logout = async () => {
     try {
 
-        const res = await fetch(`${BASE_URL}/auth/logout`, {
+        const res = await fetch(`/auth/logout`, {
             method: 'POST',
             credentials: 'include'
         });

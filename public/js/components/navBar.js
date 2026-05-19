@@ -5,7 +5,7 @@ export const renderNavBar = () => {
             <div class=" max-w-6xl mx-auto flex justify-between px-4 sm:px-6">
                 <a href="/" class="group w-fit">
                     <h1
-                        class="relative inline-block font-semibold text-2xl tracking-wide 
+                        class=" nav-icon relative inline-block font-semibold text-2xl tracking-wide 
                         text-sky-500 dark:text-ctp-peach
                         transition-all duration-300 ease-out
                         group-hover:tracking-widest
@@ -23,7 +23,7 @@ export const renderNavBar = () => {
                         </span>
                     </h1>
                 </a>
-                <nav class="    gap-4 text-xl flex items-center text-sky-600 dark:text-white" id="navbar">
+                <nav class="  nav-links gap-4 text-xl flex items-center text-sky-600 dark:text-white" id="navbar">
                     <a href="/" class="hidden md:flex">Home</a>
                     <a href="/#skills" class="hidden md:flex ">Skills</a>
                     <a href="/#experience" class="hidden md:flex ">Experience</a>

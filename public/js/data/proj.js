@@ -13,8 +13,8 @@ export const projects = [
         image: '/images/blogpic.webp',
         video: '/images/blogvid.webm',
         alt: 'Home page of blog',
-        github: 'https://github.com/ajamores',
-        live: '#',
+        github: 'https://github.com/ajamores/portfolio.blog',
+        live: '/blog',
         side: 'left'
     },
     {

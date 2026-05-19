@@ -9,7 +9,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { requireAuth } from './middleware/requireAuth.js';
 import cookieParser from 'cookie-parser';
-
+import compression from 'compression';
 //------------Route Endpoints--------------------\
 import authRoutes from './routes/authRoutes.js';
 import blogRoutes from './routes/blogRoutes.js';
@@ -17,11 +17,14 @@ import categoryRoutes from './routes/categoryRoutes.js'
 import { loginGuard } from './middleware/loginGuard.js';
 
 
+config(); //load any env vars before anything tried to read it first 
 
 //start app/configs
 const app = express();
-const PORT = 8080;
-config();
+
+app.use(compression()) //makes js html and css smaller over network!
+const PORT = process.env.PORT || 8080;
+
 connectDB();
 
 //limits every request to your server — static files, API calls, page loads, everything — to 100 requests per 15 minutes per IP
