@@ -378,9 +378,7 @@ const vidObserver = new IntersectionObserver(entries => {
             const video = entry.target.querySelector('.proj-video');
             if (video) {
                 video.load();
-                vidObserver.unobserve(entry.target); // done, don't observe again
-            } else {
-                video.addEventListener('canplay', () => video.play().catch(() => { }), { once: true })
+                vidObserver.unobserve(entry.target);
             }
         }
     });
@@ -388,26 +386,55 @@ const vidObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.proj').forEach(proj => vidObserver.observe(proj));
 
-document.querySelectorAll('.proj').forEach(proj => {
-    const video = proj.querySelector('.proj-video');
-    const img = proj.querySelector('.proj-img');
-
-    if (!video) return;
-
-    proj.addEventListener('mouseenter', () => {
-        video.style.opacity = '1';
-        img.style.opacity = '0';
-        video.play().catch(() => { }) // silence the abort error
-    });
-
-    proj.addEventListener('mouseleave', () => {
+// Click to play/pause — stops all others first
+function stopAllVideos(except = null) {
+    document.querySelectorAll('.proj').forEach(proj => {
+        if (proj === except) return;
+        const video = proj.querySelector('.proj-video');
+        const img = proj.querySelector('.proj-img');
+        const overlay = proj.querySelector('.play-overlay');
+        if (!video) return;
         video.pause();
         video.currentTime = 0;
         video.style.opacity = '0';
         img.style.opacity = '1';
+        overlay.style.opacity = '';  // let CSS group-hover take back over
+        proj.querySelector('.proj-pic').style.transform = '';
+        proj._playing = false;
+    });
+
+    
+}
+
+document.querySelectorAll('.proj').forEach(proj => {
+    const video = proj.querySelector('.proj-video');
+    const img = proj.querySelector('.proj-img');
+    const overlay = proj.querySelector('.play-overlay');
+
+    if (!video) return;
+
+    proj._playing = false;
+
+    proj.querySelector('.proj-pic').addEventListener('click', () => {
+        if (!proj._playing) {
+            stopAllVideos(proj);
+            img.style.opacity = '0';
+            overlay.style.opacity = '0';
+            video.style.opacity = '1';
+            proj.querySelector('.proj-pic').style.transform = 'scale(1.25)';
+            video.play().catch(() => { });
+            proj._playing = true;
+        } else {
+            video.pause();
+            video.currentTime = 0;
+            video.style.opacity = '0';
+            img.style.opacity = '1';
+            overlay.style.opacity = '';
+            proj.querySelector('.proj-pic').style.transform = '';
+            proj._playing = false;
+        }
     });
 });
-
 //--------Logic for latest blog posts
 
 //Fetch all published posts on start

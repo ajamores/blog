@@ -79,68 +79,40 @@ export function renderProjCard(proj) {
   </div>
 `
   const image = `
+  <div class="proj-pic group transition-transform duration-700 ease-in-out ${proj.side === 'left' ? 'md:order-2' : 'md:order-1'} order-2 cursor-pointer">
+    <div class="relative overflow-hidden rounded-2xl shadow-lg ring-1 ring-sky-200/20 dark:ring-ctp-peach/20">
 
-  <div   width="1000"
-        height="600" class="
-    proj-pic
-    order-2
-     md:group-hover:scale-[1.25]
-    transition-all duration-700 ease-in-out
-    ${proj.side === 'left' ? 'md:order-2' : 'md:order-1'}
-    
-    
-  ">
-    
-    <div class="
-  relative overflow-hidden rounded-2xl shadow-lg
-  ring-1 ring-sky-200/20 dark:ring-ctp-peach/20
-
-  transition-all duration-300 ease-out
-    ">
-
-      <!-- Static image -->
-      <img 
-              width="1000"
+      <img
+        width="1000"
         height="600"
         src="${proj.image}"
         alt="${proj.alt}"
-        class="
-          proj-img
-          w-full h-full object-cover
-          transition-all duration-2000
-          group-hover:opacity-0  
-          group-hover:scale-[1.25]
-        "
-        decoding="async" 
+        class="proj-img w-full h-full object-cover transition-opacity duration-500"
+        decoding="async"
         loading="lazy"
       />
 
-      <!-- Hover video -->
-      <video 
-        class="
-          proj-video
-          absolute inset-0
-          w-full h-full object-cover
-          opacity-0
-          transition-all duration-500
-          group-hover:opacity-100
-        
-          
-          
-        "
+      <div class="play-overlay absolute inset-0 flex items-center justify-center transition-opacity duration-300 bg-black/20 opacity-0 group-hover:opacity-100">
+        <div class="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center ring-1 ring-white/40">
+          <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+
+      <video
+        class="proj-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
         muted
         loop
         playsinline
         preload="none"
-      >        
-      
-      <source src="${proj.video}" type="video/webm" />
+      >
+        <source src="${proj.video}" type="video/webm" />
       </video>
 
     </div>
   </div>
 `
-
 
 
   return `

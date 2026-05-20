@@ -1,4 +1,4 @@
-import { Prisma } from "../generated/prisma/client.ts";
+import { Prisma } from "../generated/prisma/client.js";
 import path from 'path'
 import { fileURLToPath } from 'url';
 

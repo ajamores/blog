@@ -6,7 +6,9 @@ const getAllPublishedBLogPosts = async () => {
 
     const res = await fetch(`/api/blog`);
     if(!res.ok){
+        const body = await res.json().catch(() => ({}));
         throw new Error("Error fetching published blog posts");
+        console.error('getAllPublishedBlogPosts failed:', res.status, body);
     }
     const data = await res.json();
 

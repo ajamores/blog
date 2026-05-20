@@ -242,6 +242,7 @@ const getAllPublishedBlogPosts = async (req, res, next) => {
         
     } catch (error) {
         console.log("blogController, getPublishedBlogPosts() error: " + error.message);
+        console.error("blogController, getPublishedBlogPosts() error:", error);
         next(error)
     }
 }
